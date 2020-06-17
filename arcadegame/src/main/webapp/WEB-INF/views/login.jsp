@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -14,8 +18,8 @@
 
         <div id="form-btn-center">
             <div id="form-div">
-                <div><label for="" class="form-item">ID</label><input type="text" class="text-design-id text-box"></div><br>
-                <div><label for="" class="form-item">PASS</label><input type="password" class="text-design-pass text-box"></div>
+                <div><label for="" class="form-item">ID</label><input type="text" name="loginId" class="text-design-id text-box"></div><br>
+                <div><label for="" class="form-item">PASS</label><input type="password" name="password" class="text-design-pass text-box"></div>
             </div>
         </div>
         <div id="form-btn-center"><button class="form-btn">ログイン</button></div>

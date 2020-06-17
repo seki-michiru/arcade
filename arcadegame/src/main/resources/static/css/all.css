@@ -1,0 +1,165 @@
+body {
+    /* background-image: url(../images/background.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%; */
+    background-color: #000;
+    /* text-align: center; */
+}
+
+h1, p{
+    color: white;
+    text-align: center;
+}
+
+#game-title {
+    font-size: 100px;
+    color: #fff;
+    font-weight: bold;
+    font-family: Helvetica;
+    text-shadow: 
+      0 1px 0 #ccc, 
+      0 2px 0 #c9c9c9, 
+      0 3px 0 #bbb, 
+      0 4px 0 #b9b9b9, 
+      0 5px 0 #aaa, 
+      0 6px 1px rgba(0,0,0,.1), 
+      0 0 5px rgba(0,0,0,.1), 
+      0 1px 3px rgba(0,0,0,.3), 
+      0 3px 5px rgba(0,0,0,.2), 
+      0 5px 10px rgba(0,0,0,.25), 
+      0 10px 10px rgba(0,0,0,.2), 
+      0 20px 20px rgba(0,0,0,.15);
+}
+
+#sub-title {
+    text-align: left;
+    margin-left: 150px;
+    font-size: 60px;
+    color: #fff;
+    font-weight: bold;
+    font-family: Helvetica;
+    text-shadow: 
+      0 1px 0 #ccc, 
+      0 2px 0 #c9c9c9, 
+      0 3px 0 #bbb, 
+      0 4px 0 #b9b9b9, 
+      0 5px 0 #aaa, 
+      0 6px 1px rgba(0,0,0,.1), 
+      0 0 5px rgba(0,0,0,.1), 
+      0 1px 3px rgba(0,0,0,.3), 
+      0 3px 5px rgba(0,0,0,.2), 
+      0 5px 10px rgba(0,0,0,.25), 
+      0 10px 10px rgba(0,0,0,.2), 
+      0 20px 20px rgba(0,0,0,.15);
+}
+
+#menu-btn {
+    text-align: center;
+    font-size: 50px;
+    margin: 5px;
+    color: #FFF;
+    text-shadow: 0px 4px 2px rgba(0, 0, 0, 0.32), 0px 1px 0px #ffffff, 0px 2px 0px #4f6aa7, 0px 3px 0px #5470ad;
+    display: block;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.returnbtn {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+.home-icon {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 90px;
+    height: 90px;
+}
+
+/* フォームのCSS */
+#form-div {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+#form-div .form-item {
+    text-align: left;
+    font-weight: bold;
+    font-size: 35px;
+    color: #FFF;
+    text-shadow: 0px 4px 2px rgba(0, 0, 0, 0.32), 0px 1px 0px #ffffff, 0px 2px 0px #4f6aa7, 0px 3px 0px #5470ad;
+}
+
+.text-design-id {
+    margin-left: 120px;
+    font-weight: bold;
+    font-size: 35px;
+}
+.text-design-pass {
+    margin-left: 70px;
+    font-weight: bold;
+    font-size: 35px;
+}
+.text-design-name {
+    margin-left: 94px;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.text-box {
+    width: 250px;
+    font-size: 35px;
+    font-weight: bold;
+    outline: none;
+    background: none;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 5px #fff solid;
+    color: #fff;
+}
+
+#form-btn-center {
+    display: flex;
+    justify-content: center;
+}
+
+.form-btn {
+    margin-top: 50px;
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #fff;/*ボタン色*/
+    color: #000;/*ボタン色と同じに*/
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+    border-bottom: solid 3px rgb(63, 5, 5);
+    border-radius: 3px;/*角の丸み*/
+    font-weight: bold;
+    text-shadow: -1px -1px rgba(255, 255, 255, 0.44), 1px 1px rgba(0, 0, 0, 0.38);
+  }
+    
+  .form-btn:active {
+    /*ボタンを押したとき*/
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+    border-bottom: none;
+  }
+
+.confirm-msg {
+    font-size: 30px;
+    font-family: fantasy;
+}
+
+.inline {
+    display: inline;
+}
