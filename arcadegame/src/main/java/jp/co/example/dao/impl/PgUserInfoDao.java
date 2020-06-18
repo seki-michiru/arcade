@@ -26,6 +26,7 @@ public class PgUserInfoDao implements UserInfoDao{
 		return result.isEmpty() ? null : result;
 
 
+
 	}
 
 	public UserInfo findIdPass(String loginId, String password) {

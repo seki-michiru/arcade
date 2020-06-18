@@ -17,6 +17,8 @@
 
     <form:form action="regist1" modelAttribute="regist">
 
+
+
     <div id="form-btn-center">
         <div id="form-div">
             <div><label for="" class="form-item">ID</label><input type="text" name="loginId" class="text-design-id text-box"></div><br>

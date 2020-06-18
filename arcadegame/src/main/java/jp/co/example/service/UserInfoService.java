@@ -12,4 +12,5 @@ public interface UserInfoService {
 	public List<UserInfo> findById(Integer userId);
 
 
+
 }

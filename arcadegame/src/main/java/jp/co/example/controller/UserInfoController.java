@@ -74,6 +74,7 @@ public class UserInfoController {
 	public String regist1(@ModelAttribute("regist") RegistForm registForm, Model model, HttpSession session) {
 		System.out.println(registForm.getLoginId());
 
+
 		List<UserInfo> list1 = userInfoService.findById(registForm.getUserId());
 
 		if(list1 != null ) {
