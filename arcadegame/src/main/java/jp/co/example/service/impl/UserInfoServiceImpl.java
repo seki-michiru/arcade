@@ -37,9 +37,16 @@ public class UserInfoServiceImpl implements UserInfoService{
 	}
 
 	@Override
-	public List<UserInfo> findById(Integer userId) {
+	public List<UserInfo> findByUserId(Integer userId) {
 
-		return userInfoDao.findById(userId);
+		return userInfoDao.findByUserId(userId);
+
+	}
+
+	@Override
+	public List<UserInfo> findByLoginId(String loginId) {
+
+		return userInfoDao.findByLoginId(loginId);
 
 	}
 

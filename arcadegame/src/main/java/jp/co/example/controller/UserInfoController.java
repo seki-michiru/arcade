@@ -54,7 +54,7 @@ public class UserInfoController {
 		}else {
 
 			session.setAttribute("userInfo", userInfo);
-			session.setAttribute("list", list);
+			session.setAttribute("list", list.get(0));
 			return "menu";
 
 		}
@@ -75,7 +75,8 @@ public class UserInfoController {
 		System.out.println(registForm.getLoginId());
 
 
-		List<UserInfo> list1 = userInfoService.findById(registForm.getUserId());
+		List<UserInfo> list1 = userInfoService.findByLoginId(registForm.getLoginId());
+		System.out.println(list1.get(0).getLoginId());
 
 		if(list1 != null ) {
 

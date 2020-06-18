@@ -57,12 +57,26 @@ public class PgUserInfoDao implements UserInfoDao{
 
 	}
 
-	public List<UserInfo> findById(Integer userId) {
+	public List<UserInfo> findByUserId(Integer userId) {
 
 		String sql = "SELECT * FROM user_info WHERE user_id = :UserId";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("UserId", userId);
+
+		List<UserInfo> result1 = jdbcTemplate.query(sql,param,
+				new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
+
+		return result1.isEmpty() ? null : result1;
+
+	}
+
+	public List<UserInfo> findByLoginId(String loginId) {
+
+		String sql = "SELECT * FROM user_info WHERE login_id = :LoginId";
+
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("LoginId", loginId);
 
 		List<UserInfo> result1 = jdbcTemplate.query(sql,param,
 				new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
