@@ -8,5 +8,5 @@ public interface ItemDao{
 
 	public List<Items> findAll();
 
-	public List<Items> gachaItem(int itemId);
+	public List<Items> gachaItem(Integer itemId);
 }
