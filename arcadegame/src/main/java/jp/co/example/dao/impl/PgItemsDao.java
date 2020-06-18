@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -22,9 +23,12 @@ public class PgItemsDao implements ItemDao{
 	return result.isEmpty() ? null : result;
 	}
 
-	public List<Items> gachaItem(int itemId) {
-		String sql = "SELECT * FROM items";
-	List<Items> result = jdbcTemplate.query(sql,new BeanPropertyRowMapper<Items>(Items.class));
+	public List<Items> gachaItem(Integer itemId) {
+		String sql = "SELECT * FROM items WHERE item_id = :ItemId";
+
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("ItemId", itemId);
+		List<Items> result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Items>(Items.class));
 		return result.isEmpty() ? null : result;
 	}
 }
