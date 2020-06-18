@@ -70,13 +70,15 @@ public class UserInfoController {
 
 	}
 
+	@SuppressWarnings("unused")
 	@RequestMapping(value="/regist1", method = RequestMethod.POST)
 	public String regist1(@ModelAttribute("regist") RegistForm registForm, Model model, HttpSession session) {
 		System.out.println(registForm.getLoginId());
 
 
-		List<UserInfo> list1 = userInfoService.findByLoginId(registForm.getLoginId());
-		System.out.println(list1.get(0).getLoginId());
+		List<UserInfo> list1 = userInfoService.findByUserId(registForm.getUserId());
+//				userInfoService.findByLoginId(registForm.getLoginId());
+//		System.out.println(list1.get(0).getLoginId());
 
 		if(list1 != null ) {
 
@@ -88,6 +90,7 @@ public class UserInfoController {
 			session.setAttribute("loginId", registForm.getLoginId());
 			session.setAttribute("userName", registForm.getUserName());
 			session.setAttribute("password", registForm.getPassword());
+
 			return "registConfirm";
 
 		}
