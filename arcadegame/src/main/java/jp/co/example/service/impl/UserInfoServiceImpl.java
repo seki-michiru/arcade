@@ -50,5 +50,24 @@ public class UserInfoServiceImpl implements UserInfoService{
 
 	}
 
+	@Override
+	public List<UserInfo> allItem(Integer userId) {
 
+		return userInfoDao.allItem(userId);
+
+	}
+
+	@Override
+	public List<UserInfo> findRanking(Integer gameId) {
+
+		return userInfoDao.findRanking(gameId);
+
+	}
+
+	@Override
+	public List<UserInfo> playCount(Integer userId, Integer gameId) {
+
+		return userInfoDao.playCount(userId, gameId);
+
+	}
 }
