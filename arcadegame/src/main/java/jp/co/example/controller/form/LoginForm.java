@@ -1,6 +1,6 @@
 package jp.co.example.controller.form;
 
-public class loginForm {
+public class LoginForm {
 
 	private String loginId;
 	private String password;
