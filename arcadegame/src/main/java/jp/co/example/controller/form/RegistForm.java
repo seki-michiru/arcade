@@ -2,10 +2,18 @@ package jp.co.example.controller.form;
 
 public class RegistForm {
 
+	private Integer userId;
 	private String loginId;
 	private String userName;
 	private String password;
 
+
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 	public String getLoginId() {
 		return loginId;
 	}
