@@ -9,8 +9,8 @@
 </head>
 <body>
 
-    <a href="ranking.html"><img src="images/returnbtn.png" alt="" class="returnbtn"></a>
-    <a href="menu.html"><img src="images/homeicon.png" alt="" class="home-icon"></a>
+    <a href="ranking.jsp"><img src="images/returnbtn.png" alt="" class="returnbtn"></a>
+    <a href="menu.jsp"><img src="images/homeicon.png" alt="" class="home-icon"></a>
 
     <h2 id="sub-title">インベーダーゲーム</h2>
 

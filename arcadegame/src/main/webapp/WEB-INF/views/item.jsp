@@ -8,12 +8,12 @@
     <link rel="icon" href="images/invader1.png">
 </head>
 <body>
-    
 
-    <a href="menu.html"><img src="images/homeicon.png" alt=""class="home-icon"></a>
-   
+
+    <a href="menu.jsp"><img src="images/homeicon.png" alt=""class="home-icon"></a>
+
     <h1 id="sub-title">所持アイテム</h1>
-    
+
     <table>
         <tr>
             <th>ゲーム名</th>
@@ -27,8 +27,8 @@
             <td>1</td>
             <td>凄いやつです。</td>
         </tr>
-        
+
     </table>
-    
+
 </body>
 </html>
