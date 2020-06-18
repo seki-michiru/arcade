@@ -24,11 +24,11 @@ public class PgItemsDao implements ItemDao{
 	}
 
 	public List<Items> gachaItem(Integer itemId) {
-		String sql = "SELECT * FROM items WHERE item_id = :ItemId";
+		String sql = "SELECT * FROM items WHERE item_id = :ItemIdA";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
-		param.addValue("ItemId", itemId);
-		List<Items> result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Items>(Items.class));
+		param.addValue("ItemIdA", itemId);
+		List<Items> result = jdbcTemplate.query(sql, param,new BeanPropertyRowMapper<Items>(Items.class));
 		return result.isEmpty() ? null : result;
 	}
 }
