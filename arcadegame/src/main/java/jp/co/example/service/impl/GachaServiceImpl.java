@@ -24,7 +24,6 @@ public class GachaServiceImpl implements GachaService {
 	public int Random() {
 		Random rand = new Random();
 	    int num = rand.nextInt(10) + 1;
-	    System.out.println(num);
 		return num;
 	}
 
