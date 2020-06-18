@@ -28,7 +28,7 @@ public class GachaController {
 	@RequestMapping("/gachaPlay")
 	public String gachaPlay(Model model, HttpSession session) {
 
-		int randomNumber = gachaService.Random();
+		Integer randomNumber = gachaService.Random();
 		List<Items> list = gachaService.gachaItem(randomNumber);
 		session.setAttribute("getItem", list);
 
