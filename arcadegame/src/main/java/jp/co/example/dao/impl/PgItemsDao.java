@@ -7,11 +7,11 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import jp.co.example.dao.ItemsDao;
+import jp.co.example.dao.ItemDao;
 import jp.co.example.entity.Items;
 
 @Repository
-public class PgItemsDao implements ItemsDao{
+public class PgItemsDao implements ItemDao{
 
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
