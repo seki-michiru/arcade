@@ -8,9 +8,12 @@
     <link rel="icon" href="images/invader1.png">
 </head>
 <body>
-    <div class="gacha-img-div"><img src="images/gacha.jpg" alt="" class="gacha-img"></div>
+    <a href="menu.html"><img src="images/homeicon.png" alt=""class="home-icon"></a>
 
-    <!-- <h2><a href="gachaResult.html">3秒後に結果画面に遷移させる後で消して</a></h2> -->
+    <h1 id="sub-title">ゲーム選択</h1>
+
+    <h2><a href="invaderStart.html" id="menu-btn">インベーダーゲーム</a></h2>
+    <h2><a href="brockStart.html" id="menu-btn">ブロック崩し</a></h2>
 
 </body>
 </html>

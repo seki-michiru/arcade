@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>アーケードゲーム</title>
     <link rel="stylesheet" href="css/all.css">
+    <link rel="icon" href="images/invader1.png">
 </head>
 <body>
     <a href="menu.html"><img src="images/homeicon.png" alt=""class="home-icon"></a>
     <h1 id="sub-title">交換</h1>
-    
+
     <a href="tradeMenu.html"><img src="images/returnbtn.png" alt=""class="returnbtn"></a>
-    
+
     <form method="" action="">
     <table>
         <tr>

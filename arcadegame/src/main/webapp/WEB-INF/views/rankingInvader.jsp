@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>インベーダーゲームランキング</title>
     <link rel="stylesheet" href="css/all.css">
+    <link rel="icon" href="images/invader1.png">
 </head>
 <body>
 
     <a href="ranking.html"><img src="images/returnbtn.png" alt="" class="returnbtn"></a>
     <a href="menu.html"><img src="images/homeicon.png" alt="" class="home-icon"></a>
-   
+
     <h2 id="sub-title">インベーダーゲーム</h2>
 
     <div id="rank-msg-div"><p class="rank-msg">あなたのランキング</p><p class="rank-msg">2位</p><p class="rank-msg">1234点</p></div>
-    
+
     <table border="1">
         <tr>
             <caption>BEST3</caption>
@@ -30,7 +31,7 @@
             <td>2222</td>
             <td>2020/6/17</td>
             <td>2222</td>
-        </tr>        
+        </tr>
     </table>
 
 </body>

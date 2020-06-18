@@ -9,7 +9,7 @@
 </head>
 <body>
     <a href="menu.html"><img src="images/homeicon.png" alt=""class="home-icon"></a>
-    <h1 id="sub-title">出品</h1>
+    <h1 id="sub-title">出品を削除</h1>
 
     <a href="tradeMenu.html"><img src="images/returnbtn.png" alt=""class="returnbtn"></a>
 
@@ -19,24 +19,17 @@
                 <th></th>
                 <th>ゲーム名</th>
                 <th>所持アイテム</th>
-                <th>ほしいアイテム選択</th>
+                <th>ほしいアイテム</th>
             </tr>
             <tr>
                 <td><input type="checkbox" style="width: 20px; height: 20px;"></td>
                 <td>インベーダー</td>
                 <td>アイテム1</td>
-                <td>
-                    <div>
-                        <select name="" class="form-select">
-                            <option value="1">アイテム1</option>
-                            <option value="2">アイテム2</option>
-                        </select>
-                    </div>
-                </td>
+                <td>アイテム2</td>
             </tr>
         </table>
 
-        <div id="form-btn-center"><button class="form-btn" style="width: 200px;">トレードに出す</button></div>
+        <div id="form-btn-center"><button class="form-btn" style="width: 200px;">削除</button></div>
     </form>
 
 </body>

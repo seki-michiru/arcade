@@ -8,9 +8,6 @@
     <link rel="icon" href="images/invader1.png">
 </head>
 <body>
-    <div class="gacha-img-div"><img src="images/gacha.jpg" alt="" class="gacha-img"></div>
-
-    <!-- <h2><a href="gachaResult.html">3秒後に結果画面に遷移させる後で消して</a></h2> -->
 
 </body>
 </html>
