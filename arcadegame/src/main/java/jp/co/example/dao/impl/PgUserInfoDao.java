@@ -45,12 +45,12 @@ public class PgUserInfoDao implements UserInfoDao{
 
 	public void insert(String loginId, String userName, String password) {
 
-		String sql = "INSERT INTO user_info (login_id, user_name, password) VALUES (:loginId, :userName, :password)";
+		String sql = "INSERT INTO user_info (login_id, user_name, password) VALUES (:LoginId, :UserName, :Password)";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
-		param.addValue("loginId", loginId);
-		param.addValue("userName",userName);
-		param.addValue("password", password);
+		param.addValue("LoginId", loginId);
+		param.addValue("UserName",userName);
+		param.addValue("Password", password);
 
 		jdbcTemplate.update(sql, param);
 
@@ -58,9 +58,12 @@ public class PgUserInfoDao implements UserInfoDao{
 
 	public List<UserInfo> findById(Integer userId) {
 
-		String sql = "SELECT * FROM user_info WHERE user_id";
+		String sql = "SELECT * FROM user_info WHERE user_id = :UserId";
 
-		List<UserInfo> result1 = jdbcTemplate.query(sql,
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("UserId", userId);
+
+		List<UserInfo> result1 = jdbcTemplate.query(sql,param,
 				new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
 
 		return result1.isEmpty() ? null : result1;

@@ -19,9 +19,9 @@
 
     <div id="form-btn-center">
         <div id="form-div">
-            <div><label for="" class="form-item">ID</label><input type="text" class="text-design-id text-box"></div><br>
-            <div><label for="" class="form-item">名前</label><input type="text" class="text-design-name text-box"></div><br>
-            <div><label for="" class="form-item">PASS</label><input type="text" class="text-design-pass text-box"></div>
+            <div><label for="" class="form-item">ID</label><input type="text" name="loginId" class="text-design-id text-box"></div><br>
+            <div><label for="" class="form-item">名前</label><input type="text" name="userName" class="text-design-name text-box"></div><br>
+            <div><label for="" class="form-item">PASS</label><input type="text" name="password" class="text-design-pass text-box"></div>
         </div>
     </div>
     <div id="form-btn-center"><button class="form-btn">確認</button></div>

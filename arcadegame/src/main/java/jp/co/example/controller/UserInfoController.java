@@ -71,21 +71,24 @@ public class UserInfoController {
 	}
 
 	@RequestMapping(value="/regist1", method = RequestMethod.POST)
-	public String regist1(@ModelAttribute("regist1") RegistForm registForm, Model model, HttpSession session) {
+	public String regist1(@ModelAttribute("regist") RegistForm registForm, Model model, HttpSession session) {
+		System.out.println(registForm.getLoginId());
 
-		userInfoService.insert(registForm.getLoginId(), registForm.getUserName(), registForm.getPassword());
 		List<UserInfo> list1 = userInfoService.findById(registForm.getUserId());
 
-//		if( == ) {
-//
-//			return "regist";
-//
-//		}else {
-//
-//			model.addAttribute();
+		if(list1 != null ) {
+
+			return "regist";
+
+		}else {
+
+			userInfoService.insert(registForm.getLoginId(), registForm.getUserName(), registForm.getPassword());
+			session.setAttribute("loginId", registForm.getLoginId());
+			session.setAttribute("userName", registForm.getUserName());
+			session.setAttribute("password", registForm.getPassword());
 			return "registConfirm";
-//
-//		}
+
+		}
 
 	}
 
