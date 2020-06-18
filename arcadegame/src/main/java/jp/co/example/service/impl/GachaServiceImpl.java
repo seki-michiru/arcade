@@ -22,9 +22,10 @@ public class GachaServiceImpl implements GachaService {
 	private UserInfoDao userInfoDao;
 
 	public int Random() {
-		Random random = new Random(1);
-		int randomValue = random.nextInt(10);
-		return randomValue;
+		Random rand = new Random();
+	    int num = rand.nextInt(10) + 1;
+	    System.out.println(num);
+		return num;
 	}
 
 	@Override
