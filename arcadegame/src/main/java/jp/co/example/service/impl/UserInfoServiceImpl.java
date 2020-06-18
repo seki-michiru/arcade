@@ -23,16 +23,16 @@ public class UserInfoServiceImpl implements UserInfoService{
 	}
 
 	@Override
-	public UserInfo findIdPass(String roginId, String password) {
+	public UserInfo findIdPass(String loginId, String password) {
 
-		return userInfoDao.findIdPass(roginId, password);
+		return userInfoDao.findIdPass(loginId, password);
 
 	}
 
 	@Override
-	public void insert(String roginId, String userName, String password) {
+	public void insert(String loginId, String userName, String password) {
 
-		userInfoDao.insert(roginId, userName, password);
+		userInfoDao.insert(loginId, userName, password);
 
 	}
 

@@ -14,7 +14,7 @@
     <h2 id="sub-title">ログイン</h2>
     <a href="top.jsp"><img src="images/returnbtn.png" alt="" class="returnbtn"></a>
 
-    <form action="">
+    <form:form action="login1" modelAttribute="login">
 
         <div id="form-btn-center">
             <div id="form-div">
@@ -23,6 +23,6 @@
             </div>
         </div>
         <div id="form-btn-center"><button class="form-btn">ログイン</button></div>
-    </form>
+    </form:form>
 </body>
 </html>

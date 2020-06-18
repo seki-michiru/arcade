@@ -7,8 +7,8 @@ import jp.co.example.entity.UserInfo;
 public interface UserInfoDao {
 
 	public List<UserInfo> findAll();
-	public UserInfo findIdPass(Integer roginId, String password);
-	public void insert(Integer roginId, String userName, String password);
+	public UserInfo findIdPass(String loginId, String password);
+	public void insert(String loginId, String userName, String password);
 
 
 }

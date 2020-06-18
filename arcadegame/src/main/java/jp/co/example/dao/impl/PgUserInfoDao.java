@@ -28,12 +28,12 @@ public class PgUserInfoDao implements UserInfoDao{
 
 	}
 
-	public UserInfo findIdPass(String roginId, String password) {
+	public UserInfo findIdPass(String loginId, String password) {
 
 		String sql = "SELECT * FROM user_info WHERE rogin_id = :rogin_id AND password = :password";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
-		param.addValue("roginId", roginId);
+		param.addValue("loginId", loginId);
 		param.addValue("password", password);
 
 		List<UserInfo> resultList = jdbcTemplate.query(sql, param,
@@ -43,12 +43,12 @@ public class PgUserInfoDao implements UserInfoDao{
 
 	}
 
-	public void insert(String roginId, String userName, String password) {
+	public void insert(String loginId, String userName, String password) {
 
-		String sql = "INSERT INTO user_info (rogin_id, user_name, password) VALUES (:roginId, :userName, :password)";
+		String sql = "INSERT INTO user_info (login_id, user_name, password) VALUES (:loginId, :userName, :password)";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
-		param.addValue("roginId", roginId);
+		param.addValue("loginId", loginId);
 		param.addValue("userName",userName);
 		param.addValue("password", password);
 

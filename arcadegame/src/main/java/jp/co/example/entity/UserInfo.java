@@ -5,7 +5,7 @@ import java.util.Date;
 public class UserInfo {
 
 	private Integer userId;
-	private String roginId;
+	private String loginId;
 	private String userName;
 	private String password;
 	private Integer coinHave;
@@ -17,10 +17,10 @@ public class UserInfo {
 
 	}
 
-	public UserInfo(Integer userId, String roginId, String userName, String password, Integer coinHave, Date createDate, Date updateDate, Date loginDate) {
+	public UserInfo(Integer userId, String loginId, String userName, String password, Integer coinHave, Date createDate, Date updateDate, Date loginDate) {
 
 		this.userId = userId;
-		this.roginId = roginId;
+		this.loginId = loginId;
 		this.userName = userName;
 		this.password = password;
 		this.coinHave = coinHave;
@@ -38,12 +38,12 @@ public class UserInfo {
 		this.userId = userId;
 	}
 
-	public String getRoginId() {
-		return roginId;
+	public String getLoginId() {
+		return loginId;
 	}
 
-	public void setRoginId(String roginId) {
-		this.roginId = roginId;
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
 
 	public String getUserName() {
