@@ -9,6 +9,6 @@ public interface UserInfoDao {
 	public List<UserInfo> findAll();
 	public UserInfo findIdPass(String loginId, String password);
 	public void insert(String loginId, String userName, String password);
-
+	public List<UserInfo> findRanking(Integer userId);
 
 }
