@@ -12,7 +12,7 @@ import jp.co.example.dao.UserInfoDao;
 import jp.co.example.entity.UserInfo;
 
 @Repository
-public class PgUserInfoDao implements UserInfoDao{
+public class PgUserInfoDao implements UserInfoDao {
 
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
@@ -24,8 +24,6 @@ public class PgUserInfoDao implements UserInfoDao{
 				new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
 
 		return result.isEmpty() ? null : result;
-
-
 
 	}
 
@@ -50,7 +48,7 @@ public class PgUserInfoDao implements UserInfoDao{
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("LoginId", loginId);
-		param.addValue("UserName",userName);
+		param.addValue("UserName", userName);
 		param.addValue("Password", password);
 
 		jdbcTemplate.update(sql, param);
@@ -64,7 +62,7 @@ public class PgUserInfoDao implements UserInfoDao{
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("UserId", userId);
 
-		List<UserInfo> result1 = jdbcTemplate.query(sql,param,
+		List<UserInfo> result1 = jdbcTemplate.query(sql, param,
 				new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
 
 		return result1.isEmpty() ? null : result1;
@@ -78,26 +76,26 @@ public class PgUserInfoDao implements UserInfoDao{
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("LoginId", loginId);
 
-		List<UserInfo> result1 = jdbcTemplate.query(sql,param,
+		List<UserInfo> result1 = jdbcTemplate.query(sql, param,
 				new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
 
 		return result1.isEmpty() ? null : result1;
 
 	}
-	public List<UserInfo> allItem(Integer userId){
+
+	public List<UserInfo> allItem(Integer userId) {
 		String sql = "select g.game_name, i.item_name, i.item_explan, s.item_have "
 				+ "from user_info u join item_stocks s on u.user_id=s.user_id "
 				+ "join items i on s.item_id=i.item_id join games g on i.game_id=g.game_id where u.user_id = :UserId";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
-		param.addValue("UserId",userId);
+		param.addValue("UserId", userId);
 
 		List<UserInfo> allItem = jdbcTemplate.query(sql, new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
 		return allItem.isEmpty() ? null : allItem;
-		}
+	}
 
-
-		public List<UserInfo> findRanking(Integer gameId){
+	public List<UserInfo> findRanking(Integer gameId) {
 		String sql = "SELECT user_name, rank() over (order by(MAX(score))desc) rank, MAX(score) AS ハイスコア, score_date FROM user_info "
 				+ "JOIN scores "
 				+ "ON user_info.user_id = scores.user_id"
@@ -105,27 +103,32 @@ public class PgUserInfoDao implements UserInfoDao{
 				+ "group by user_info.user_id,score_date";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
-		param.addValue("GameId",gameId);
+		param.addValue("GameId", gameId);
 
 		List<UserInfo> ranking = jdbcTemplate.query(sql, new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
 		return ranking.isEmpty() ? null : ranking;
-		}
+	}
 
-
-		public List<UserInfo> playCount(Integer userId, Integer gameId){
+	public List<UserInfo> playCount(Integer userId, Integer gameId) {
 		String sql = "select count(*) from scores"
 				+ "where user_id = :UserId and game_id = :GameId";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
-		param.addValue("UserId",userId);
-		param.addValue("GameId",gameId);
+		param.addValue("UserId", userId);
+		param.addValue("GameId", gameId);
 
 		List<UserInfo> playCount = jdbcTemplate.query(sql, new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
 		return playCount.isEmpty() ? null : playCount;
-		}
+	}
 
+	@Override
+	public void coinWast(Integer userId) {
+		String sql = "UPDATE user_info SET coin_have = coin_have - 30 WHERE user_id = :UserId";
 
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("UserId", userId);
 
+		jdbcTemplate.update(sql, param);
 
-
+	}
 }
