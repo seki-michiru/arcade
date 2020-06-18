@@ -23,7 +23,7 @@ public class UserInfoServiceImpl implements UserInfoService{
 	}
 
 	@Override
-	public UserInfo findIdPass(String loginId, String password) {
+	public List<UserInfo> findIdPass(String loginId, String password) {
 
 		return userInfoDao.findIdPass(loginId, password);
 

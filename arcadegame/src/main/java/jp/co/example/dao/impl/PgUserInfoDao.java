@@ -27,7 +27,7 @@ public class PgUserInfoDao implements UserInfoDao {
 
 	}
 
-	public UserInfo findIdPass(String loginId, String password) {
+	public List<UserInfo> findIdPass(String loginId, String password) {
 
 		String sql = "SELECT * FROM user_info WHERE login_id = :loginId AND password = :password";
 
@@ -38,7 +38,7 @@ public class PgUserInfoDao implements UserInfoDao {
 		List<UserInfo> resultList = jdbcTemplate.query(sql, param,
 				new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
 
-		return resultList.isEmpty() ? null : resultList.get(0);
+		return resultList.isEmpty() ? null : resultList;
 
 	}
 

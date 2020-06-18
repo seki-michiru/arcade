@@ -12,26 +12,26 @@
 <link rel="icon" href="images/invader1.png">
 </head>
 <body>
-	<h1 id="user-name">XXXさん、こんにちは</h1>
+	<h1 id="user-name">${sessionScope.userName}さん、こんにちは</h1>
 
 	<form:form action="menu" modelAttribute="menu">
 		<h1 id="sub-title">メニュー</h1>
-		<a href="logout.jsp"><button class="form-btn home-icon">ログアウト</button></a>
+		<a href="logout"><button class="form-btn home-icon">ログアウト</button></a>
 
 		<h2>
-			<a href="game.jsp" id="menu-btn">ゲーム選択</a>
+			<a href="game" id="menu-btn">ゲーム選択</a>
 		</h2>
 		<h2>
-			<a href="ranking.jsp" id="menu-btn">ランキング</a>
+			<a href="ranking" id="menu-btn">ランキング</a>
 		</h2>
 		<h2>
-			<a href="shop.jsp" id="menu-btn">ショップ</a>
+			<a href="shop" id="menu-btn">ショップ</a>
 		</h2>
 		<h2>
-			<a href="item.jsp" id="menu-btn">所持アイテム一覧</a>
+			<a href="item" id="menu-btn">所持アイテム一覧</a>
 		</h2>
 		<h2>
-			<a href="userInfo.jspl" id="menu-btn">ユーザー情報</a>
+			<a href="userInfo" id="menu-btn">ユーザー情報</a>
 		</h2>
 		<!-- <h2><a href="logout.jsp" id="menu-btn">ログアウト</a></h2> -->
 	</form:form>

@@ -38,9 +38,16 @@ public class UserInfoController {
 	@RequestMapping(value="/login1", method = RequestMethod.POST)
 	public String login1(@ModelAttribute("login1") LoginForm loginform, Model model, HttpSession session) {
 
-		UserInfo userInfo = userInfoService.findIdPass(loginform.getLoginId(), loginform.getPassword());
+		List<UserInfo> userInfo = userInfoService.findIdPass(loginform.getLoginId(), loginform.getPassword());
 		List<UserInfo> list = userInfoService.findAll();
 
+		String userName = "";
+
+		for(UserInfo u : userInfo) {
+
+			userName = u.getUserName();
+
+		}
 
 		System.out.println(userInfo);
 		System.out.println(list);
@@ -54,6 +61,7 @@ public class UserInfoController {
 		}else {
 
 			session.setAttribute("userInfo", userInfo);
+			session.setAttribute("userName", userName);
 			session.setAttribute("list", list.get(0));
 			return "menu";
 
@@ -70,7 +78,7 @@ public class UserInfoController {
 
 	}
 
-	@SuppressWarnings("unused")
+
 	@RequestMapping(value="/regist1", method = RequestMethod.POST)
 	public String regist1(@ModelAttribute("regist") RegistForm registForm, Model model, HttpSession session) {
 		System.out.println(registForm.getLoginId());
@@ -111,6 +119,14 @@ public class UserInfoController {
 		return "login";
 
 	}
+
+	@RequestMapping("menu")
+	public String menu(Model model) {
+
+		return "logout";
+
+	}
+
 
 	@RequestMapping("/logout")
 	public String logout(Model model, HttpSession session) {
