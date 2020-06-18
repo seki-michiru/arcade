@@ -14,5 +14,5 @@ public interface UserInfoDao {
 	public List<UserInfo> allItem(Integer userId);
 	public List<UserInfo> findRanking(Integer gameId);
 	public List<UserInfo> playCount(Integer userId, Integer gameId);
-
+	public void coinWast(Integer userId);
 }
