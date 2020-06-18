@@ -13,19 +13,19 @@
 </head>
 <body>
     <h2 id="sub-title">新規登録</h2>
-    <a href="regist.jsp"><img src="images/returnbtn.png" alt="" class="returnbtn"></a>
+    <a href="regist"><img src="images/returnbtn.png" alt="" class="returnbtn"></a>
     <p class="confirm-msg">これでよろしいですか？</p>
 
-    <form action="">
+    <form:form action="regist2" modelAttribute="regist">
 
     <div id="form-btn-center">
         <div id="form-div">
-            <div><label for="" class="form-item">ID</label><input type="text" class="text-design-id text-box" value="invader" readonly></div><br>
-            <div><label for="" class="form-item">名前</label><input type="text" class="text-design-name text-box" value="インベーダー" readonly></div><br>
-            <div><label for="" class="form-item">PASS</label><input type="text" class="text-design-pass text-box" value="invader" readonly></div>
+            <div><label for="" class="form-item">ID</label><input type="text" class="text-design-id text-box" value="${sessionScope.loginId}" readonly></div><br>
+            <div><label for="" class="form-item">名前</label><input type="text" class="text-design-name text-box" value="${sessionScope.userName}" readonly></div><br>
+            <div><label for="" class="form-item">PASS</label><input type="text" class="text-design-pass text-box" value="${sessionScope.password}" readonly></div>
         </div>
     </div>
     <div id="form-btn-center"><button class="form-btn">登録</button></div>
-    </form>
+    </form:form>
 </body>
 </html>

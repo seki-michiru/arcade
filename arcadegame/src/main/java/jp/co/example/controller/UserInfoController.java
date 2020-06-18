@@ -1,5 +1,7 @@
 package jp.co.example.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +39,11 @@ public class UserInfoController {
 	public String login1(@ModelAttribute("login1") LoginForm loginform, Model model, HttpSession session) {
 
 		UserInfo userInfo = userInfoService.findIdPass(loginform.getLoginId(), loginform.getPassword());
+		List<UserInfo> list = userInfoService.findAll();
+
 
 		System.out.println(userInfo);
+		System.out.println(list);
 
 		if(userInfo == null) {
 
@@ -49,6 +54,7 @@ public class UserInfoController {
 		}else {
 
 			session.setAttribute("userInfo", userInfo);
+			session.setAttribute("list", list);
 			return "menu";
 
 		}
@@ -65,15 +71,38 @@ public class UserInfoController {
 	}
 
 	@RequestMapping(value="/regist1", method = RequestMethod.POST)
-	public String regist1(@ModelAttribute("regist1") RegistForm registForm, Model model) {
+	public String regist1(@ModelAttribute("regist1") RegistForm registForm, Model model, HttpSession session) {
 
 		userInfoService.insert(registForm.getLoginId(), registForm.getUserName(), registForm.getPassword());
+		List<UserInfo> list1 = userInfoService.findById(registForm.getUserId());
 
-
-		return "regist1";
+//		if( == ) {
+//
+//			return "regist";
+//
+//		}else {
+//
+//			model.addAttribute();
+			return "registConfirm";
+//
+//		}
 
 	}
 
+	@RequestMapping(value="/regist2", method = RequestMethod.POST)
+	public String regist2(@ModelAttribute("regist2") RegistForm registForm, Model model, HttpSession session) {
+
+
+		return "registResult";
+
+	}
+
+	@RequestMapping(value="/regist3", method = RequestMethod.POST)
+	public String regist3(@ModelAttribute("regist3") RegistForm registForm, Model model, HttpSession session) {
+
+		return "login";
+
+	}
 
 	@RequestMapping("/logout")
 	public String logout(Model model, HttpSession session) {

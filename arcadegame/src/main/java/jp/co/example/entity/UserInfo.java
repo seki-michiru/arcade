@@ -12,6 +12,10 @@ public class UserInfo {
 	private Date createDate;
 	private Date updateDate;
 	private Date loginDate;
+	private String itemName;
+	private String itemExplan;
+	private String gameName;
+	private Integer itemHave;
 
 	public UserInfo() {
 
@@ -28,6 +32,46 @@ public class UserInfo {
 		this.updateDate = updateDate;
 		this.loginDate = loginDate;
 
+	}
+
+	public UserInfo(Integer userId, String gameName, String itemName, String itemExplan, Integer itemHave) {
+		this.userId = userId;
+		this.gameName = gameName;
+		this.itemName = itemName;
+		this.itemExplan = itemExplan;
+		this.itemHave = itemHave;
+	}
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	public String getItemExplan() {
+		return itemExplan;
+	}
+
+	public void setItemExplan(String itemExplan) {
+		this.itemExplan = itemExplan;
+	}
+
+	public String getGameName() {
+		return gameName;
+	}
+
+	public void setGameName(String gameName) {
+		this.gameName = gameName;
+	}
+
+	public Integer getItemHave() {
+		return itemHave;
+	}
+
+	public void setItemHave(Integer itemHave) {
+		this.itemHave = itemHave;
 	}
 
 	public Integer getUserId() {
