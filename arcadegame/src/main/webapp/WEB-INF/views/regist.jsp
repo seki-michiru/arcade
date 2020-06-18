@@ -13,9 +13,9 @@
 </head>
 <body>
     <h2 id="sub-title">新規登録</h2>
-    <a href="top.jsp"><img src="images/returnbtn.png" alt="" class="returnbtn"></a>
+    <a href="top"><img src="images/returnbtn.png" alt="" class="returnbtn"></a>
 
-    <form action="">
+    <form:form action="regist1" modelAttribute="regist">
 
     <div id="form-btn-center">
         <div id="form-div">
@@ -25,6 +25,6 @@
         </div>
     </div>
     <div id="form-btn-center"><button class="form-btn">確認</button></div>
-    </form>
+    </form:form>
 </body>
 </html>

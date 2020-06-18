@@ -30,7 +30,7 @@ public class PgUserInfoDao implements UserInfoDao{
 
 	public UserInfo findIdPass(String loginId, String password) {
 
-		String sql = "SELECT * FROM user_info WHERE rogin_id = :rogin_id AND password = :password";
+		String sql = "SELECT * FROM user_info WHERE login_id = :loginId AND password = :password";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("loginId", loginId);

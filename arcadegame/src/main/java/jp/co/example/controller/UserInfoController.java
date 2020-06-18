@@ -2,6 +2,7 @@ package jp.co.example.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +17,7 @@ import jp.co.example.service.UserInfoService;
 @Controller
 public class UserInfoController {
 
+	@Autowired
 	private UserInfoService userInfoService;
 
 	@RequestMapping("/top")
@@ -25,16 +27,18 @@ public class UserInfoController {
 
 	}
 	@RequestMapping("/login")
-	public String login(@ModelAttribute("login") LoginForm loginForm, Model model) {
+	public String login(Model model) {
 
 		return "login";
 
 	}
 
 	@RequestMapping(value="/login1", method = RequestMethod.POST)
-	public String login1(LoginForm loginform, Model model, HttpSession session) {
+	public String login1(@ModelAttribute("login1") LoginForm loginform, Model model, HttpSession session) {
 
-		UserInfo userInfo =userInfoService.findIdPass(loginform.getLoginId(), loginform.getPassword());
+		UserInfo userInfo = userInfoService.findIdPass(loginform.getLoginId(), loginform.getPassword());
+
+		System.out.println(userInfo);
 
 		if(userInfo == null) {
 
@@ -50,16 +54,28 @@ public class UserInfoController {
 		}
 
 
+
 	}
 
-	@RequestMapping(value="/regist", method = RequestMethod.POST)
-	public String regist(@ModelAttribute("regist") RegistForm registForm, Model model) {
+	@RequestMapping("/regist")
+	public String regist(Model model) {
 
 		return "regist";
 
 	}
 
-	@RequestMapping(value="/logout")
+	@RequestMapping(value="/regist1", method = RequestMethod.POST)
+	public String regist1(@ModelAttribute("regist1") RegistForm registForm, Model model) {
+
+		userInfoService.insert(registForm.getLoginId(), registForm.getUserName(), registForm.getPassword());
+
+
+		return "regist1";
+
+	}
+
+
+	@RequestMapping("/logout")
 	public String logout(Model model, HttpSession session) {
 
 		session.invalidate();

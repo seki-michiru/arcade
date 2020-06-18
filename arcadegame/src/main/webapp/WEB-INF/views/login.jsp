@@ -13,7 +13,7 @@
 </head>
 <body>
     <h2 id="sub-title">ログイン</h2>
-    <a href="top.jsp"><img src="images/returnbtn.png" alt="" class="returnbtn"></a>
+    <a href="top"><img src="images/returnbtn.png" alt="" class="returnbtn"></a>
 
     <form:form action="login1" modelAttribute="login">
 
