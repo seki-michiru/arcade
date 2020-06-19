@@ -173,4 +173,22 @@ public class PgUserInfoDao implements UserInfoDao {
 		return result2.isEmpty() ? null : result2;
 
 	}
+
+	@Override
+	public List<UserInfo> findIdUserNamePass(String loginId, String userName, String password) {
+
+		String sql = "SELECT * FROM user_info WHERE login_id = :LoginId AND user_name = :UserName AND password = :Password";
+
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("LoginId", loginId);
+		param.addValue("UserName", userName);
+		param.addValue("Password", password);
+
+		List<UserInfo> resultList3 = jdbcTemplate.query(sql, param,
+				new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
+
+		return resultList3.isEmpty() ? null : resultList3;
+
+	}
+
 }

@@ -39,20 +39,19 @@ public class UserInfoController {
 
 	@RequestMapping(value="/login1", method = RequestMethod.POST)
 	public String login1(@Validated @ModelAttribute("login1") LoginForm loginform, BindingResult result, Model model, HttpSession session) {
+
 		if(result.hasErrors()) {
 			return "login";
 		}
 
-		List<UserInfo> userInfo = userInfoService.findIdPass(loginform.getLoginId(), loginform.getPassword());
+		List<UserInfo> userInfo1 = userInfoService.findIdPass(loginform.getLoginId(), loginform.getPassword());
 		List<UserInfo> list = userInfoService.findAll();
 
 		String userName = "";
 
 
-//		System.out.println(userInfo);
-//		System.out.println(list);
 
-		if(userInfo == null) {
+		if(userInfo1 == null) {
 
 			model.addAttribute("msg", "入力したIDとPASSは存在しません");
 
@@ -60,15 +59,22 @@ public class UserInfoController {
 
 		}else {
 
-			for(UserInfo u : userInfo) {
+			String loginId = loginform.getLoginId();
+			String password = loginform.getPassword();
+
+			for(UserInfo u : userInfo1) {
 
 				userName = u.getUserName();
+				loginId = u.getLoginId();
+				password = u.getPassword();
 
 			}
 
-			session.setAttribute("userInfo", userInfo);
+			session.setAttribute("loginId", loginId);
 			session.setAttribute("userName", userName);
+			session.setAttribute("password", password);
 			session.setAttribute("list", list.get(0));
+
 			return "menu";
 
 		}
@@ -136,41 +142,12 @@ public class UserInfoController {
 	@RequestMapping("/userInfo")
 	public String userInfo(Model model, HttpSession session) {
 
-
 		return "userInfo";
 
 	}
 
 	@RequestMapping("/userInfo1")
-	public String userInfo1(@ModelAttribute("userInfo1") LoginForm loginform, Model model, HttpSession session) {
-
-
-		String loginId = "";
-		String password = "";
-		List<UserInfo> userInfo = userInfoService.findIdPass(loginId, password);
-
-//		session.getAttribute(userName);
-//		session.setAttribute("userName", userName);
-
-
-//		String userName = "";
-//		session.getAttribute(userName);
-//		List<UserInfo> userInfo = userInfoService.findByUserName(userName);
-//
-//		System.out.println(userName);
-
-
-		for(UserInfo u : userInfo) {
-
-			loginId = u.getLoginId();
-			password = u.getPassword();
-
-		}
-		System.out.println(loginId);
-		System.out.println(password);
-
-		session.setAttribute("loginId", loginId);
-		session.setAttribute("password", password);
+	public String userInfo1(@ModelAttribute("userInfo1") LoginForm loginform, BindingResult result, Model model, HttpSession session) {
 
 
 		return "userInfoChange";
@@ -179,6 +156,8 @@ public class UserInfoController {
 
 	@RequestMapping("/userInfo2")
 	public String userInfo2(@ModelAttribute("userInfo2") Model model) {
+
+
 
 		return "userInfoChange";
 

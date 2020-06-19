@@ -1,14 +1,9 @@
 package jp.co.example.controller.form;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+public class UserInfoForm {
 
-
-public class LoginForm {
-
-	@NotNull(message="IDは必須です。aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
 	private String loginId;
-	@NotBlank(message="IDは必須です。")
+	private String userName;
 	private String password;
 
 	public String getLoginId() {
@@ -17,14 +12,18 @@ public class LoginForm {
 	public void setLoginId(String loginId) {
 		this.loginId = loginId;
 	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
 
 
 }
