@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.entity.Items;
+import jp.co.example.entity.UserInfo;
 import jp.co.example.service.GachaService;
 
 //mport jp.co.example.service.GachaService;
@@ -28,18 +29,38 @@ public class GachaController {
 	@RequestMapping("/gachaPlay")
 	public String gachaPlay(Model model, HttpSession session) {
 
+		@SuppressWarnings("unchecked")
+		List<UserInfo> user =  (List<UserInfo>) session.getAttribute("userInfo");
+
+		if(user.get(0).getCoinHave() < 30) {
+			model.addAttribute("msg", "コインが足りません");
+			return "gacha";
+		}
+		else {
+			//アイテム名取得
 		Integer randomNumber = gachaService.Random();
 		List<Items> list = gachaService.gachaItem(randomNumber);
 		session.setAttribute("getItem", list);
+		//アイテム増やす
+		int userId = user.get(0).getUserId();
+		gachaService.itemCollect(userId, randomNumber);
 
-		//List<UserInfo> user = (List<UserInfo>) session.getAttribute("list");
+		//減る前のコイン数を保存
+		session.setAttribute("oldCoin", user.get(0).getCoinHave());
 
-		gachaService.itemCollect(2, randomNumber);
-		gachaService.coinWast(2);
-		//
-		//		gachaService.itemCollect(user.get(0).getUserId(),randomNumber);
-		//		gachaService.coinWast(user.get(0).getUserId());
+		//コイン数を減らす
+		gachaService.coinWast(userId);
+
+		//コインが減った後のユーザー情報を取得
+		List<UserInfo> coinHave = gachaService.userHaveCoin(userId);
+
+		//int coinHave = coin.get(0).getCoinHave();
+
+		session.setAttribute("userInfo",coinHave );
+
+
 		return "gachaPlay";
+		}
 	}
 
 	@RequestMapping("/gachaResult")
