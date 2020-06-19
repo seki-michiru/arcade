@@ -131,4 +131,16 @@ public class PgUserInfoDao implements UserInfoDao {
 		jdbcTemplate.update(sql, param);
 
 	}
+
+	@Override
+	public List<UserInfo> userHaveCoin(Integer userId) {
+		String sql = "SELECT * FROM user_info WHERE user_id = :UserId";
+
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("UserId", userId);
+
+		List<UserInfo> userHaveCoin = jdbcTemplate.query(sql,param, new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
+		return userHaveCoin.isEmpty() ? null : userHaveCoin;
+
+	}
 }
