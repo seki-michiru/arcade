@@ -16,4 +16,5 @@ public interface UserInfoDao {
 	public List<UserInfo> playCount(Integer userId, Integer gameId);
 	public void coinWast(Integer userId);
 	public List<UserInfo> userHaveCoin(Integer userId);
+	public void update(String loginId, String userName, String password, Integer userId);
 }

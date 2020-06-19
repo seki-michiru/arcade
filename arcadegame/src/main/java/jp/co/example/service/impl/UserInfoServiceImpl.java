@@ -70,4 +70,12 @@ public class UserInfoServiceImpl implements UserInfoService{
 		return userInfoDao.playCount(userId, gameId);
 
 	}
+
+	@Override
+	public void update(String loginId, String userName, String password, Integer userId) {
+
+		userInfoDao.update(loginId, userName, password, userId);
+
+	}
+
 }

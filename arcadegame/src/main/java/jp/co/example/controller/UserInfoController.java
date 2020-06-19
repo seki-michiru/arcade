@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,18 +38,16 @@ public class UserInfoController {
 	}
 
 	@RequestMapping(value="/login1", method = RequestMethod.POST)
-	public String login1(@ModelAttribute("login1") LoginForm loginform, Model model, HttpSession session) {
+	public String login1(@Validated @ModelAttribute("login1") LoginForm loginform, BindingResult result, Model model, HttpSession session) {
+		if(result.hasErrors()) {
+			return "login";
+		}
 
 		List<UserInfo> userInfo = userInfoService.findIdPass(loginform.getLoginId(), loginform.getPassword());
 		List<UserInfo> list = userInfoService.findAll();
 
 		String userName = "";
 
-		for(UserInfo u : userInfo) {
-
-			userName = u.getUserName();
-
-		}
 
 		System.out.println(userInfo);
 		System.out.println(list);
@@ -59,6 +59,12 @@ public class UserInfoController {
 			return "login";
 
 		}else {
+
+			for(UserInfo u : userInfo) {
+
+				userName = u.getUserName();
+
+			}
 
 			session.setAttribute("userInfo", userInfo);
 			session.setAttribute("userName", userName);
@@ -120,10 +126,52 @@ public class UserInfoController {
 
 	}
 
-	@RequestMapping("menu")
+	@RequestMapping("/menu")
 	public String menu(Model model) {
 
 		return "logout";
+
+	}
+
+	@RequestMapping("/userInfo")
+	public String userInfo(Model model) {
+
+		return "userInfo";
+
+	}
+
+	@RequestMapping("/userInfo1")
+	public String userInfo1(@ModelAttribute("userInfo1") LoginForm loginform, Model model, HttpSession session) {
+
+		List<UserInfo> userInfo = userInfoService.findIdPass(loginform.getLoginId(), loginform.getPassword());
+
+		String loginId = "";
+		String userName = "";
+		String password = "";
+//
+//		for(UserInfo u : userInfo) {
+//
+//			userName = u.getUserName();
+//
+//		}
+
+		session.getAttribute(loginId);
+		session.getAttribute(userName);
+//		session.setAttribute("userName", userName);
+		session.getAttribute(password);
+
+		System.out.println(loginId);
+		System.out.println(userName);
+		System.out.println(password);
+
+		return "userInfoChange";
+
+	}
+
+	@RequestMapping("/userInfo2")
+	public String userInfo2(@ModelAttribute("userInfo2") Model model) {
+
+		return "userInfoChange";
 
 	}
 

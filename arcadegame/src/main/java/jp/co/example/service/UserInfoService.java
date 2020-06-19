@@ -14,7 +14,7 @@ public interface UserInfoService {
 	public List<UserInfo> allItem(Integer userId);
 	public List<UserInfo> findRanking(Integer gameId);
 	public List<UserInfo> playCount(Integer userId, Integer gameId);
-
+	public void update(String loginId, String userName, String password, Integer userId);
 
 
 }

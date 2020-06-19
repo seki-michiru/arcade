@@ -143,4 +143,19 @@ public class PgUserInfoDao implements UserInfoDao {
 		return userHaveCoin.isEmpty() ? null : userHaveCoin;
 
 	}
+
+	@Override
+	public void update(String loginId, String userName, String password, Integer userId) {
+
+		String sql = "UPDATE user_info SET login_id = :LoginId, user_name = :UserName, password = :Password WHERE user_id = :UseId";
+
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("LoginId", loginId);
+		param.addValue("UserName", userName);
+		param.addValue("Password", password);
+		param.addValue("UserId", userId);
+
+		jdbcTemplate.update(sql, param);
+
+	}
 }
