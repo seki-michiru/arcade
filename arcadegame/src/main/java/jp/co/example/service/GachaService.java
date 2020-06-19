@@ -3,6 +3,7 @@ package jp.co.example.service;
 import java.util.List;
 
 import jp.co.example.entity.Items;
+import jp.co.example.entity.UserInfo;
 
 public interface GachaService {
 
@@ -14,4 +15,6 @@ public interface GachaService {
 		public void itemCollect(Integer userId,Integer itemId);
 
 		public void coinWast(Integer userId);
+
+		public List<UserInfo> userHaveCoin(Integer userId);
 }

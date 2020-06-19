@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="ja">
@@ -18,6 +19,7 @@
 
 	<h1 id="sub-title">ガチャ</h1>
 	<h3 id="mycoin">所持コイン:${sessionScope.userInfo.get(0).coinHave}枚</h3>
+	<h3>${fn:escapeXml(msg)}</h3>
 
 	<h2 id="menu-btn">1回30枚</h2>
 

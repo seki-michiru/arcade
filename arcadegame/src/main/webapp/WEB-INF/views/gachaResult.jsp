@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="ja">
@@ -16,8 +17,8 @@
 
 	<h1 id="sub-title">ガチャ</h1>
 
-	<p class="confirm-msg">アイテム1を獲得しました。</p>
-	<p class="confirm-msg">コイン：100枚 → 70枚</p>
+	<p class="confirm-msg">${sessionScope.getItem.get(0).itemName}を獲得しました。</p>
+	<p class="confirm-msg">コイン：${sessionScope.oldCoin}枚 → ${sessionScope.userInfo.get(0).coinHave}枚</p>
 
 	<div id="form-btn-center">
 		<a href="gacha"><button class="form-btn"
