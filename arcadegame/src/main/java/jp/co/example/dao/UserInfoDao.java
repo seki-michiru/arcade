@@ -17,4 +17,5 @@ public interface UserInfoDao {
 	public void coinWast(Integer userId);
 	public List<UserInfo> userHaveCoin(Integer userId);
 	public void update(String loginId, String userName, String password, Integer userId);
+	public List<UserInfo> findByUserName(String userName);
 }

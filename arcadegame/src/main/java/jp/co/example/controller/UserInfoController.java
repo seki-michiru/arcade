@@ -49,8 +49,8 @@ public class UserInfoController {
 		String userName = "";
 
 
-		System.out.println(userInfo);
-		System.out.println(list);
+//		System.out.println(userInfo);
+//		System.out.println(list);
 
 		if(userInfo == null) {
 
@@ -134,7 +134,8 @@ public class UserInfoController {
 	}
 
 	@RequestMapping("/userInfo")
-	public String userInfo(Model model) {
+	public String userInfo(Model model, HttpSession session) {
+
 
 		return "userInfo";
 
@@ -143,26 +144,34 @@ public class UserInfoController {
 	@RequestMapping("/userInfo1")
 	public String userInfo1(@ModelAttribute("userInfo1") LoginForm loginform, Model model, HttpSession session) {
 
-		List<UserInfo> userInfo = userInfoService.findIdPass(loginform.getLoginId(), loginform.getPassword());
 
 		String loginId = "";
-		String userName = "";
 		String password = "";
-//
-//		for(UserInfo u : userInfo) {
-//
-//			userName = u.getUserName();
-//
-//		}
+		List<UserInfo> userInfo = userInfoService.findIdPass(loginId, password);
 
-		session.getAttribute(loginId);
-		session.getAttribute(userName);
+//		session.getAttribute(userName);
 //		session.setAttribute("userName", userName);
-		session.getAttribute(password);
 
+
+//		String userName = "";
+//		session.getAttribute(userName);
+//		List<UserInfo> userInfo = userInfoService.findByUserName(userName);
+//
+//		System.out.println(userName);
+
+
+		for(UserInfo u : userInfo) {
+
+			loginId = u.getLoginId();
+			password = u.getPassword();
+
+		}
 		System.out.println(loginId);
-		System.out.println(userName);
 		System.out.println(password);
+
+		session.setAttribute("loginId", loginId);
+		session.setAttribute("password", password);
+
 
 		return "userInfoChange";
 

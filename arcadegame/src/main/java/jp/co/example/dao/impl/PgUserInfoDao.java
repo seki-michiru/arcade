@@ -158,4 +158,19 @@ public class PgUserInfoDao implements UserInfoDao {
 		jdbcTemplate.update(sql, param);
 
 	}
+
+	@Override
+	public List<UserInfo> findByUserName(String userName) {
+
+		String sql = "SELECT * FROM user_info WHERE user_name = :UserName";
+
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("UserName", userName);
+
+		List<UserInfo> result2 = jdbcTemplate.query(sql, param,
+				new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
+
+		return result2.isEmpty() ? null : result2;
+
+	}
 }

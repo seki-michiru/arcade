@@ -78,4 +78,11 @@ public class UserInfoServiceImpl implements UserInfoService{
 
 	}
 
+	@Override
+	public List<UserInfo> findByUserName(String userName) {
+
+		return userInfoDao.findByUserName(userName);
+
+	}
+
 }
