@@ -13,7 +13,7 @@
     <link rel="icon" href="images/invader1.png">
 </head>
 <body>
-    <a href="menu.html"><img src="images/homeicon.png" alt=""class="home-icon"></a>
+    <a href="menu"><img src="images/homeicon.png" alt=""class="home-icon"></a>
 
     <h1 id="sub-title">出品</h1>
 

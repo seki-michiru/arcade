@@ -13,10 +13,10 @@
     <link rel="icon" href="images/invader1.png">
 </head>
 <body>
-    <a href="menu.html"><img src="images/homeicon.png" alt=""class="home-icon"></a>
+    <a href="menu"><img src="images/homeicon.png" alt=""class="home-icon"></a>
     <h1 id="sub-title">出品を削除</h1>
 
-    <a href="tradeMenu.html"><img src="images/returnbtn.png" alt=""class="returnbtn"></a>
+    <a href="tradeMenu"><img src="images/returnbtn.png" alt=""class="returnbtn"></a>
 
     <form action="">
         <table>
