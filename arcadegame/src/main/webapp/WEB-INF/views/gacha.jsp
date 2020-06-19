@@ -17,7 +17,7 @@
 		class="returnbtn"></a>
 
 	<h1 id="sub-title">ガチャ</h1>
-	<h3 id="mycoin">所持コイン:${sessionScope.list.coinHave}枚</h3>
+	<h3 id="mycoin">所持コイン:${sessionScope.userInfo.get(0).coinHave}枚</h3>
 
 	<h2 id="menu-btn">1回30枚</h2>
 
