@@ -11,10 +11,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.example.controller.form.LoginForm;
 import jp.co.example.controller.form.RegistForm;
+import jp.co.example.controller.form.UserInfoForm;
 import jp.co.example.entity.UserInfo;
 import jp.co.example.service.UserInfoService;
 
@@ -37,7 +37,7 @@ public class UserInfoController {
 
 	}
 
-	@RequestMapping(value="/login1", method = RequestMethod.POST)
+	@RequestMapping("/login1")
 	public String login1(@Validated @ModelAttribute("login1") LoginForm loginform, BindingResult result, Model model, HttpSession session) {
 
 		if(result.hasErrors()) {
@@ -91,7 +91,7 @@ public class UserInfoController {
 	}
 
 
-	@RequestMapping(value="/regist1", method = RequestMethod.POST)
+	@RequestMapping("/regist1")
 	public String regist1(@ModelAttribute("regist") RegistForm registForm, Model model, HttpSession session) {
 		System.out.println(registForm.getLoginId());
 
@@ -117,7 +117,7 @@ public class UserInfoController {
 
 	}
 
-	@RequestMapping(value="/regist2", method = RequestMethod.POST)
+	@RequestMapping("/regist2")
 	public String regist2(@ModelAttribute("regist2") RegistForm registForm, Model model, HttpSession session) {
 
 
@@ -125,7 +125,7 @@ public class UserInfoController {
 
 	}
 
-	@RequestMapping(value="/regist3", method = RequestMethod.POST)
+	@RequestMapping("/regist3")
 	public String regist3(@ModelAttribute("regist3") RegistForm registForm, Model model, HttpSession session) {
 
 		return "login";
@@ -155,11 +155,45 @@ public class UserInfoController {
 	}
 
 	@RequestMapping("/userInfo2")
-	public String userInfo2(@ModelAttribute("userInfo2") Model model) {
+	public String userInfo2(@ModelAttribute("userInfo2") UserInfoForm userInfoform, Model model, HttpSession session) {
 
+		List<UserInfo> userInfo2 = userInfoService.findIdUserNamePass(userInfoform.getLoginId(), userInfoform.getUserName(), userInfoform.getPassword());
 
+		if(userInfo2 == null) {
 
-		return "userInfoChange";
+			model.addAttribute("msg","IDまたは");
+
+			return "userInfoChange";
+
+		}else {
+
+			session.setAttribute("loginId", userInfoform.getLoginId());
+			session.setAttribute("userName", userInfoform.getUserName());
+			session.setAttribute("password", userInfoform.getPassword());
+
+			return "userInfoConfirm";
+
+		}
+
+	}
+
+	@RequestMapping("/userInfo3")
+	public String userInfo3(@ModelAttribute("userInfo3") UserInfoForm userInfoform, Model model, HttpSession session) {
+
+		userInfoService.findIdUserNamePass(userInfoform.getLoginId(), userInfoform.getUserName(), userInfoform.getPassword());
+
+		session.setAttribute("loginId", userInfoform.getLoginId());
+		session.setAttribute("userName", userInfoform.getUserName());
+		session.setAttribute("password", userInfoform.getPassword());
+
+		return "userInfoResult";
+
+	}
+
+	@RequestMapping("/userInfo4")
+	public String userInfo4(@ModelAttribute("userInfo4") Model model) {
+
+		return "menu";
 
 	}
 

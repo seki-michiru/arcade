@@ -12,23 +12,23 @@
     <link rel="icon" href="images/invader1.png">
 </head>
 <body>
-    <a href="menu.jsp"><img src="images/homeicon.png" alt=""class="home-icon"></a>
+    <a href="menu"><img src="images/homeicon.png" alt=""class="home-icon"></a>
     <h2 id="sub-title">ユーザー情報</h2>
-    <a href="userInfoChange.jsp"><img src="images/returnbtn.png" alt=""class="returnbtn"></a>
+    <a href="userInfoChange"><img src="images/returnbtn.png" alt=""class="returnbtn"></a>
 
     <p class="confirm-msg">これでよろしいですか？</p>
 
-    <form action="">
+    <form:form action="userInfo3" modelAttribute="userInfo">
 
     <div id="form-btn-center">
         <div id="form-div">
-            <div><label for="" class="form-item">ID</label><input type="text" class="text-design-id text-box" value="invader" readonly></div><br>
-            <div><label for="" class="form-item">名前</label><input type="text" class="text-design-name text-box" value="インベーダー" readonly></div><br>
-            <div><label for="" class="form-item">PASS</label><input type="text" class="text-design-pass text-box" value="invader" readonly></div>
+            <div><label for="" class="form-item">ID</label><input type="text" class="text-design-id text-box" value="${sessionScope.loginId}" readonly></div><br>
+            <div><label for="" class="form-item">名前</label><input type="text" class="text-design-name text-box" value="${sessionScope.userName}" readonly></div><br>
+            <div><label for="" class="form-item">PASS</label><input type="text" class="text-design-pass text-box" value="${sessionScope.password}" readonly></div>
         </div>
     </div>
     <div id="form-btn-center"><button class="form-btn">変更</button></div>
-    </form>
+    </form:form>
 
 
 

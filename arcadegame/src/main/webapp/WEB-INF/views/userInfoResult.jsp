@@ -13,19 +13,21 @@
 </head>
 <body>
 
-    <a href="menu.jsp"><img src="images/homeicon.png" alt=""class="home-icon"></a>
+    <a href="menu"><img src="images/homeicon.png" alt=""class="home-icon"></a>
     <h2 id="sub-title">ユーザー情報</h2>
     <p class="confirm-msg">変更が完了しました</p>
 
+<form:form action="userInfo4" modelAttribute="userInfo">
     <div id="form-btn-center">
         <div id="form-div">
-            <div><p class="form-item inline">ID</p><p class="text-design-id inline">invader</p></div><br>
-            <div><p class="form-item inline">名前</p><p class="text-design-name inline">インベーダー</p></div><br>
-            <div><p class="form-item inline">PASS</p><p class="text-design-pass inline">invader</p></div>
+            <div><p class="form-item inline">ID</p><p class="text-design-id inline">${sessionScope.loginId}</p></div><br>
+            <div><p class="form-item inline">名前</p><p class="text-design-name inline">${sessionScope.userName}</p></div><br>
+            <div><p class="form-item inline">PASS</p><p class="text-design-pass inline">${sessionScope.password}</p></div>
         </div>
     </div>
 
-    <div id="form-btn-center"><a href="menu.jsp"><button class="form-btn" style="width: 200px;">メニューへ</button></a></div>
+    <div id="form-btn-center"><a href="menu"><button class="form-btn" style="width: 200px;">メニューへ</button></a></div>
+</form:form>
 
 
 </body>
