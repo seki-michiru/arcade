@@ -10,6 +10,7 @@ import jp.co.example.dao.ItemDao;
 import jp.co.example.dao.ItemStocksDao;
 import jp.co.example.dao.UserInfoDao;
 import jp.co.example.entity.Items;
+import jp.co.example.entity.UserInfo;
 import jp.co.example.service.GachaService;
 
 @Service
@@ -42,5 +43,12 @@ public class GachaServiceImpl implements GachaService {
 	@Override
 	public void coinWast(Integer userId) {
 		userInfoDao.coinWast(userId);
+	}
+
+	@Override
+	public List<UserInfo> userHaveCoin(Integer userId) {
+		List<UserInfo> list  = userInfoDao.userHaveCoin(userId);
+
+		return list;
 	}
 }
