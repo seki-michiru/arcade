@@ -161,7 +161,7 @@ public class UserInfoController {
 
 		if(userInfo2 == null) {
 
-			model.addAttribute("msg","IDまたは");
+			model.addAttribute("msg","IDまたはPASS");
 
 			return "userInfoChange";
 
@@ -180,7 +180,9 @@ public class UserInfoController {
 	@RequestMapping("/userInfo3")
 	public String userInfo3(@ModelAttribute("userInfo3") UserInfoForm userInfoform, Model model, HttpSession session) {
 
+
 		userInfoService.findIdUserNamePass(userInfoform.getLoginId(), userInfoform.getUserName(), userInfoform.getPassword());
+		userInfoService.update(userInfoform.getLoginId(), userInfoform.getUserName(), userInfoform.getPassword(), userInfoform.getUserId());
 
 		session.setAttribute("loginId", userInfoform.getLoginId());
 		session.setAttribute("userName", userInfoform.getUserName());
