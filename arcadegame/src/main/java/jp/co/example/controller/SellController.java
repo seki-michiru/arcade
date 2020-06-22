@@ -1,0 +1,126 @@
+package jp.co.example.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import jp.co.example.controller.form.SellForm;
+import jp.co.example.entity.BuyInfo;
+import jp.co.example.entity.ItemStocks;
+import jp.co.example.entity.UserInfo;
+import jp.co.example.service.ItemStocksService;
+import jp.co.example.service.ItemsService;
+import jp.co.example.service.UserInfoService;
+
+@Controller
+public class SellController {
+
+    @Autowired
+    HttpSession session;
+
+    @Autowired
+    private ItemsService itemsService;
+
+    @Autowired
+    private UserInfoService userInfoService;
+
+    @Autowired
+    private ItemStocksService itemStocksService;
+
+    @RequestMapping("/sell")
+    public String sell(@ModelAttribute("sellForm") SellForm form,Model model) {
+    	// UserInfo user = (UserInfo) session.getAttribute("list");
+    	 Integer userId = 1;
+    			 //user.getUserId();
+    	session.removeAttribute("StockAll");
+        List<ItemStocks> list = itemStocksService.findStockAll(userId);
+
+        if(list==null) {
+        	model.addAttribute("msg","所持アイテムはありません");
+        	model.addAttribute("flag","非表示");
+        }else {
+
+        	// UserInfo user = (UserInfo) session.getAttribute("list");
+        	session.setAttribute("StockAll",list);
+        	// session.setAttribute("coin",user.getCoinHave());
+        }
+
+        return "sell";
+    }
+
+
+    @RequestMapping("/sellResult")
+    public String sellResult(@ModelAttribute("sellForm") SellForm form,Model model) {
+
+    	List<Integer> itemId = new ArrayList<>();
+    	List<Integer> number = new ArrayList<>();
+
+    	for(int i = 0; i < form.getItemsId().length; i++) {
+    			itemId.add(form.getItemsId()[i]);
+    	}
+
+    	if(itemId.isEmpty() || itemId == null) {
+    		model.addAttribute("msg", "売却するアイテムを選択してください");
+    		return "sell";
+    	}
+
+    	for(int i = 0; i < form.getNumber().length; i++) {
+    		if(form.getNumber()[i] == 0) {
+    			continue;
+    		}
+			number.add(form.getNumber()[i]);
+    	}
+
+     	int sumPrice = 0;
+    	List<String> itemName =  new ArrayList<>();
+
+
+
+    	try {
+
+    		for(int i = 0; i < itemId.size(); i++) {
+    			sumPrice += itemsService.findItemName(itemId.get(i)).get(0).getItemPrice() / 2 * number.get(i);
+    			itemName.add(itemsService.findItemName(itemId.get(i)).get(0).getItemName());
+    		}
+    	}catch(IndexOutOfBoundsException e) {
+    		model.addAttribute("msg", "個数を選択してください");
+			return "sell";
+    	}
+
+
+
+    	UserInfo user = (UserInfo) session.getAttribute("list");
+    	Integer userId = 1;
+
+    	List<BuyInfo> sell = new ArrayList<>();
+
+
+    	try {
+
+    		for(int i = 0; i < itemId.size(); i++){
+    			userInfoService.plusCoin(userId, sumPrice);
+    			itemStocksService.minusStock(userId, itemId.get(i), number.get(i));
+    			sell.add(new BuyInfo(itemName.get(i),number.get(i)));
+    		}
+    	}catch(IndexOutOfBoundsException e) {
+    		model.addAttribute("msg", "個数を選択してください");
+			return "sell";
+
+    	}
+
+    		session.setAttribute("sellInfo",sell);
+    		session.setAttribute("userCoin",1000);
+    		//session.setAttribute("coin",user.getCoinHave());
+
+    		return "sellResult";
+
+
+    }
+}
