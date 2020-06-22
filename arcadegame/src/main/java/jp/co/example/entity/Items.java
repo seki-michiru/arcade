@@ -8,6 +8,8 @@ public class Items {
 	private Integer itemPrice;
 	private Integer itemEffects;
 	private String itemExplan;
+	//付けたし
+	private String gameName;
 
 	public Items() {
 
@@ -86,6 +88,18 @@ public class Items {
 	public void setItemExplan(String itemExplan) {
 		this.itemExplan = itemExplan;
 	}
+
+
+	public String getGameName() {
+		return gameName;
+	}
+
+
+	public void setGameName(String gameName) {
+		this.gameName = gameName;
+	}
+
+
 
 
 

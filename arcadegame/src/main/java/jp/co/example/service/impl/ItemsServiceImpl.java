@@ -22,4 +22,9 @@ public class ItemsServiceImpl implements ItemsService{
 	public List<Items> gachaItem(Integer itemId){
 		return itemDao.gachaItem(itemId);
 	}
+
+
+	public List<Items> findItemName(Integer itemId){
+		return itemDao.findItemName(itemId);
+	}
 }
