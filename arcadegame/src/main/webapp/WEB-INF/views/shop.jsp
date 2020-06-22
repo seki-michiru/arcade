@@ -23,8 +23,8 @@
 
     <h2><a href="buy" id="menu-btn">購入</a></h2>
     <h2><a href="sell" id="menu-btn">売却</a></h2>
-    <h2><a href="tradeMenu.html" id="menu-btn">トレード</a></h2>
-    <h2><a href="gacha.html" id="menu-btn">ガチャ</a></h2>
+    <h2><a href="tradeMenu" id="menu-btn">トレード</a></h2>
+    <h2><a href="gacha" id="menu-btn">ガチャ</a></h2>
 
 </body>
 </html>

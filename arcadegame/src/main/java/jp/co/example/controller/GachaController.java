@@ -29,10 +29,9 @@ public class GachaController {
 	@RequestMapping("/gachaPlay")
 	public String gachaPlay(Model model, HttpSession session) {
 
-		@SuppressWarnings("unchecked")
-		List<UserInfo> user =  (List<UserInfo>) session.getAttribute("userInfo");
+		UserInfo user =  (UserInfo) session.getAttribute("list");
 
-		if(user.get(0).getCoinHave() < 30) {
+		if(user.getCoinHave() < 30) {
 			model.addAttribute("msg", "コインが足りません");
 			return "gacha";
 		}
@@ -42,11 +41,11 @@ public class GachaController {
 		List<Items> list = gachaService.gachaItem(randomNumber);
 		session.setAttribute("getItem", list);
 		//アイテム増やす
-		int userId = user.get(0).getUserId();
+		int userId = user.getUserId();
 		gachaService.itemCollect(userId, randomNumber);
 
 		//減る前のコイン数を保存
-		session.setAttribute("oldCoin", user.get(0).getCoinHave());
+		//session.setAttribute("oldCoin", user.get(0).getCoinHave());
 
 		//コイン数を減らす
 		gachaService.coinWast(userId);
@@ -56,7 +55,8 @@ public class GachaController {
 
 		//int coinHave = coin.get(0).getCoinHave();
 
-		session.setAttribute("userInfo",coinHave );
+		//ここ直す
+		session.setAttribute("coin",coinHave.get(0).getCoinHave());
 
 
 		return "gachaPlay";

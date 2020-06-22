@@ -18,7 +18,7 @@
 	<h1 id="sub-title">ガチャ</h1>
 
 	<p class="confirm-msg">${sessionScope.getItem.get(0).itemName}を獲得しました。</p>
-	<p class="confirm-msg">コイン：${sessionScope.oldCoin}枚 → ${sessionScope.userInfo.get(0).coinHave}枚</p>
+	<p class="confirm-msg">コイン残高：${coin}枚</p>
 
 	<div id="form-btn-center">
 		<a href="gacha"><button class="form-btn"
