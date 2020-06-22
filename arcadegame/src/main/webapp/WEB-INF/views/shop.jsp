@@ -15,11 +15,11 @@
 </head>
 <body>
 
-    <a href="menu.html"><img src="images/homeicon.png" alt=""class="home-icon"></a>
+    <a href="menu"><img src="images/homeicon.png" alt=""class="home-icon"></a>
 
     <h1 id="sub-title">ショップ</h1>
 
-    <h3 id="mycoin">所持コイン：100枚</h3>
+    <h3 id="mycoin">所持コイン：${coin}枚</h3>
 
     <h2><a href="buy" id="menu-btn">購入</a></h2>
     <h2><a href="sell" id="menu-btn">売却</a></h2>
