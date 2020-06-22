@@ -11,4 +11,6 @@ public interface ItemDao{
 	public List<Items> gachaItem(Integer itemId);
 
 	public List<Items> findItemName(Integer itemId);
+
+	public List<Items> havingItem(Integer userId);
 }

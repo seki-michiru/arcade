@@ -8,6 +8,15 @@ public class Sales {
 	private Integer takeItem;
 	private Integer saleFlag;
 
+	private String gameName;
+	private String giveName;
+	private String takeName;
+
+
+
+
+
+
 	public Sales() {
 
 
@@ -76,6 +85,34 @@ public class Sales {
 	}
 
 
+	public String getGameName() {
+		return gameName;
+	}
+
+
+	public void setGameName(String gameName) {
+		this.gameName = gameName;
+	}
+
+
+	public String getGiveName() {
+		return giveName;
+	}
+
+
+	public void setGiveName(String giveName) {
+		this.giveName = giveName;
+	}
+
+
+	public String getTakeName() {
+		return takeName;
+	}
+
+
+	public void setTakeName(String takeName) {
+		this.takeName = takeName;
+	}
 
 
 }

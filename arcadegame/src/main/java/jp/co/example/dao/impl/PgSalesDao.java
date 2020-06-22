@@ -1,7 +1,44 @@
 package jp.co.example.dao.impl;
 
-import jp.co.example.dao.SalesDao;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import jp.co.example.dao.SalesDao;
+import jp.co.example.entity.Sales;
+
+@Repository
 public class PgSalesDao implements SalesDao {
+
+	@Autowired
+	private NamedParameterJdbcTemplate jdbcTemplate;
+
+	@Override
+	public List<Sales> findAll(Integer userId) {
+		String sql ="SELECT sale_id,game_name,give_item,GIVE.item_name AS give_name, take_item,TAKE.item_name AS take_name"
+				+" FROM sales"
+				+" JOIN user_info"
+				+" ON sales.user_id = user_info.user_id"
+				+" INNER JOIN items AS GIVE"
+				+" ON sales.give_item = GIVE.item_id"
+				+" INNER JOIN items AS TAKE"
+				+" ON sales.take_item = TAKE.item_id"
+				+" JOIN games"
+				+" ON GIVE.game_id = games.game_id"
+				+" WHERE sale_flag = 1"
+				+" AND sales.user_id = :UserId"
+				+" ORDER BY sale_id";
+
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("UserId", userId);
+		List<Sales> result = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Sales>(Sales.class));
+		return result.isEmpty() ? null : result;
+
+
+	}
 
 }
