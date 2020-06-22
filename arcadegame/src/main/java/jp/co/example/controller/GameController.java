@@ -31,12 +31,6 @@ public class GameController {
     @Autowired
     private ItemStocksService itemStocksService;
 
-    @RequestMapping("/menu")
-    public String menu(Model model) {
-
-        return "menu";
-    }
-
     @RequestMapping("/game")
     public String game(Model model) {
 
