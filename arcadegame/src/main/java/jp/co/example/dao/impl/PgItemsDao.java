@@ -12,32 +12,47 @@ import jp.co.example.dao.ItemDao;
 import jp.co.example.entity.Items;
 
 @Repository
-public class PgItemsDao implements ItemDao{
+public class PgItemsDao implements ItemDao {
 
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
-	public List<Items> findAll(){
+	public List<Items> findAll() {
 		String sql = "SELECT * FROM items";
-	List<Items> result = jdbcTemplate.query(sql,new BeanPropertyRowMapper<Items>(Items.class));
-	return result.isEmpty() ? null : result;
+		List<Items> result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Items>(Items.class));
+		return result.isEmpty() ? null : result;
 	}
 
 	public List<Items> gachaItem(Integer itemId) {
-		String sql = "SELECT * FROM items WHERE item_id = :ItemIdA";
+		String sql = "SELECT * FROM items WHERE item_id = :ItemId";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
-		param.addValue("ItemIdA", itemId);
-		List<Items> result = jdbcTemplate.query(sql, param,new BeanPropertyRowMapper<Items>(Items.class));
+		param.addValue("ItemId", itemId);
+		List<Items> result = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Items>(Items.class));
 		return result.isEmpty() ? null : result;
 	}
 
 	public List<Items> findItemName(Integer itemId) {
 		String sql = "SELECT * FROM items WHERE item_id = :itemId";
-	MapSqlParameterSource param = new MapSqlParameterSource();
-	param.addValue("itemId", itemId);
-	List<Items> result = jdbcTemplate.query(sql,param,
-			new BeanPropertyRowMapper<Items>(Items.class));
-	return result;
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("itemId", itemId);
+		List<Items> result = jdbcTemplate.query(sql, param,
+				new BeanPropertyRowMapper<Items>(Items.class));
+		return result;
+	}
+
+	public List<Items> havingItem(Integer userId) {
+		String sql = "SELECT items.item_id,game_name,item_name" +
+				" FROM items" +
+				" JOIN games" +
+				" ON items.game_id = games.game_id" +
+				" JOIN item_stocks" +
+				" ON items.item_id = item_stocks.item_id" +
+				" WHERE item_have <>0" +
+				" AND user_id = :UserId;";
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("UserId", userId);
+		List<Items> result = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Items>(Items.class));
+		return result.isEmpty() ? null : result;
 	}
 }
