@@ -39,9 +39,11 @@ public class RegistController {
 
 		}
 
-		List<UserInfo> list1 = userInfoService.findByUserId(registForm.getUserId());
+		List<UserInfo> list1 = userInfoService.findByLoginId(registForm.getLoginId());
 
-		if(list1 != null ) {
+		if(list1 != null) {
+
+			model.addAttribute("msg1", "IDまたはユーザー名が既に存在します。");
 
 			return "regist";
 

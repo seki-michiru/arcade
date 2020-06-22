@@ -63,7 +63,7 @@ public class LoginController {
 
 			session.setAttribute("list", userInfo1.get(0));
 
-//			System.out.println(userInfo1.get(0).getLoginId());
+			System.out.println(userInfo1.get(0).getUserName());
 
 			return "menu";
 
