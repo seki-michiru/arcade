@@ -38,9 +38,9 @@ public class BuyController {
     public String buy(@ModelAttribute("buyForm") buyForm form,Model model) {
         List<Items> list = itemsService.findAll();
 
-       // UserInfo user = (UserInfo) session.getAttribute("list");
+       UserInfo user = (UserInfo) session.getAttribute("list");
          session.setAttribute("items",list);
-        // session.setAttribute("coin",user.getCoinHave());
+       session.setAttribute("coin",user.getCoinHave());
 
         return "buy";
     }
@@ -90,8 +90,8 @@ public class BuyController {
 
 
     	UserInfo user = (UserInfo) session.getAttribute("list");
-    	Integer coinHave = 1000;
-    	Integer userId = 1;
+    	Integer coinHave = user.getCoinHave();
+    	Integer userId = user.getUserId();
 
     	List<BuyInfo> buy = new ArrayList<>();
 
@@ -111,8 +111,8 @@ public class BuyController {
     		}
 
     		session.setAttribute("buyInfo",buy);
-    		session.setAttribute("userCoin",1000);
-    		//session.setAttribute("coin",user.getCoinHave());
+    		session.setAttribute("userCoin",user.getCoinHave());
+    		session.setAttribute("coin",user.getCoinHave());
 
     		return "buyResult";
 

@@ -36,9 +36,8 @@ public class SellController {
 
     @RequestMapping("/sell")
     public String sell(@ModelAttribute("sellForm") SellForm form,Model model) {
-    	// UserInfo user = (UserInfo) session.getAttribute("list");
-    	 Integer userId = 1;
-    			 //user.getUserId();
+    	 UserInfo user = (UserInfo) session.getAttribute("list");
+    	 Integer userId = user.getUserId();
     	session.removeAttribute("StockAll");
         List<ItemStocks> list = itemStocksService.findStockAll(userId);
 
@@ -47,9 +46,8 @@ public class SellController {
         	model.addAttribute("flag","非表示");
         }else {
 
-        	// UserInfo user = (UserInfo) session.getAttribute("list");
         	session.setAttribute("StockAll",list);
-        	// session.setAttribute("coin",user.getCoinHave());
+        	session.setAttribute("coin",user.getCoinHave());
         }
 
         return "sell";
@@ -97,7 +95,7 @@ public class SellController {
 
 
     	UserInfo user = (UserInfo) session.getAttribute("list");
-    	Integer userId = 1;
+    	Integer userId = user.getUserId();
 
     	List<BuyInfo> sell = new ArrayList<>();
 
@@ -116,8 +114,8 @@ public class SellController {
     	}
 
     		session.setAttribute("sellInfo",sell);
-    		session.setAttribute("userCoin",1000);
-    		//session.setAttribute("coin",user.getCoinHave());
+    		session.setAttribute("userCoin",user.getCoinHave());
+    		session.setAttribute("coin",user.getCoinHave());
 
     		return "sellResult";
 
