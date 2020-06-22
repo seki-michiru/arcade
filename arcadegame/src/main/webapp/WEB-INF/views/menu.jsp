@@ -14,7 +14,7 @@
 <body>
 	<h1 id="user-name">${sessionScope.userName}さん、こんにちは</h1>
 
-	<form:form action="menu" modelAttribute="menu">
+	<form:form action="menu1" modelAttribute="menu">
 		<h1 id="sub-title">メニュー</h1>
 		<a href="logout"><button class="form-btn home-icon">ログアウト</button></a>
 

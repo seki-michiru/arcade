@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import jp.co.example.controller.form.LoginForm;
 import jp.co.example.controller.form.UserInfoForm;
 import jp.co.example.entity.UserInfo;
 import jp.co.example.service.UserInfoService;
@@ -31,7 +31,7 @@ public class UserInfoController {
 	}
 
 	@RequestMapping("/userInfoChange")
-	public String userInfoChange(@ModelAttribute("userInfo") LoginForm loginform, BindingResult result, Model model, HttpSession session) {
+	public String userInfoChange(@ModelAttribute("userInfo") UserInfoForm userInfoform, BindingResult result, Model model, HttpSession session) {
 
 		List<UserInfo> list = userInfoService.findByLoginId((String)session.getAttribute("loginId"));
 
@@ -45,9 +45,16 @@ public class UserInfoController {
 	}
 
 	@RequestMapping("/userInfoChange1")
-	public String userInfoChange1(@ModelAttribute("userInfo") UserInfoForm userInfoform, Model model, HttpSession session) {
+	public String userInfoChange1(@Validated @ModelAttribute("userInfo") UserInfoForm userInfoform, BindingResult result, Model model, HttpSession session) {
+
+		if(result.hasErrors()) {
+
+			return "userInfoChange";
+
+		}
 
 		List<UserInfo> userInfo2 = userInfoService.findIdUserNamePass(userInfoform.getLoginId(), userInfoform.getUserName(), userInfoform.getPassword());
+
 
 		if(userInfo2 != null) {
 
@@ -102,6 +109,7 @@ public class UserInfoController {
 		return "menu";
 
 	}
+
 
 	@RequestMapping("/menu1")
 	public String menu1(Model model) {

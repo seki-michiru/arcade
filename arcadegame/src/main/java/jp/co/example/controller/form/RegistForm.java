@@ -1,10 +1,15 @@
 package jp.co.example.controller.form;
 
+import javax.validation.constraints.NotBlank;
+
 public class RegistForm {
 
 	private Integer userId;
+	@NotBlank(message="IDは必須です")
 	private String loginId;
+	@NotBlank(message="名前は必須です")
 	private String userName;
+	@NotBlank(message="PASSは必須です")
 	private String password;
 
 

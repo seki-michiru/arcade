@@ -36,7 +36,7 @@ public class LoginController {
 	}
 
 	@RequestMapping("/login1")
-	public String login1(@Validated @ModelAttribute("login1") LoginForm loginform, BindingResult result, Model model, HttpSession session) {
+	public String login1(@Validated @ModelAttribute("login") LoginForm loginform, BindingResult result, Model model, HttpSession session) {
 
 		if(result.hasErrors()) {
 			return "login";
@@ -67,6 +67,8 @@ public class LoginController {
 
 		}
 
+
 	}
+
 
 }

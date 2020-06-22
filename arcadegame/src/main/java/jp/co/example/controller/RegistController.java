@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -29,9 +31,13 @@ public class RegistController {
 
 
 	@RequestMapping("/regist1")
-	public String regist1(@ModelAttribute("regist") RegistForm registForm, Model model, HttpSession session) {
-		System.out.println(registForm.getLoginId());
+	public String regist1(@Validated @ModelAttribute("regist") RegistForm registForm, BindingResult result, Model model, HttpSession session) {
 
+		if(result.hasErrors()) {
+
+			return "regist";
+
+		}
 
 		List<UserInfo> list1 = userInfoService.findByUserId(registForm.getUserId());
 
