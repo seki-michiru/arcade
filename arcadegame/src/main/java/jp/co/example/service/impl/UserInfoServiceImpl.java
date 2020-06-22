@@ -65,9 +65,16 @@ public class UserInfoServiceImpl implements UserInfoService{
 	}
 
 	@Override
-	public List<UserInfo> playCount(Integer userId, Integer gameId) {
+	public List<UserInfo> findMyRanking(Integer gameId, Integer userId) {
 
-		return userInfoDao.playCount(userId, gameId);
+		return userInfoDao.findMyRanking(gameId, userId);
+
+	}
+
+	@Override
+	public List<UserInfo>  higtScoreDate(Integer userId, Integer gameId) {
+
+		return userInfoDao. higtScoreDate(userId, gameId);
 
 	}
 

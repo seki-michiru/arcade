@@ -16,6 +16,42 @@ public class UserInfo {
 	private String itemExplan;
 	private String gameName;
 	private Integer itemHave;
+	private Integer rank;
+	private Integer highScore;
+	private Date highScoreDate;
+	private Integer playNum;
+
+	public Integer getRank() {
+		return rank;
+	}
+
+	public void setRank(Integer rank) {
+		this.rank = rank;
+	}
+
+	public Integer getHighScore() {
+		return highScore;
+	}
+
+	public void setHighScore(Integer highScore) {
+		this.highScore = highScore;
+	}
+
+	public Date getHighScoreDate() {
+		return highScoreDate;
+	}
+
+	public void setHighScoreDate(Date highScoreDate) {
+		this.highScoreDate = highScoreDate;
+	}
+
+	public Integer getPlayNum() {
+		return playNum;
+	}
+
+	public void setPlayNum(Integer playNum) {
+		this.playNum = playNum;
+	}
 
 	public UserInfo() {
 

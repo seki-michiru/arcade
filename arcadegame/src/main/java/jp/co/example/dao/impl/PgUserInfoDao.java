@@ -96,11 +96,13 @@ public class PgUserInfoDao implements UserInfoDao {
 	}
 
 	public List<UserInfo> findRanking(Integer gameId) {
-		String sql = "SELECT user_name, rank() over (order by(MAX(score))desc) rank, MAX(score) AS ハイスコア, score_date FROM user_info "
-				+ "JOIN scores "
+		String sql = "SELECT user_name, rank() over (order by(MAX(score))desc) rank, MAX(score) AS highScore , count(*) AS playNum"
+				+ "FROM user_info"
+				+ "JOIN scores"
 				+ "ON user_info.user_id = scores.user_id"
-				+ "where game_id = :Game_id"
-				+ "group by user_info.user_id,score_date";
+				+ "where game_id = :GameId"
+				+ "GROUP BY user_info.user_name"
+				+ "LIMIT 3";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("GameId", gameId);
@@ -109,16 +111,30 @@ public class PgUserInfoDao implements UserInfoDao {
 		return ranking.isEmpty() ? null : ranking;
 	}
 
-	public List<UserInfo> playCount(Integer userId, Integer gameId) {
-		String sql = "select count(*) from scores"
-				+ "where user_id = :UserId and game_id = :GameId";
+	public List<UserInfo> findMyRanking(Integer gameId, Integer userId) {
+		String sql = "SELECT user_id, rank ,highScore"
+				+ "from (SELECT user_id, rank() over (order by(MAX(score))desc) rank, MAX(score) AS highScore "
+				+ "FROM scores where  game_id = :GameId "
+				+ "group by user_id) AS users"
+				+ "where user_id = :UserID";
+
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("GameId", gameId);
+		param.addValue("UserId", userId);
+
+		List<UserInfo> myRank = jdbcTemplate.query(sql, new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
+		return myRank.isEmpty() ? null : myRank;
+	}
+
+	public List<UserInfo> higtScoreDate(Integer userId, Integer gameId) {
+		String sql = "SELECT score_date FROM scores WHERE user_id = :UserId AND game_id = :GameId ORDER BY score DESC LIMIT 1";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("UserId", userId);
 		param.addValue("GameId", gameId);
 
-		List<UserInfo> playCount = jdbcTemplate.query(sql, new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
-		return playCount.isEmpty() ? null : playCount;
+		List<UserInfo> dateHigtScore = jdbcTemplate.query(sql, new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
+		return dateHigtScore.isEmpty() ? null : dateHigtScore;
 	}
 
 	@Override
@@ -147,7 +163,7 @@ public class PgUserInfoDao implements UserInfoDao {
 	@Override
 	public void update(String loginId, String userName, String password, Integer userId) {
 
-		String sql = "UPDATE user_info SET login_id = :LoginId, user_name = :UserName, password = :Password WHERE user_id = :UseId";
+		String sql = "UPDATE user_info SET login_id = :LoginId, user_name = :UserName, password = :Password WHERE user_id = :UserId";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("LoginId", loginId);

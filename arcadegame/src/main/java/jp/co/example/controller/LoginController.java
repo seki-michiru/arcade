@@ -43,7 +43,7 @@ public class LoginController {
 		}
 
 		List<UserInfo> userInfo1 = userInfoService.findIdPass(loginform.getLoginId(), loginform.getPassword());
-		List<UserInfo> list = userInfoService.findAll();
+//		List<UserInfo> list = userInfoService.findAll();
 
 		String loginId = null;
 
@@ -61,7 +61,9 @@ public class LoginController {
 			session.setAttribute("userId", userInfo1.get(0).getUserId());
 			session.setAttribute("userName", userInfo1.get(0).getUserName());
 
-			session.setAttribute("list", list.get(0));
+			session.setAttribute("list", userInfo1.get(0));
+
+//			System.out.println(userInfo1.get(0).getLoginId());
 
 			return "menu";
 

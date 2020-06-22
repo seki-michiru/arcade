@@ -13,7 +13,8 @@ public interface UserInfoDao {
 	public List<UserInfo> findByLoginId(String loginId);
 	public List<UserInfo> allItem(Integer userId);
 	public List<UserInfo> findRanking(Integer gameId);
-	public List<UserInfo> playCount(Integer userId, Integer gameId);
+	public List<UserInfo> higtScoreDate(Integer userId, Integer gameId);
+	public List<UserInfo> findMyRanking(Integer gameId, Integer userId);
 	public void coinWast(Integer userId);
 	public List<UserInfo> userHaveCoin(Integer userId);
 	public void update(String loginId, String userName, String password, Integer userId);
