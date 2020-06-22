@@ -7,12 +7,14 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.entity.UserInfo;
 import jp.co.example.service.UserInfoService;
 
+@Controller
 public class ItemController {
 	@Autowired
 	private UserInfoService userInfoService;
