@@ -98,4 +98,18 @@ public class UserInfoServiceImpl implements UserInfoService{
 
 	}
 
+	//付けたし
+	public UserInfo getCoin(Integer userId) {
+		return userInfoDao.getCoin(userId);
+	}
+
+	//付けたし
+	public void subCoin(Integer userId,Integer coin) {
+		userInfoDao.subCoin(userId, coin);
+	}
+
+	public void plusCoin(Integer userId,Integer coin) {
+		userInfoDao.plusCoin(userId, coin);
+	}
+
 }

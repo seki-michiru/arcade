@@ -207,4 +207,39 @@ public class PgUserInfoDao implements UserInfoDao {
 
 	}
 
+
+	//付けたし
+	public UserInfo getCoin(Integer userId) {
+
+		String sql = "SELECT * FROM user_info WHERE user__id = :userId";
+
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("userId", userId);
+
+		List<UserInfo> resultList = jdbcTemplate.query(sql, param,
+				new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
+
+		return resultList.isEmpty() ? null : resultList.get(0);
+
+	}
+
+	//付けたし
+	public void subCoin(Integer userId,Integer coin) {
+		String sql = "UPDATE user_info SET coin_have = coin_have - :coin WHERE user_id = :userId";
+
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("userId", userId);
+		param.addValue("coin", coin);
+		jdbcTemplate.update(sql,param);
+	}
+
+	public void plusCoin(Integer userId,Integer coin) {
+		String sql = "UPDATE user_info SET coin_have = coin_have + :coin WHERE user_id = :userId";
+
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("userId", userId);
+		param.addValue("coin", coin);
+		jdbcTemplate.update(sql,param);
+	}
+
 }

@@ -18,6 +18,8 @@ public interface UserInfoService {
 	public void update(String loginId, String userName, String password, Integer userId);
 	public List<UserInfo> findByUserName(String userName);
 	public List<UserInfo> findIdUserNamePass(String loginId, String userName, String password);
-
+	public UserInfo getCoin(Integer userId);
+	public void subCoin(Integer userId,Integer coin);
+	public void plusCoin(Integer userId,Integer coin);
 
 }
