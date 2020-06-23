@@ -36,13 +36,13 @@ public class BuyController {
 
 	@RequestMapping("/buy")
 	public String buy(@ModelAttribute("buyForm") buyForm form, Model model) {
-		List<Items> list = itemsService.findAll();
+		List<Items> list = itemsService.itemAll();
 
 		UserInfo user = (UserInfo) session.getAttribute("list");
 		Integer userId = user.getUserId();
 		UserInfo userInfo = userInfoService.getCoin(userId);
 		Integer userCoin = userInfo.getCoinHave();
-		session.setAttribute("item", list);
+		session.setAttribute("items", list);
 		session.setAttribute("coin", userCoin);
 
 		return "buy";

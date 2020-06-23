@@ -27,4 +27,8 @@ public class ItemsServiceImpl implements ItemsService{
 	public List<Items> findItemName(Integer itemId){
 		return itemDao.findItemName(itemId);
 	}
+
+	public List<Items> itemAll(){
+		return itemDao.itemAll();
+	}
 }

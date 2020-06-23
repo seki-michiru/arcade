@@ -55,4 +55,10 @@ public class PgItemsDao implements ItemDao {
 		List<Items> result = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Items>(Items.class));
 		return result.isEmpty() ? null : result;
 	}
+
+	public List<Items> itemAll() {
+		String sql = "SELECT items.game_id,game_name,item_id,item_name,item_price FROM games JOIN items ON games.game_id = items.game_id;";
+		List<Items> result = jdbcTemplate.query(sql,new BeanPropertyRowMapper<Items>(Items.class));
+		return result.isEmpty() ? null : result;
+	}
 }

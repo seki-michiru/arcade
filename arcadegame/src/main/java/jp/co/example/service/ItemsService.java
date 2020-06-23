@@ -9,4 +9,6 @@ public interface ItemsService{
 	public List<Items> findAll();
 
 	public List<Items> findItemName(Integer itemId);
+
+	public List<Items> itemAll();
 }
