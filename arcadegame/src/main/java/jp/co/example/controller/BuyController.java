@@ -42,7 +42,7 @@ public class BuyController {
 		Integer userId = user.getUserId();
 		UserInfo userInfo = userInfoService.getCoin(userId);
 		Integer userCoin = userInfo.getCoinHave();
-		session.setAttribute("items", list);
+		session.setAttribute("item", list);
 		session.setAttribute("coin", userCoin);
 
 		return "buy";
