@@ -15,12 +15,16 @@
     <canvas id="myCanvas" width="1355" height="630"></canvas>
     <div id="box">
         <p class="msg-white">アイテム：</p>
-        <p class="msg-white item-name1">ライフアップ</p><div class="boxs box1">z</div>
-        <p class="msg-white item-name2">スコアアップ</p><div class="boxs box2">x</div>
-        <p class="msg-white item-name3">球速度アップ</p><div class="boxs box3">c</div>
+        <p id="itemName1" class="msg-white item-name1">${one.itemName}</p><div class="boxs box1">z</div>
+        <p id="itemName2" class="msg-white item-name2">${tow.itemName}</p><div class="boxs box2">x</div>
+        <p id="itemName3" class="msg-white item-name3">${three.itemName}</p><div class="boxs box3">c</div>
     </div>
 
-	<form:form action="result" modelAttribute="test" name="sampleform" cssStyle="visibility: hidden; float: left;">
+    <p id="item1-effect" style="display: none;">${one.itemEffects }</p>
+    <p id="item2-effect" style="display: none;">${tow.itemEffects }</p>
+    <p id="item3-effect" style="display: none;">${three.itemEffects }</p>
+
+	<form:form action="result" modelAttribute="test" name="sampleform" cssStyle="display:none;">
 		<form:input path="score" value="" />
 		<button onclick="sample1()">送信</button>
 	</form:form>

@@ -60,20 +60,20 @@ public class GameController {
     	if(itemform.getItemIdOne() > 0){
     		Integer one = itemform.getItemIdOne();
     		Items itemOne = itemsService.getItemNameEffect(one);
-    		session.setAttribute("one",itemOne);
+    		model.addAttribute("one",itemOne);
     	}
 
     	if(itemform.getItemIdTow() > 0) {
     		Integer tow = itemform.getItemIdTow();
     		Items itemTow =  itemsService.getItemNameEffect(tow);
-    		session.setAttribute("tow",itemTow);
+    		model.addAttribute("tow",itemTow);
     	}
 
     	if(itemform.getItemIdThree() > 0) {
 
     		Integer three = itemform.getItemIdThree();
     		Items itemThree = itemsService.getItemNameEffect(three);
-    		session.setAttribute("three",itemThree );
+    		model.addAttribute("three",itemThree );
     	}
 
 

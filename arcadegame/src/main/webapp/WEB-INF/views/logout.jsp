@@ -11,7 +11,8 @@
     <link rel="icon" href="images/invader1.png">
 </head>
 <body>
-    <a href="menu"><img src="images/homeicon.png" alt=""class="home-icon"></a>
+
+	<p class="confirm-msg">3秒後に遷移します。</p>
 
 
 </body>
