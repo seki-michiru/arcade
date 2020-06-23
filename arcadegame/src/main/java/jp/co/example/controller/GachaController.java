@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jp.co.example.entity.Items;
 import jp.co.example.entity.UserInfo;
 import jp.co.example.service.GachaService;
+import jp.co.example.service.UserInfoService;
 
 //mport jp.co.example.service.GachaService;
 
@@ -19,6 +20,9 @@ import jp.co.example.service.GachaService;
 public class GachaController {
 	@Autowired
 	private GachaService gachaService;
+
+	@Autowired
+	private UserInfoService userInfoService;
 
 	@RequestMapping("/gacha")
 	public String gacha(Model model) {
@@ -31,7 +35,11 @@ public class GachaController {
 
 		UserInfo user =  (UserInfo) session.getAttribute("list");
 
-		if(user.getCoinHave() < 30) {
+		Integer userId = user.getUserId();
+		UserInfo userInfo = userInfoService.getCoin(userId);
+		Integer userCoin = userInfo.getCoinHave();
+
+		if(userCoin < 30) {
 			model.addAttribute("msg", "コインが足りません");
 			return "gacha";
 		}
@@ -41,7 +49,6 @@ public class GachaController {
 		List<Items> list = gachaService.gachaItem(randomNumber);
 		session.setAttribute("getItem", list);
 		//アイテム増やす
-		int userId = user.getUserId();
 		gachaService.itemCollect(userId, randomNumber);
 
 		//減る前のコイン数を保存
