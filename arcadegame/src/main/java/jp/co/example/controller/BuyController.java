@@ -110,9 +110,11 @@ public class BuyController {
     			return "buy";
     		}
 
+        	UserInfo userInfo = userInfoService.getCoin(userId);
+        	Integer userCoin = userInfo.getCoinHave();
+
     		session.setAttribute("buyInfo",buy);
-    		session.setAttribute("userCoin",user.getCoinHave());
-    		session.setAttribute("coin",user.getCoinHave());
+    		session.setAttribute("coin",userCoin);
 
     		return "buyResult";
 
@@ -127,7 +129,12 @@ public class BuyController {
 
     @RequestMapping("/shop")
     public String shop(Model model) {
+    	UserInfo user = (UserInfo) session.getAttribute("list");
+    	Integer userId = user.getUserId();
+    	UserInfo userInfo = userInfoService.getCoin(userId);
+    	Integer userCoin = userInfo.getCoinHave();
 
+    	session.setAttribute("coin",userCoin);
 
         return "shop";
     }
