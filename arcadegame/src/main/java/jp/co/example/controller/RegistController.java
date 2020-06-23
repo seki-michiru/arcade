@@ -55,9 +55,6 @@ public class RegistController {
 
 		}else {
 
-
-			userInfoService.insert(registForm.getLoginId(), registForm.getUserName(), registForm.getPassword());
-
 			session.setAttribute("loginId", registForm.getLoginId());
 			session.setAttribute("userName", registForm.getUserName());
 			session.setAttribute("password", registForm.getPassword());
@@ -71,8 +68,9 @@ public class RegistController {
 	@RequestMapping("/regist2")
 	public String regist2(@ModelAttribute("regist2") RegistForm registForm, Model model, HttpSession session) {
 
+		userInfoService.insert((String)session.getAttribute("loginId"),(String)session.getAttribute("userName"), (String)session.getAttribute("password"));
 
-		List<UserInfo> userInfo = userInfoService.findIdPass(registForm.getLoginId(), registForm.getPassword());
+		List<UserInfo> userInfo = userInfoService.findIdPass((String)session.getAttribute("loginId"), (String)session.getAttribute("password"));
 		Integer itemId = null;
 
 		itemStocksService.itemInsert(userInfo.get(0).getUserId(), itemId);
