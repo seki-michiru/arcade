@@ -56,6 +56,17 @@ public class GameController {
 
     @RequestMapping("/invaderPlay")
 	public String invaderPlay(@ModelAttribute("test") GameResultForm form,@ModelAttribute("ItemSelectForm") ItemSelectForm itemform, Model model) {
+    	Integer one = itemform.getGameIdOne();
+    	Integer tow = itemform.getGameIdTow();
+    	Integer three = itemform.getGameIdThree();
+
+    	Items itemOne = itemsService.getItemNameEffect(one);
+    	Items itemTow =  itemsService.getItemNameEffect(tow);
+    	Items itemThree = itemsService.getItemNameEffect(three);
+
+    	session.setAttribute("one",itemOne);
+    	session.setAttribute("tow",itemTow);
+    	session.setAttribute("three",itemThree );
 
 		return "invaderPlay";
     }
