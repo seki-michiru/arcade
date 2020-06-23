@@ -45,7 +45,7 @@ public class RegistController {
 
 		List<UserInfo> list1 = userInfoService.findByLoginId(registForm.getLoginId());
 
-		Integer itemId = null;
+
 
 		if(list1 != null) {
 
@@ -57,12 +57,6 @@ public class RegistController {
 
 
 			userInfoService.insert(registForm.getLoginId(), registForm.getUserName(), registForm.getPassword());
-
-			List<UserInfo> userInfo = userInfoService.findIdPass(registForm.getLoginId(), registForm.getPassword());
-
-			itemStocksService.itemInsert(userInfo.get(0).getUserId(), itemId);
-			System.out.println(userInfo.get(0).getUserId());
-
 
 			session.setAttribute("loginId", registForm.getLoginId());
 			session.setAttribute("userName", registForm.getUserName());
@@ -77,6 +71,12 @@ public class RegistController {
 	@RequestMapping("/regist2")
 	public String regist2(@ModelAttribute("regist2") RegistForm registForm, Model model, HttpSession session) {
 
+
+		List<UserInfo> userInfo = userInfoService.findIdPass(registForm.getLoginId(), registForm.getPassword());
+		Integer itemId = null;
+
+		itemStocksService.itemInsert(userInfo.get(0).getUserId(), itemId);
+		System.out.println(userInfo.get(0).getUserId());
 
 		return "registResult";
 
