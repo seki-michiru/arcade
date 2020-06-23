@@ -42,6 +42,7 @@ public class SaleController {
 		return "sale";
 	}
 
+
 	@RequestMapping("/saleResult")
 	@Transactional
 	public String saleResult(@ModelAttribute("SaleForm") SaleForm form, Model model, HttpSession session) {

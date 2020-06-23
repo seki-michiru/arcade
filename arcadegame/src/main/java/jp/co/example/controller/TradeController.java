@@ -43,7 +43,6 @@ public class TradeController {
 		session.setAttribute("marketItem", list);
 
 		return "trade";
-
 	}
 
 	@RequestMapping("/tradeResult")

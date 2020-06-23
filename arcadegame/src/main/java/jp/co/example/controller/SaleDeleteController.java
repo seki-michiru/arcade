@@ -37,8 +37,6 @@ public class SaleDeleteController {
 		List<Sales> list = SaleDeleteService.findAll(user.getUserId());
 		session.setAttribute("marketItem",list);
 
-
-
 		return "saleDelete";
 	}
 
