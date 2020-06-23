@@ -93,12 +93,13 @@ public class BuyController {
 
 
     	UserInfo user = (UserInfo) session.getAttribute("list");
-    	Integer coinHave = user.getCoinHave();
     	Integer userId = user.getUserId();
+		UserInfo userInfo = userInfoService.getCoin(userId);
+		Integer userCoin = userInfo.getCoinHave();
 
     	List<BuyInfo> buy = new ArrayList<>();
 
-    	if(sumPrice < coinHave) {
+    	if(sumPrice < userCoin) {
 
     		try {
 
@@ -113,8 +114,8 @@ public class BuyController {
     			return "buy";
     		}
 
-        	UserInfo userInfo = userInfoService.getCoin(userId);
-        	Integer userCoin = userInfo.getCoinHave();
+        	UserInfo Info = userInfoService.getCoin(userId);
+        	userCoin = Info.getCoinHave();
 
     		session.setAttribute("buyInfo",buy);
     		session.setAttribute("coin",userCoin);
