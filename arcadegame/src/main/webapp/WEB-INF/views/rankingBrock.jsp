@@ -45,6 +45,7 @@
             <td>${rankingBrock.get(0).getPlayNum()}</td>
         </tr>
         </c:if>
+
 <c:if test="${not empty date2}">
         <tr>
             <td>${rankingBrock.get(1).getRank()}</td>

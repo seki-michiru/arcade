@@ -45,6 +45,7 @@
             <td>${rankingInvader.get(0).getPlayNum()}</td>
         </tr>
 </c:if>
+
 <c:if test="${not empty date2 }">
         <tr>
             <td>${rankingInvader.get(1).getRank()}</td>
