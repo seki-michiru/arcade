@@ -1,78 +1,5 @@
-// $(function() {
-//     var img;
-//     var left = 60;
-//     var leftFlag = false;
-
-//     for(let i = 0; i < 30; i++) {
-//         img = document.createElement('img');
-//         img.src = 'images/invader1.png';
-//         img.className = 'invader-img';
-//         document.getElementById('enemy').appendChild(img);
-//     }
-//     function leftplus() {
-//         if(left > 380){
-//             leftFlag = true;
-//         }else if(left < 60) {
-//             leftFlag = false;
-//         }
-//         if(leftFlag == false) {
-//             left += 20;
-//         }else if(leftFlag == true) {
-//             left -= 20;
-//         }
-//         $("#enemy").css('left',left + 'px');
-//     }
-
-//     setInterval(leftplus,400);
-
-//     $('.myself-img').click(function() {
-//         $('.invader-img').remove();
-//     })
-
-//     var stalker = document.getElementById('stalker');
-
-//     document.addEventListener('mousemove', function (e) {
-//         var sss = e.clientX - 50;
-
-//         stalker.style.transform = 'translate(' + sss  + 'px)';
-//         if(e.clientX > 1240) {
-//             stalker.style.transform = 'translate(' + 1240 + 'px)';
-//         }
-//     });
-
-//     var ballFlag = true;
-//     var ballremoveFlag = true;
-//     function remove() {
-//         $('.ball').remove();
-//     }
-
-//     if(ballFlag){
-//     document.addEventListener('mousemove', function (e) {
-//         ballFlag = false;
-//         ballremoveFlag = false;
-//         $(this).click(function() {
-//             var ball = document.createElement('img');
-//             ball.src = 'images/ball.jpg';
-//             ball.className = 'ball';
-//             document.getElementById('max-width').appendChild(ball);
-//             var mause = e.clientX + 'px';
-//             $('.ball').css('left', mause);
-//             console.log(mause);
-//             });
-//         });
-//     }
-//     if(ballremoveFlag){
-//         setTimeout(remove,5000);
-//         ballFlag = true;
-//     }
-
-// });
-
-
-
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
-console.log(ctx);
 // ボールの大きさ
 var ballRadius = 10;
 var myMisileX = canvas.width/2;
@@ -97,7 +24,7 @@ var brickRowCount = 10;
 // 敵の列の数
 var brickColumnCount = 3;
 // 敵の横幅
-var brickWidth = 85;
+var brickWidth = 100;
 // 敵の高さ
 var brickHeight = 50;
 // 敵のパディング
@@ -113,15 +40,52 @@ var item1Flag = true;
 var item2Flag = true;
 var item3Flag = true;
 
-// var img = document.createElement('img');
-// img.src = 'images/invader1.png';
-// img.className = 'invader-img';
-// document.getElementById('myCanvas').appendChild(img);
+var item1 = document.getElementById("itemName1");
+var item2 = document.getElementById("itemName2");
+var item3 = document.getElementById("itemName3");
+console.log(item1);
+var itemName1 = "1";
+var itemName2 = "1";
+var itemName3 = "1";
+if(item1 !== '<p id="itemName1" class="msg-white item-name1"></p>') {
+	itemName1 = item1.textContent;
+}
+if(item2 !== '<p id="itemName2" class="msg-white item-name2"></p>') {
+	itemName2 = item2.textContent;
+}
+if(item3 !== '<p id="itemName3" class="msg-white item-name3"></p>') {
+	itemName3 = item3.textContent;
+}
+console.log(itemName1);
+console.log(itemName2);
+console.log(itemName3);
+
+// 効果値取得（タグごと取得）
+var Effect1 = document.getElementById("item1-effect");
+var Effect2 = document.getElementById("item2-effect");
+var Effect3 = document.getElementById("item3-effect");
+
+// 効果値取得（テキストだけ 文字列型）
+var itemEffect1 = Effect1.textContent;
+var itemEffect2 = Effect2.textContent;
+var itemEffect3 = Effect3.textContent;
+
+// 効果値取得（数値型に変換）
+var itemnum1 = Number(itemEffect1);
+var itemnum2 = Number(itemEffect2);
+var itemnum3 = Number(itemEffect3);
+
 
 document.body.addEventListener('keydown',
     event => {
       if (event.key === 'z' && item1Flag) {
-        lives = 10;
+    	  if(itemName1 == 'ライフ回復'){
+    		  lives = lives + 2;
+    	  }else if(itemName1 == 'スコアアップ') {
+    		  score = score * 2;
+    	  }else if(itemName1 == '連射') {
+    		  myMisileDy = -30;
+    	  }
         item1Flag = false;
         $('.box1').remove();
         $('.item-name1').remove();
@@ -130,7 +94,13 @@ document.body.addEventListener('keydown',
 document.body.addEventListener('keydown',
     event => {
       if (event.key === 'x' && item2Flag) {
-        score = score * 2;
+    	  if(itemName2 == 'ライフ回復'){
+    		  lives = lives + 2;
+    	  }else if(itemName2 == 'スコアアップ') {
+    		  score = score * 2;
+    	  }else if(itemName2 == '連射') {
+    		  myMisileDy = -30;
+    	  }
         item2Flag = false;
         $('.box2').remove();
         $('.item-name2').remove();
@@ -139,7 +109,13 @@ document.body.addEventListener('keydown',
 document.body.addEventListener('keydown',
     event => {
       if (event.key === 'c' && item3Flag) {
-        myMisileDy = -40;
+    	  if(itemName3 == 'ライフ回復'){
+    		  lives = lives + 2;
+    	  }else if(itemName3 == 'スコアアップ') {
+    		  score = score * 2;
+    	  }else if(itemName3 == '連射') {
+    		  myMisileDy = -30;
+    	  }
         item3Flag = false;
         $('.box3').remove();
         $('.item-name3').remove();
@@ -147,18 +123,6 @@ document.body.addEventListener('keydown',
     });
 
 
-// $('.box1').click(function() {
-//   ballRadius = 30;
-//   $('.box1').remove();
-// })
-// $('.box2').click(function() {
-  //   myMisileDy = -40;
-  //   $('.box2').remove();
-  // })
-  // $('.box3').click(function() {
-    //   lives = 100;
-    //   $('.box3').remove();
-    // })
 var score = 0;
 function sample1() {
 	document.getElementById("score").value=score;
@@ -216,8 +180,7 @@ var enemyPosition = setInterval(function(){
     var moveX = 5;
     var moveY = 0;
     if(moveCount>75){
-        //敵が迫ってきたので，ゲームオーバー
-        alert("GAME OVER");
+        // 敵が迫ってきたので，ゲームオーバー
         sample1();
 
     }
