@@ -63,7 +63,7 @@ public class GachaController {
 
 		//int coinHave = coin.get(0).getCoinHave();
 
-		//ここ直す
+
 		session.setAttribute("coin",coinHave.get(0).getCoinHave());
 
 

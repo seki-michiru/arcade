@@ -20,33 +20,43 @@
 	<a href="tradeMenu"><img src="images/returnbtn.png" alt=""
 		class="returnbtn"></a>
 
-	<form:form action="saleDeleteResult" modelAttribute="SaleDeleteForm">
-		<table>
-			<tr>
-				<th></th>
-				<th>ゲーム名</th>
-				<th>出品アイテム</th>
-				<th>ほしいアイテム</th>
-			</tr>
-
-			<c:forEach var="market" items="${marketItem}">
-				<tr>
-					<td><form:checkbox value="${market.saleId}" path="delete"
-							style="width: 20px; height: 20px;" /></td>
+	<c:choose>
+		<c:when test="${empty marketItem}">
+			<p>出品しているアイテムはありません</p>
+		</c:when>
+		<c:otherwise>
 
 
-					<td>${market.gameName}</td>
-					<td>${market.takeName}</td>
-					<td>${market.giveName}</td>
-				</tr>
 
-			</c:forEach>
+			<form:form action="saleDeleteResult" modelAttribute="SaleDeleteForm">
+				<table>
+					<tr>
+						<th></th>
+						<th>ゲーム名</th>
+						<th>出品アイテム</th>
+						<th>ほしいアイテム</th>
+					</tr>
 
-		</table>
+					<c:forEach var="market" items="${marketItem}">
+						<tr>
+							<td><form:checkbox value="${market.saleId}" path="delete"
+									style="width: 20px; height: 20px;" /></td>
 
-		<div id="form-btn-center">
-			<button class="form-btn" style="width: 200px;">削除</button>
-		</div>
-	</form:form>
+
+							<td>${market.gameName}</td>
+							<td>${market.takeName}</td>
+							<td>${market.giveName}</td>
+						</tr>
+
+					</c:forEach>
+
+				</table>
+
+				<div id="form-btn-center">
+					<button class="form-btn" style="width: 200px;">削除</button>
+				</div>
+			</form:form>
+		</c:otherwise>
+	</c:choose>
 </body>
 </html>

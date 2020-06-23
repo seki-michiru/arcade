@@ -20,38 +20,45 @@
 	<a href="tradeMenu"><img src="images/returnbtn.png" alt=""
 		class="returnbtn"></a>
 
-	<form:form action="saleResult" modelAttribute="SaleForm">
-		<table>
-			<tr>
-				<th></th>
-				<th>ゲーム名</th>
-				<th>出品アイテム</th>
-				<th>ほしいアイテム選択</th>
-			</tr>
-			<c:forEach var="userItem" items="${userStockItem}">
-				<tr>
-					<td><form:checkbox value="${userItem.itemId}" path="takeId"
-							style="width: 20px; height: 20px;" /></td>
-					<td>${userItem.gameName}</td>
-					<td>${userItem.itemName}</td>
 
-					<td><form:select path="giveId" class="form-select" multiple="false">
-							 	<form:option value="0">何欲しい？</form:option>
-							 	<c:forEach var="item" items="${itemlist}">
- 								<form:option value="${item.itemId}"  label="${item.itemName}" />
-							</c:forEach>
-						</form:select>
-					</td>
+	<c:choose>
+		<c:when test="${empty userStockItem}">
+			<p>アイテムを持っていません</p>
+		</c:when>
+		<c:otherwise>
+			<form:form action="saleResult" modelAttribute="SaleForm">
+				<table>
+					<tr>
+						<th></th>
+						<th>ゲーム名</th>
+						<th>出品アイテム</th>
+						<th>ほしいアイテム選択</th>
+					</tr>
+					<c:forEach var="userItem" items="${userStockItem}">
+						<tr>
+							<td><form:checkbox value="${userItem.itemId}" path="takeId"
+									style="width: 20px; height: 20px;" /></td>
+							<td>${userItem.gameName}</td>
+							<td>${userItem.itemName}</td>
 
-				</tr>
-			</c:forEach>
+							<td><form:select path="giveId" class="form-select"
+									multiple="false">
+									<form:option value="0">何欲しい？</form:option>
+									<c:forEach var="item" items="${itemlist}">
+										<form:option value="${item.itemId}" label="${item.itemName}" />
+									</c:forEach>
+								</form:select></td>
 
-		</table>
+						</tr>
+					</c:forEach>
 
-		<div id="form-btn-center">
-			<button class="form-btn" style="width: 200px;">トレードに出す</button>
-		</div>
-	</form:form>
+				</table>
 
+				<div id="form-btn-center">
+					<button class="form-btn" style="width: 200px;">トレードに出す</button>
+				</div>
+			</form:form>
+		</c:otherwise>
+	</c:choose>
 </body>
 </html>

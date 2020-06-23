@@ -20,35 +20,41 @@
 	<a href="tradeMenu"><img src="images/returnbtn.png" alt=""
 		class="returnbtn"></a>
 
-	<form:form action="tradeResult" modelAttribute="TradeForm">
-		<table>
-			<tr>
-				<th></th>
-				<th>出品者名</th>
-				<th>ゲーム名</th>
-				<th>出品アイテム</th>
-				<th>対象アイテム</th>
-			</tr>
-			<c:forEach var="market" items="${marketItem}">
-				<tr>
-					<td><form:checkbox value="${market.saleId}" path="trade"
-							style="width: 20px; height: 20px;" /></td>
+	<c:choose>
+		<c:when test="${empty marketItem}">
+			<p>トレードに出させているアイテムはありません</p>
+		</c:when>
+		<c:otherwise>
+			<form:form action="tradeResult" modelAttribute="TradeForm">
+				<table>
+					<tr>
+						<th></th>
+						<th>出品者名</th>
+						<th>ゲーム名</th>
+						<th>出品アイテム</th>
+						<th>対象アイテム</th>
+					</tr>
+					<c:forEach var="market" items="${marketItem}">
+						<tr>
+							<td><form:checkbox value="${market.saleId}" path="trade"
+									style="width: 20px; height: 20px;" /></td>
 
 
-					<td>${market.userName}</td>
-					<td>${market.gameName}</td>
-					<td>${market.giveName}</td>
-					<td>${market.takeName}</td>
-				</tr>
+							<td>${market.userName}</td>
+							<td>${market.gameName}</td>
+							<td>${market.giveName}</td>
+							<td>${market.takeName}</td>
+						</tr>
 
-			</c:forEach>
+					</c:forEach>
 
-		</table>
+				</table>
 
-	<div id="form-btn-center">
-		<button class="form-btn" style="width: 200px;">交換する</button>
-	</div>
-	</form:form>
-
+				<div id="form-btn-center">
+					<button class="form-btn" style="width: 200px;">交換する</button>
+				</div>
+			</form:form>
+		</c:otherwise>
+	</c:choose>
 </body>
 </html>
