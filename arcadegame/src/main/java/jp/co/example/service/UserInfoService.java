@@ -14,7 +14,7 @@ public interface UserInfoService {
 	public List<UserInfo> allItem(Integer userId);
 	public List<UserInfo> findRanking(Integer gameId);
 	public List<UserInfo> findMyRanking(Integer gameId, Integer userId);
-	public List<UserInfo> higtScoreDate(Integer userId, Integer gameId);
+	public List<UserInfo> higtScoreDate(String userName, Integer gameId);
 	public void update(String loginId, String userName, String password, Integer userId);
 	public List<UserInfo> findByUserName(String userName);
 	public List<UserInfo> findIdUserNamePass(String loginId, String userName, String password);

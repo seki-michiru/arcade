@@ -86,54 +86,53 @@ public class PgUserInfoDao implements UserInfoDao {
 	public List<UserInfo> allItem(Integer userId) {
 		String sql = "select g.game_name, i.item_name, i.item_explan, s.item_have "
 				+ "from user_info u join item_stocks s on u.user_id=s.user_id "
-				+ "join items i on s.item_id=i.item_id join games g on i.game_id=g.game_id where u.user_id = :UserId";
+				+ "join items i on s.item_id=i.item_id join games g on i.game_id=g.game_id where u.user_id = :UserId and item_have > 0";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("UserId", userId);
 
-		List<UserInfo> allItem = jdbcTemplate.query(sql, new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
+		List<UserInfo> allItem = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
 		return allItem.isEmpty() ? null : allItem;
 	}
 
 	public List<UserInfo> findRanking(Integer gameId) {
-		String sql = "SELECT user_name, rank() over (order by(MAX(score))desc) rank, MAX(score) AS highScore , count(*) AS playNum"
-				+ "FROM user_info"
-				+ "JOIN scores"
-				+ "ON user_info.user_id = scores.user_id"
-				+ "where game_id = :GameId"
-				+ "GROUP BY user_info.user_name"
+		String sql = "SELECT user_name, rank() over (order by(MAX(score))desc) rank, MAX(score) AS highScore , count(*) AS playNum "
+				+ "FROM user_info "
+				+ "JOIN scores ON user_info.user_id = scores.user_id "
+				+ "where game_id = :GameId "
+				+ "GROUP BY user_info.user_name "
 				+ "LIMIT 3";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("GameId", gameId);
 
-		List<UserInfo> ranking = jdbcTemplate.query(sql, new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
+		List<UserInfo> ranking = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
 		return ranking.isEmpty() ? null : ranking;
 	}
 
 	public List<UserInfo> findMyRanking(Integer gameId, Integer userId) {
-		String sql = "SELECT user_id, rank ,highScore"
+		String sql = "SELECT user_id, rank ,highScore "
 				+ "from (SELECT user_id, rank() over (order by(MAX(score))desc) rank, MAX(score) AS highScore "
-				+ "FROM scores where  game_id = :GameId "
-				+ "group by user_id) AS users"
-				+ "where user_id = :UserID";
+				+ "FROM scores where game_id = :GameId "
+				+ "group by user_id) AS users "
+				+ "where user_id = :UserId";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("GameId", gameId);
 		param.addValue("UserId", userId);
 
-		List<UserInfo> myRank = jdbcTemplate.query(sql, new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
+		List<UserInfo> myRank = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
 		return myRank.isEmpty() ? null : myRank;
 	}
 
-	public List<UserInfo> higtScoreDate(Integer userId, Integer gameId) {
-		String sql = "SELECT score_date FROM scores WHERE user_id = :UserId AND game_id = :GameId ORDER BY score DESC LIMIT 1";
+	public List<UserInfo> higtScoreDate(String userName, Integer gameId) {
+		String sql = "SELECT score_date FROM scores join user_info on scores.user_id = user_info.user_id WHERE user_name = :UserName AND game_id = :GameId ORDER BY score DESC LIMIT 1";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
-		param.addValue("UserId", userId);
+		param.addValue("UserName", userName);
 		param.addValue("GameId", gameId);
 
-		List<UserInfo> dateHigtScore = jdbcTemplate.query(sql, new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
+		List<UserInfo> dateHigtScore = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
 		return dateHigtScore.isEmpty() ? null : dateHigtScore;
 	}
 

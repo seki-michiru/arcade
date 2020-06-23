@@ -1,5 +1,9 @@
+    <%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<jsp:useBean id="date" class="java.util.Date"/>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -16,10 +20,11 @@
     <a href="menu"><img src="images/homeicon.png" alt="" class="home-icon"></a>
 
     <h2 id="sub-title">ブロック崩し</h2>
-
-    <div id="rank-msg-div"><p class="rank-msg">あなたのランキング</p>
-    <p class="rank-msg">${requestScope.myRank.get(0).rank}</p>
-    <p class="rank-msg">${requestScope.myRank.get(0).highScore}</p></div>
+	<c:if test="${not empty myRank.get(0).getRank()}">
+	    <div id="rank-msg-div"><p class="rank-msg">あなたのランキング</p>
+	    <p class="rank-msg">${myRank.get(0).getRank()}位</p>
+	    <p class="rank-msg">スコア：${myRank.get(0).getHighScore()}</p></div>
+    </c:if>
 
     <table border="1">
         <caption>BEST3</caption>
@@ -30,31 +35,50 @@
             <th>日付</th>
             <th>遊んだ回数</th>
         </tr>
+<%--
+ <c:forEach var="rankingBrock" items="${rankingBrock}">
+        <tr>
+            <td><c:out value ="${rankingBrock.rank}"/></td>
+            <td><c:out value ="${rankingBrock.userName}"/></td>
+            <td><c:out value ="${rankingBrock.highScore}"/></td>
+            <c:forEach var="higtScoreDateFirst" items="${higtScoreDateFirst}">
+            <td><c:out value ="${higtScoreDateFirst.scoreDate}"/>
+            </c:forEach>
+            <td><c:out value ="${rankingBrock.playNum}"/></td>
+        </tr>
+</c:forEach>
+--%>
 
+        <c:if test="${not empty date1  }">
         <tr>
-            <td>${requestScope.rankingBrock.get(0).rank}</td>
-            <td>${requestScope.rankingBrock.get(0).userName}</td>
-            <td>${requestScope.rankingBrock.get(0).highScore}</td>
-            <td>${requestScope.higtScoreDateFirst(0).highScoreDate}</td>
-            <td>${requestScope.rankingBrock.get(0).playNum}</td>
+            <td>${rankingBrock.get(0).getRank()}</td>
+            <td>${rankingBrock.get(0).getUserName()}</td>
+            <td>${rankingBrock.get(0).getHighScore()}</td>
+            <td><fmt:formatDate value="${date1}" pattern="yyyy/MM/dd HH:mm" /></td>
+            <td>${rankingBrock.get(0).getPlayNum()}</td>
         </tr>
+        </c:if>
+<c:if test="${not empty date2}">
         <tr>
-            <td>${requestScope.rankingBrock.get(1).rank}</td>
-            <td>${requestScope.rankingBrock.get(1).userName}</td>
-            <td>${requestScope.rankingBrock.get(1).highScore}</td>
-            <td>${requestScope.higtScoreDateSecond(0).highScoreDate}</td>
-            <td>${requestScope.rankingBrock.get(1).playNum}</td>
+            <td>${rankingBrock.get(1).getRank()}</td>
+            <td>${rankingBrock.get(1).getUserName()}</td>
+            <td>${rankingBrock.get(1).getHighScore()}</td>
+             <td><fmt:formatDate value="${date2}" pattern="yyyy/MM/dd HH:mm" /></td>
+            <td>${rankingBrock.get(1).getPlayNum()}</td>
         </tr>
+        </c:if>
+<c:if test="${not empty date3}">
         <tr>
-            <td>${requestScope.rankingBrock.get(2).rank}</td>
-            <td>${requestScope.rankingBrock.get(2).userName}</td>
-            <td>${requestScope.rankingBrock.get(2).highScore}</td>
-            <td>${requestScope.higtScoreDateThird(0).highScoreDate}</td>
-            <td>${requestScope.rankingBrock.get(2).playNum}</td>
+            <td>${rankingBrock.get(2).getRank()}</td>
+            <td>${rankingBrock.get(2).getUserName()}</td>
+            <td>${rankingBrock.get(2).getHighScore()}</td>
+             <td><fmt:formatDate value="${date3}" pattern="yyyy/MM/dd HH:mm" /></td>
+            <td>${rankingBrock.get(2).getPlayNum()}</td>
         </tr>
-
+        </c:if>
 
     </table>
+
 
 </body>
 </html>

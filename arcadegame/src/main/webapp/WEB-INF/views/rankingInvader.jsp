@@ -1,5 +1,9 @@
+    <%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<jsp:useBean id="date" class="java.util.Date"/>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -16,11 +20,11 @@
     <a href="menu"><img src="images/homeicon.png" alt="" class="home-icon"></a>
 
     <h2 id="sub-title">インベーダーゲーム</h2>
-
-    <div id="rank-msg-div"><p class="rank-msg">あなたのランキング</p>
-    <p class="rank-msg">${requestScope.myRank.get(0).getRank()}</p>
-    <p class="rank-msg">${requestScope.myRank.get(0).getHighScore()}</p></div>
-
+	<c:if test="${not empty myRank.get(0).getRank()}">
+	    <div id="rank-msg-div"><p class="rank-msg">あなたのランキング</p>
+	    <p class="rank-msg">${myRank.get(0).getRank()}位</p>
+	    <p class="rank-msg">スコア：${myRank.get(0).getHighScore()}</p></div>
+	</c:if>
     <table border="1">
         <caption>BEST3</caption>
         <tr>
@@ -30,27 +34,35 @@
             <th>日付</th>
             <th>遊んだ回数</th>
         </tr>
+
+
+<c:if test="${not empty date1  }">
         <tr>
-            <td>${requestScope.rankingInvader.get(0).getRank()}</td>
-            <td>${requestScope.rankingInvader.get(0).getUserName()}</td>
-            <td>${requestScope.rankingInvader.get(0).getHighScore()}</td>
-            <td>${requestScope.higtScoreDateFirst.getHighScoreDate()}</td>
-            <td>${requestScope.rankingInvader.get(0).getPlayNum()}</td>
+            <td>${rankingInvader.get(0).getRank()}</td>
+            <td>${rankingInvader.get(0).getUserName()}</td>
+            <td>${rankingInvader.get(0).getHighScore()}</td>
+            <td><fmt:formatDate value="${date1}" pattern="yyyy/MM/dd HH:mm" /></td>
+            <td>${rankingInvader.get(0).getPlayNum()}</td>
         </tr>
+</c:if>
+<c:if test="${not empty date2 }">
         <tr>
-            <td>${requestScope.rankingInvader.get(1).getRank()}</td>
-            <td>${requestScope.rankingInvader.get(1).getUserName()}</td>
-            <td>${requestScope.rankingInvader.get(1).getHighScore()}</td>
-            <td>${requestScope.higtScoreDateSecond.getHighScoreDate()}</td>
-            <td>${requestScope.rankingInvader.get(1).getPlayNum()}</td>
+            <td>${rankingInvader.get(1).getRank()}</td>
+            <td>${rankingInvader.get(1).getUserName()}</td>
+            <td>${rankingInvader.get(1).getHighScore()}</td>
+            <td><fmt:formatDate value="${date2}" pattern="yyyy/MM/dd HH:mm" /></td>
+            <td>${rankingInvader.get(1).getPlayNum()}</td>
         </tr>
+</c:if>
+<c:if test="${not empty date3 }">
         <tr>
-            <td>${requestScope.rankingInvader.get(2).getRank()}</td>
-            <td>${requestScope.rankingInvader.get(2).getUserName()}</td>
-            <td>${requestScope.rankingInvader.get(2).getHighScore()}</td>
-            <td>${requestScope.higtScoreDateThird.getHighScoreDate()}</td>
-            <td>${requestScope.rankingInvader.get(2).getPlayNum()}</td>
+            <td>${rankingInvader.get(2).getRank()}</td>
+            <td>${rankingInvader.get(2).getUserName()}</td>
+            <td>${rankingInvader.get(2).getHighScore()}</td>
+            <td><fmt:formatDate value="${date3}" pattern="yyyy/MM/dd HH:mm" /></td>
+            <td>${rankingInvader.get(2).getPlayNum()}</td>
         </tr>
+</c:if>
     </table>
 
 </body>

@@ -18,7 +18,7 @@ public class UserInfo {
 	private Integer itemHave;
 	private Integer rank;
 	private Integer highScore;
-	private Date highScoreDate;
+	private Date scoreDate;
 	private Integer playNum;
 
 	public Integer getRank() {
@@ -37,12 +37,12 @@ public class UserInfo {
 		this.highScore = highScore;
 	}
 
-	public Date getHighScoreDate() {
-		return highScoreDate;
+	public Date getScoreDate() {
+		return scoreDate;
 	}
 
-	public void setHighScoreDate(Date highScoreDate) {
-		this.highScoreDate = highScoreDate;
+	public void setScoreDate(Date scoreDate) {
+		this.scoreDate = scoreDate;
 	}
 
 	public Integer getPlayNum() {

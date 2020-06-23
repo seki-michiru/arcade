@@ -72,9 +72,9 @@ public class UserInfoServiceImpl implements UserInfoService{
 	}
 
 	@Override
-	public List<UserInfo>  higtScoreDate(Integer userId, Integer gameId) {
+	public List<UserInfo>  higtScoreDate(String userName, Integer gameId) {
 
-		return userInfoDao. higtScoreDate(userId, gameId);
+		return userInfoDao. higtScoreDate(userName, gameId);
 
 	}
 
