@@ -43,7 +43,6 @@ public class LoginController {
 		}
 
 		List<UserInfo> userInfo1 = userInfoService.findIdPass(loginform.getLoginId(), loginform.getPassword());
-//		List<UserInfo> list = userInfoService.findAll();
 
 		String loginId = null;
 
