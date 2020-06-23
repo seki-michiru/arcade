@@ -39,6 +39,7 @@ public class GachaController {
 		UserInfo userInfo = userInfoService.getCoin(userId);
 		Integer userCoin = userInfo.getCoinHave();
 
+		//コイン判定
 		if(userCoin < 30) {
 			model.addAttribute("msg", "コインが足りません");
 			return "gacha";
