@@ -44,7 +44,7 @@ public class GameController {
     }
 
     @RequestMapping("/invaderStart")
-    public String invaderStart(@ModelAttribute("ItemSelectForm") ItemSelectForm form,Model model) {
+    public String invaderStart(@ModelAttribute("test") GameResultForm form,@ModelAttribute("ItemSelectForm") ItemSelectForm itemform,Model model) {
    	 UserInfo user = (UserInfo) session.getAttribute("list");
     	 Integer userId = user.getUserId();
 
@@ -56,17 +56,26 @@ public class GameController {
 
     @RequestMapping("/invaderPlay")
 	public String invaderPlay(@ModelAttribute("test") GameResultForm form,@ModelAttribute("ItemSelectForm") ItemSelectForm itemform, Model model) {
-    	Integer one = itemform.getGameIdOne();
-    	Integer tow = itemform.getGameIdTow();
-    	Integer three = itemform.getGameIdThree();
 
-    	Items itemOne = itemsService.getItemNameEffect(one);
-    	Items itemTow =  itemsService.getItemNameEffect(tow);
-    	Items itemThree = itemsService.getItemNameEffect(three);
+    	if(itemform.getItemIdOne() > 0){
+    		Integer one = itemform.getItemIdOne();
+    		Items itemOne = itemsService.getItemNameEffect(one);
+    		session.setAttribute("one",itemOne);
+    	}
 
-    	session.setAttribute("one",itemOne);
-    	session.setAttribute("tow",itemTow);
-    	session.setAttribute("three",itemThree );
+    	if(itemform.getItemIdTow() > 0) {
+    		Integer tow = itemform.getItemIdTow();
+    		Items itemTow =  itemsService.getItemNameEffect(tow);
+    		session.setAttribute("tow",itemTow);
+    	}
+
+    	if(itemform.getItemIdThree() > 0) {
+
+    		Integer three = itemform.getItemIdThree();
+    		Items itemThree = itemsService.getItemNameEffect(three);
+    		session.setAttribute("three",itemThree );
+    	}
+
 
 		return "invaderPlay";
     }
@@ -99,7 +108,7 @@ public class GameController {
     }
 
 	@RequestMapping("/brockStart")
-	public String brockStart(@ModelAttribute("ItemSelectForm") ItemSelectForm form,Model model) {
+	public String brockStart(@ModelAttribute("test") GameResultForm form,@ModelAttribute("ItemSelectForm") ItemSelectForm itemform,Model model) {
 		UserInfo user = (UserInfo) session.getAttribute("list");
 		Integer userId = user.getUserId();
 
@@ -110,25 +119,54 @@ public class GameController {
     }
 
 	@RequestMapping("/brockPlay")
-	public String brockPlay(@ModelAttribute("ItemSelectForm") ItemSelectForm itemform,Model model) {
+	public String brockPlay(@ModelAttribute("test") GameResultForm form,@ModelAttribute("ItemSelectForm") ItemSelectForm itemform,Model model) {
 
-    	Integer one = itemform.getGameIdOne();
-    	Integer tow = itemform.getGameIdTow();
-    	Integer three = itemform.getGameIdThree();
 
-    	Items itemOne = itemsService.getItemNameEffect(one);
-    	Items itemTow =  itemsService.getItemNameEffect(tow);
-    	Items itemThree = itemsService.getItemNameEffect(three);
+    	if(itemform.getItemIdOne() > 0){
+    		Integer one = itemform.getItemIdOne();
+    		Items itemOne = itemsService.getItemNameEffect(one);
+    		session.setAttribute("one",itemOne);
+    	}
 
-    	session.setAttribute("one",itemOne);
-    	session.setAttribute("tow",itemTow);
-    	session.setAttribute("three",itemThree );
+    	if(itemform.getItemIdTow() > 0) {
+    		Integer tow = itemform.getItemIdTow();
+    		Items itemTow =  itemsService.getItemNameEffect(tow);
+    		session.setAttribute("tow",itemTow);
+    	}
+
+    	if(itemform.getItemIdThree() > 0) {
+
+    		Integer three = itemform.getItemIdThree();
+    		Items itemThree = itemsService.getItemNameEffect(three);
+    		session.setAttribute("three",itemThree );
+    	}
 
 		return "brockPlay";
     }
 
+	@RequestMapping("/result1")
+	public String brockPlay(@ModelAttribute("test") GameResultForm form,Model model) {
+		String loginId = (String)session.getAttribute("loginId");
+
+		List<UserInfo> list = userInfoService.findByLoginId(loginId);
+
+
+		Integer userId = list.get(0).getUserId();
+		Integer score = form.getScore();
+		Integer coin = score /3;
+
+		gamesService.updateCoin(userId, coin);
+
+		gamesService.score(userId, score, coin);
+
+		model.addAttribute("score", score);
+		model.addAttribute("coin", coin);
+
+		return "brockResult";
+    }
+
 	@RequestMapping("/brockResult")
-	public String brockPlay(Model model) {
+	public String brockResult(@ModelAttribute("test") GameResultForm form,Model model) {
 
 		return "brockResult";
     }

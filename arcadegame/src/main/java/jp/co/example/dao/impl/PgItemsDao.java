@@ -64,8 +64,8 @@ public class PgItemsDao implements ItemDao {
 
 	public Items getItemNameEffect(Integer itemId) {
 		MapSqlParameterSource param = new MapSqlParameterSource();
-		String sql = "SELECT item_name,item_effect FROM items WHERE item_id = :itemId;";
-		param.addValue("ItemId", itemId);
+		String sql = "SELECT item_name,item_effect FROM items WHERE item_id = :itemId";
+		param.addValue("itemId", itemId);
 		List<Items> result = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Items>(Items.class));
 		return result.isEmpty() ? null : result.get(0);
 	}

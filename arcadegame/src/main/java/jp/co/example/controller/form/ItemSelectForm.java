@@ -2,26 +2,32 @@ package jp.co.example.controller.form;
 
 public class ItemSelectForm {
 
-	private Integer gameIdOne;
-	private Integer gameIdTow;
-	private Integer gameIdThree;
-	public Integer getGameIdOne() {
-		return gameIdOne;
+	private Integer itemIdOne;
+	private Integer itemIdTow;
+	private Integer itemIdThree;
+
+	public Integer getItemIdOne() {
+		return itemIdOne;
 	}
-	public void setGameIdOne(Integer gameIdOne) {
-		this.gameIdOne = gameIdOne;
+
+	public void setItemIdOne(Integer itemIdOne) {
+		this.itemIdOne = itemIdOne;
 	}
-	public Integer getGameIdTow() {
-		return gameIdTow;
+
+	public Integer getItemIdTow() {
+		return itemIdTow;
 	}
-	public void setGameIdTow(Integer gameIdTow) {
-		this.gameIdTow = gameIdTow;
+
+	public void setItemIdTow(Integer itemIdTow) {
+		this.itemIdTow = itemIdTow;
 	}
-	public Integer getGameIdThree() {
-		return gameIdThree;
+
+	public Integer getItemIdThree() {
+		return itemIdThree;
 	}
-	public void setGameIdThree(Integer gameIdThree) {
-		this.gameIdThree = gameIdThree;
+
+	public void setItemIdThree(Integer itemIdThree) {
+		this.itemIdThree = itemIdThree;
 	}
 
 

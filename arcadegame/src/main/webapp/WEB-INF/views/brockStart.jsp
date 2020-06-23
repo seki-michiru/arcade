@@ -21,7 +21,7 @@
         <div id="form-div" class="form-center">
             <div class="game">
 				<label for="" class="form-item">アイテム1</label>
-				<form:select path="gameIdOne" class="form-select" multiple="false">
+				<form:select path="itemIdOne" class="form-select" multiple="false">
 						<form:option value="0">選択する</form:option>
 					<c:forEach var="item" items="${stockList}">
 						<form:option value="${item.itemId}" label="${item.itemName}" />
@@ -33,7 +33,7 @@
         <div id="form-div" class="form-center">
             <div class="game">
 				<label for="" class="form-item">アイテム2</label>
-				<form:select path="gameIdTow" class="form-select" multiple="false">
+				<form:select path="itemIdTow" class="form-select" multiple="false">
 						<form:option value="0">選択する</form:option>
 					<c:forEach var="item" items="${stockList}">
 						<form:option value="${item.itemId}" label="${item.itemName}" />
@@ -45,7 +45,7 @@
         <div id="form-div" class="form-center">
             <div class="game">
 				<label for="" class="form-item">アイテム3</label>
-				<form:select path="gameIdThree" class="form-select" multiple="false">
+				<form:select path="itemIdThree" class="form-select" multiple="false">
 						<form:option value="0">選択する</form:option>
 					<c:forEach var="item" items="${stockList}">
 						<form:option value="${item.itemId}" label="${item.itemName}" />

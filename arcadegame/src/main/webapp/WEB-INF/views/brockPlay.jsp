@@ -5,13 +5,30 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>アーケードゲーム</title>
-    <link rel="stylesheet" href="css/all.css">
-    <script type="text/javascript" src="script/main.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アーケードゲーム</title>
+<link rel="stylesheet" href="css/game.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body onload="main()">
-        <canvas id="sample" width="640" height="480"></canvas>
+	<canvas id="sample" width="1355" height="630"></canvas>
+	<div id="box">
+		<p class="msg-white">アイテム：</p>
+		<p class="msg-white item-name1">ライフアップ</p>
+		<div class="boxs box1">z</div>
+		<p class="msg-white item-name2">スコアアップ</p>
+		<div class="boxs box2">x</div>
+		<p class="msg-white item-name3">球速度アップ</p>
+		<div class="boxs box3">c</div>
+	</div>
+
+	<form:form action="result1" modelAttribute="test" name="sampleform"
+		cssStyle="visibility: hidden; float: left;">
+		<form:input path="score" value="" />
+		<button onclick="sample2()">送信</button>
+	</form:form>
+
+	<script src="main.js"></script>
 </body>
 </html>
