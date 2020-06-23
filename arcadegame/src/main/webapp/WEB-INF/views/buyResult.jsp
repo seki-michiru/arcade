@@ -22,7 +22,7 @@
       <c:forEach items="${buyInfo}" var="buy">
               <p class="confirm-msg"> ${buy.itemName}を${buy.number}個購入しました</p>
       </c:forEach>
-    <p class="confirm-msg">コイン残高：${userCoin}</p>
+    <p class="confirm-msg">コイン残高：${coin}</p>
 
     <div id="form-btn-center"><a href="shop"><button class="form-btn" style="width: 200px;">ショップに戻る</button></a></div>
 
