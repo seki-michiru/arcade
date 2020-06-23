@@ -34,16 +34,19 @@ public class BuyController {
     @Autowired
     private ItemStocksService itemStocksService;
 
-    @RequestMapping("/buy")
-    public String buy(@ModelAttribute("buyForm") buyForm form,Model model) {
-        List<Items> list = itemsService.findAll();
+	@RequestMapping("/buy")
+	public String buy(@ModelAttribute("buyForm") buyForm form, Model model) {
+		List<Items> list = itemsService.findAll();
 
-       UserInfo user = (UserInfo) session.getAttribute("list");
-         session.setAttribute("items",list);
-       session.setAttribute("coin",user.getCoinHave());
+		UserInfo user = (UserInfo) session.getAttribute("list");
+		Integer userId = user.getUserId();
+		UserInfo userInfo = userInfoService.getCoin(userId);
+		Integer userCoin = userInfo.getCoinHave();
+		session.setAttribute("items", list);
+		session.setAttribute("coin", userCoin);
 
-        return "buy";
-    }
+		return "buy";
+	}
 
 
     //付けたし
