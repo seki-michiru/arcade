@@ -19,26 +19,65 @@ public class PgSalesDao implements SalesDao {
 
 	@Override
 	public List<Sales> findAll(Integer userId) {
-		String sql ="SELECT sale_id,game_name,give_item,GIVE.item_name AS give_name, take_item,TAKE.item_name AS take_name"
-				+" FROM sales"
-				+" JOIN user_info"
-				+" ON sales.user_id = user_info.user_id"
-				+" INNER JOIN items AS GIVE"
-				+" ON sales.give_item = GIVE.item_id"
-				+" INNER JOIN items AS TAKE"
-				+" ON sales.take_item = TAKE.item_id"
-				+" JOIN games"
-				+" ON GIVE.game_id = games.game_id"
-				+" WHERE sale_flag = 1"
-				+" AND sales.user_id = :UserId"
-				+" ORDER BY sale_id";
+		String sql = "SELECT sale_id,user_name,game_name,give_item,GIVE.item_name AS give_name, take_item,TAKE.item_name AS take_name"
+				+ " FROM sales"
+				+ " JOIN user_info"
+				+ " ON sales.user_id = user_info.user_id"
+				+ " INNER JOIN items AS GIVE"
+				+ " ON sales.give_item = GIVE.item_id"
+				+ " INNER JOIN items AS TAKE"
+				+ " ON sales.take_item = TAKE.item_id"
+				+ " JOIN games"
+				+ " ON GIVE.game_id = games.game_id"
+				+ " WHERE sale_flag = 1"
+				+ " AND sales.user_id = :UserId"
+				+ " ORDER BY sale_id";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("UserId", userId);
 		List<Sales> result = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Sales>(Sales.class));
 		return result.isEmpty() ? null : result;
 
+	}
+
+	@Override
+	public void marketCancel(Integer salesId) {
+		String sql = "UPDATE sales SET sale_flag = 3 WHERE sale_id = :SalesId";
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("SalesId", salesId);
+		jdbcTemplate.update(sql, param);
 
 	}
 
+	@Override
+	public List<Sales> marketTrade(Integer userId) {
+		String sql = "SELECT sale_id,user_name,game_name,give_item,GIVE.item_name AS give_name, take_item,TAKE.item_name AS take_name"
+				+ " FROM sales"
+				+ " JOIN user_info"
+				+ " ON sales.user_id = user_info.user_id"
+				+ " JOIN items AS GIVE"
+				+ " ON sales.give_item = GIVE.item_id"
+				+ " JOIN items AS TAKE"
+				+ " ON sales.take_item = TAKE.item_id"
+				+ " JOIN games"
+				+ " ON GIVE.game_id = games.game_id"
+				+ " WHERE sale_flag = 1"
+				+ " AND sales.user_id <> :UserId"
+				+ " ORDER BY sale_id;";
+
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("UserId", userId);
+		List<Sales> result = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Sales>(Sales.class));
+		return result.isEmpty() ? null : result;
+
+	}
+
+	@Override
+	public void tradeSuccess(Integer salesId) {
+		String sql = "UPDATE sales SET sale_flag = 2 WHERE sale_id = :SalesId";
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("SalesId", salesId);
+		jdbcTemplate.update(sql, param);
+
+	}
 }

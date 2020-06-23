@@ -26,12 +26,10 @@ public class SaleController {
 
 		List<Items> list = saleService.findAll();
 
-		@SuppressWarnings("unchecked")
-		List<UserInfo> user =  (List<UserInfo>) session.getAttribute("userInfo");
 
-		List<Items> stockItem = saleService.havingItem(user.get(0).getUserId());
+		UserInfo user =  (UserInfo) session.getAttribute("list");
 
-		System.out.println(stockItem);
+		List<Items> stockItem = saleService.havingItem(user.getUserId());
 
 		session.setAttribute("userStockItem", stockItem);
 		session.setAttribute("itemlist", list);
