@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import jp.co.example.dao.ItemStocksDao;
 import jp.co.example.entity.ItemStocks;
@@ -18,15 +19,14 @@ public class PgItemStocksDao implements ItemStocksDao {
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
-	public void itemCollect(Integer userId,Integer itemId) {
+	public void itemCollect(Integer userId, Integer itemId) {
 		String sql = "UPDATE item_stocks SET item_have = item_have + 1 WHERE user_id = :UserId AND item_id = :ItemId";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("UserId", userId);
-		param.addValue("ItemId",itemId );
+		param.addValue("ItemId", itemId);
 		jdbcTemplate.update(sql, param);
 	}
-
 
 	public void plusStock(Integer userId, Integer itemId, Integer number) {
 		MapSqlParameterSource param = new MapSqlParameterSource();
@@ -41,7 +41,8 @@ public class PgItemStocksDao implements ItemStocksDao {
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		String sql = "SELECT item_stocks.item_id,game_name,item_name,item_price/2 price,item_have FROM games JOIN items ON items.game_id = games.game_id JOIN item_stocks ON item_stocks.item_id = items.item_id WHERE user_id = :userId AND item_have > 0";
 		param.addValue("userId", userId);
-		List<ItemStocks> result = jdbcTemplate.query(sql,param,new BeanPropertyRowMapper<ItemStocks>(ItemStocks.class));
+		List<ItemStocks> result = jdbcTemplate.query(sql, param,
+				new BeanPropertyRowMapper<ItemStocks>(ItemStocks.class));
 		return result.isEmpty() ? null : result;
 	}
 
@@ -59,7 +60,42 @@ public class PgItemStocksDao implements ItemStocksDao {
 		String sql = "SELECT item_stocks.item_id,items.item_name FROM item_stocks JOIN items ON item_stocks.item_id = items.item_id WHERE user_id = :userId AND game_id = :gameId AND item_have > 0;";
 		param.addValue("userId", userId);
 		param.addValue("gameId", gameId);
-		List<Items> result = jdbcTemplate.query(sql,param,new BeanPropertyRowMapper<Items>(Items.class));
+		List<Items> result = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Items>(Items.class));
 		return result.isEmpty() ? null : result;
 	}
+
+	@Override
+	@Transactional
+	public void itemChange(Integer saleId, Integer userId) {
+
+		//出品者のアイテム増やす
+		MapSqlParameterSource param1 = new MapSqlParameterSource();
+		String sql1 = "UPDATE item_stocks SET item_have = item_have + 1"
+				+ " WHERE item_id = (SELECT take_item AS item_id FROM sales WHERE sale_id = :SaleId1)"
+				+ " AND user_id = (SELECT user_id FROM sales WHERE sale_id = :SaleId2)";
+
+		param1.addValue("SaleId1", saleId);
+		param1.addValue("SaleId2", saleId);
+		jdbcTemplate.update(sql1, param1);
+
+		//交換者のアイテム減らす
+		MapSqlParameterSource param2 = new MapSqlParameterSource();
+		String sql2 = "UPDATE item_stocks SET item_have = item_have - 1"
+				+ " WHERE item_id = (SELECT take_item AS item_id FROM sales WHERE sale_id = :SaleId)"
+				+ " AND user_id = :UserId";
+
+		param2.addValue("SaleId", saleId);
+		param2.addValue("UserId", userId);
+		jdbcTemplate.update(sql2, param2);
+
+		//交換者のアイテム増やす
+		MapSqlParameterSource param3 = new MapSqlParameterSource();
+		String sql3 = "UPDATE item_stocks SET item_have = item_have + 1"
+				+ " WHERE item_id = (SELECT give_item AS item_id FROM sales WHERE sale_id = :SaleId)"
+				+ " AND user_id = :UserId";
+		param3.addValue("SaleId", saleId);
+		param3.addValue("UserId", userId);
+		jdbcTemplate.update(sql3, param3);
+	}
+
 }

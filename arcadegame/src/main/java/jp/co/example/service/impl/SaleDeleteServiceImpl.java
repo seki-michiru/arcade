@@ -21,4 +21,9 @@ public class SaleDeleteServiceImpl implements SaleDeleteService {
 		return salesDao.findAll(userId);
 	}
 
+	@Override
+	public void marketCancel(Integer salesId) {
+		salesDao.marketCancel(salesId);
+	}
+
 }

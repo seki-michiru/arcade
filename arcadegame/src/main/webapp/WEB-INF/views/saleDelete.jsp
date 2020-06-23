@@ -20,7 +20,7 @@
 	<a href="tradeMenu"><img src="images/returnbtn.png" alt=""
 		class="returnbtn"></a>
 
-	<form:form action="saleDelete" modelAttribute="SaleDeleteForm">
+	<form:form action="saleDeleteResult" modelAttribute="SaleDeleteForm">
 		<table>
 			<tr>
 				<th></th>

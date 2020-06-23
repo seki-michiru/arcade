@@ -11,6 +11,7 @@ public class Sales {
 	private String gameName;
 	private String giveName;
 	private String takeName;
+	private String userName;
 
 
 
@@ -112,6 +113,16 @@ public class Sales {
 
 	public void setTakeName(String takeName) {
 		this.takeName = takeName;
+	}
+
+
+	public String getUserName() {
+		return userName;
+	}
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 

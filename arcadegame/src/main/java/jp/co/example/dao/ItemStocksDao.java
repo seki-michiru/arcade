@@ -15,4 +15,6 @@ public interface ItemStocksDao {
 	public List<ItemStocks> findStockAll(Integer userId);
 	public void minusStock(Integer userId,Integer itemId,Integer number);
 	public List<Items> getStockItem(Integer userId,Integer gameId);
+
+	public void itemChange(Integer saleId, Integer userId);
 }

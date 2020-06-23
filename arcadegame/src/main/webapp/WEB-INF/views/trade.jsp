@@ -6,38 +6,49 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>アーケードゲーム</title>
-    <link rel="stylesheet" href="css/all.css">
-    <link rel="icon" href="images/invader1.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アーケードゲーム</title>
+<link rel="stylesheet" href="css/all.css">
+<link rel="icon" href="images/invader1.png">
 </head>
 <body>
-    <a href="menu"><img src="images/homeicon.png" alt=""class="home-icon"></a>
-    <h1 id="sub-title">交換</h1>
+	<a href="menu"><img src="images/homeicon.png" alt=""
+		class="home-icon"></a>
+	<h1 id="sub-title">交換</h1>
 
-    <a href="tradeMenu"><img src="images/returnbtn.png" alt=""class="returnbtn"></a>
+	<a href="tradeMenu"><img src="images/returnbtn.png" alt=""
+		class="returnbtn"></a>
 
-    <form method="" action="">
-    <table>
-        <tr>
-            <th></th>
-            <th>出品者名</th>
-            <th>ゲーム名</th>
-            <th>出品アイテム</th>
-            <th>対象アイテム</th>
-        </tr>
-        <tr>
-            <td><input type="checkbox" name="1" style="width: 20px; height: 20px;"></td>
-            <td>ああああ</td>
-            <td>インベーダー</td>
-            <td>アイテム1</td>
-            <td>アイテム2</td>
-        </tr>
-    </table>
-    </form>
+	<form:form action="tradeResult" modelAttribute="TradeForm">
+		<table>
+			<tr>
+				<th></th>
+				<th>出品者名</th>
+				<th>ゲーム名</th>
+				<th>出品アイテム</th>
+				<th>対象アイテム</th>
+			</tr>
+			<c:forEach var="market" items="${marketItem}">
+				<tr>
+					<td><form:checkbox value="${market.saleId}" path="trade"
+							style="width: 20px; height: 20px;" /></td>
 
-    <div id="form-btn-center"><button class="form-btn" style="width: 200px;">交換する</button></div>
+
+					<td>${market.userName}</td>
+					<td>${market.gameName}</td>
+					<td>${market.giveName}</td>
+					<td>${market.takeName}</td>
+				</tr>
+
+			</c:forEach>
+
+		</table>
+
+	<div id="form-btn-center">
+		<button class="form-btn" style="width: 200px;">交換する</button>
+	</div>
+	</form:form>
 
 </body>
 </html>
