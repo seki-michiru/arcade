@@ -45,9 +45,8 @@ public class GameController {
 
     @RequestMapping("/invaderStart")
     public String invaderStart(@ModelAttribute("ItemSelectForm") ItemSelectForm form,Model model) {
-//    	 UserInfo user = (UserInfo) session.getAttribute("list");
-    	 Integer userId = 1;
-//    			 user.getUserId();
+   	 UserInfo user = (UserInfo) session.getAttribute("list");
+    	 Integer userId = user.getUserId();
 
     	 List<Items> list = itemStocksService.getStockItem(userId,1);
     	 session.setAttribute("stockList",list);
@@ -90,9 +89,8 @@ public class GameController {
 
 	@RequestMapping("/brockStart")
 	public String brockStart(@ModelAttribute("ItemSelectForm") ItemSelectForm form,Model model) {
-		//UserInfo user = (UserInfo) session.getAttribute("list");
-		Integer userId = 1;
-				//user.getUserId();
+		UserInfo user = (UserInfo) session.getAttribute("list");
+		Integer userId = user.getUserId();
 
 		List<Items> list = itemStocksService.getStockItem(userId, 2);
 		session.setAttribute("stockList",list);
