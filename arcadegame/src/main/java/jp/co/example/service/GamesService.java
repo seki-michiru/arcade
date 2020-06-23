@@ -1,6 +1,7 @@
-package jp.co.example.dao;
+package jp.co.example.service;
 
-public interface GamesDao {
+public interface GamesService {
+
 	public void score(Integer userId, Integer score, Integer coin);
 
 	public void updateCoin(Integer userId, Integer coin);
