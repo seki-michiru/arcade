@@ -11,4 +11,6 @@ public interface ItemsService{
 	public List<Items> findItemName(Integer itemId);
 
 	public List<Items> itemAll();
+
+	public Items getItemNameEffect(Integer itemId);
 }

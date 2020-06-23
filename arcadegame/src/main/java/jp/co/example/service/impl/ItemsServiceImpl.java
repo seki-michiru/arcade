@@ -31,4 +31,8 @@ public class ItemsServiceImpl implements ItemsService{
 	public List<Items> itemAll(){
 		return itemDao.itemAll();
 	}
+
+	public Items getItemNameEffect(Integer itemId) {
+		return itemDao.getItemNameEffect(itemId);
+	}
 }

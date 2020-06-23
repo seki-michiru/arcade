@@ -61,4 +61,12 @@ public class PgItemsDao implements ItemDao {
 		List<Items> result = jdbcTemplate.query(sql,new BeanPropertyRowMapper<Items>(Items.class));
 		return result.isEmpty() ? null : result;
 	}
+
+	public Items getItemNameEffect(Integer itemId) {
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		String sql = "SELECT item_name,item_effect FROM items WHERE item_id = :itemId;";
+		param.addValue("ItemId", itemId);
+		List<Items> result = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Items>(Items.class));
+		return result.isEmpty() ? null : result.get(0);
+	}
 }

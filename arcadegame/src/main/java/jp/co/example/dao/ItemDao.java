@@ -15,4 +15,6 @@ public interface ItemDao{
 	public List<Items> havingItem(Integer userId);
 
 	public List<Items> itemAll();
+
+	public Items getItemNameEffect(Integer itemId);
 }
