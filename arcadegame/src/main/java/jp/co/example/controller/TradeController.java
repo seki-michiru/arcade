@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.controller.form.TradeForm;
+import jp.co.example.entity.ItemStocks;
 import jp.co.example.entity.Sales;
 import jp.co.example.entity.UserInfo;
+import jp.co.example.service.ItemStocksService;
 import jp.co.example.service.TradeService;
 
 @Controller
@@ -22,6 +24,9 @@ public class TradeController {
 
 	@Autowired
 	private TradeService tradeService;
+
+	@Autowired
+	private ItemStocksService itemStocksService;
 
 	@RequestMapping("/tradeMenu")
 	public String tradeMenu(Model model) {
@@ -57,6 +62,10 @@ public class TradeController {
 			tradeService.itemChange(tradeList.get(i), user.getUserId());
 			tradeService.marketLog(tradeList.get(i), user.getUserId());
 		}
+
+		Integer userId = user.getUserId();
+		List<ItemStocks> list = itemStocksService.findStockAll(userId);
+		session.setAttribute("StockAll", list);
 
 		return "tradeResult";
 	}

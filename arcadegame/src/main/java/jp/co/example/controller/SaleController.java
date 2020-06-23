@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.controller.form.SaleForm;
+import jp.co.example.entity.ItemStocks;
 import jp.co.example.entity.Items;
 import jp.co.example.entity.UserInfo;
+import jp.co.example.service.ItemStocksService;
 import jp.co.example.service.SaleService;
 
 @Controller
@@ -22,6 +24,9 @@ public class SaleController {
 
 	@Autowired
 	private SaleService saleService;
+
+	@Autowired
+	private ItemStocksService itemStocksService;
 
 	@RequestMapping("/sale")
 	public String sale(@ModelAttribute("SaleForm") SaleForm saleForm, Model model, HttpSession session) {
@@ -41,7 +46,7 @@ public class SaleController {
 	@Transactional
 	public String saleResult(@ModelAttribute("SaleForm") SaleForm form, Model model, HttpSession session) {
 
-		UserInfo user =  (UserInfo) session.getAttribute("list");
+		UserInfo user = (UserInfo) session.getAttribute("list");
 
 		List<Integer> takeList = new ArrayList<>();
 		List<Integer> giveList = new ArrayList<>();
@@ -57,9 +62,12 @@ public class SaleController {
 			giveList.add(form.getGiveId()[i]);
 		}
 		for (int i = 0; i < takeList.size(); i++) {
-			saleService.marketOpen(user.getUserId(),giveList.get(i),takeList.get(i));
+			saleService.marketOpen(user.getUserId(), takeList.get(i), giveList.get(i));
 		}
 
+		Integer userId = user.getUserId();
+		List<ItemStocks> list = itemStocksService.findStockAll(userId);
+		session.setAttribute("StockAll", list);
 		return "saleResult";
 	}
 

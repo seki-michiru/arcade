@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.controller.form.SaleDeleteForm;
+import jp.co.example.entity.ItemStocks;
 import jp.co.example.entity.Sales;
 import jp.co.example.entity.UserInfo;
+import jp.co.example.service.ItemStocksService;
 import jp.co.example.service.SaleDeleteService;
 
 @Controller
@@ -21,6 +23,9 @@ public class SaleDeleteController {
 
 	@Autowired
 	private SaleDeleteService SaleDeleteService;
+
+	@Autowired
+	private ItemStocksService itemStocksService;
 
 
 	@RequestMapping("/saleDelete")
@@ -49,7 +54,10 @@ public class SaleDeleteController {
 			SaleDeleteService.marketCancel(saleList.get(i));
 		}
 
-
+		 UserInfo user = (UserInfo) session.getAttribute("list");
+    	 Integer userId = user.getUserId();
+        List<ItemStocks> list = itemStocksService.findStockAll(userId);
+    	session.setAttribute("StockAll",list);
 
 		return "saleDeleteResult";
 	}
