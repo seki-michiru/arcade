@@ -32,4 +32,15 @@ public class PgGamesDao implements GamesDao {
 
 		jdbcTemplate.update(sql, param);
 	}
+
+	public void brockScore(Integer userId, Integer score, Integer coin) {
+		String sql = "INSERT INTO scores(user_id, game_id, score, score_coin, score_date) VALUES (:UserId, 2, :Score, :Coin, current_date)";
+
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("UserId", userId);
+		param.addValue("Score", score);
+		param.addValue("Coin", coin);
+
+		jdbcTemplate.update(sql, param);
+	}
 }

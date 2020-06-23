@@ -144,7 +144,7 @@ public class GameController {
 		return "brockPlay";
     }
 
-	@RequestMapping("/result1")
+	@RequestMapping("/Result")
 	public String brockPlay(@ModelAttribute("test") GameResultForm form,Model model) {
 		String loginId = (String)session.getAttribute("loginId");
 
@@ -157,7 +157,7 @@ public class GameController {
 
 		gamesService.updateCoin(userId, coin);
 
-		gamesService.score(userId, score, coin);
+		gamesService.brockScore(userId, score, coin);
 
 		model.addAttribute("score", score);
 		model.addAttribute("coin", coin);

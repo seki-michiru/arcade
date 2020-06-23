@@ -23,7 +23,7 @@
 		<div class="boxs box3">c</div>
 	</div>
 
-	<form:form action="result1" modelAttribute="test" name="sampleform"
+	<form:form action="Result" modelAttribute="test" name="sampleform"
 		cssStyle="visibility: hidden; float: left;">
 		<form:input path="score" value="" />
 		<button onclick="sample2()">送信</button>

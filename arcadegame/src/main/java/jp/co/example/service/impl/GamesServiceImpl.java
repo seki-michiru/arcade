@@ -19,4 +19,8 @@ public class GamesServiceImpl implements GamesService{
 		gamesdao.updateCoin(userId, coin);
 	}
 
+	public void brockScore(Integer userId, Integer score, Integer coin) {
+		gamesdao.brockScore(userId,score,coin);
+	}
+
 }

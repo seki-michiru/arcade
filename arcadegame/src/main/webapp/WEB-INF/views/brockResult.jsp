@@ -10,7 +10,7 @@
     <title>アーケードゲーム</title>
     <link rel="stylesheet" href="css/all.css">
 </head>
-<body onload="score">
+<body>
 
     <a href="menu"><img src="images/homeicon.png" alt=""class="home-icon"></a>
     <div id="form-btn-center" class="flex-contents">
