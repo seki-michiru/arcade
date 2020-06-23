@@ -13,4 +13,6 @@ public interface SalesDao {
 
 	public void tradeSuccess(Integer userId);
 
+	public void marketOpen(Integer userId, Integer giveItem, Integer takeItem);
+
 }

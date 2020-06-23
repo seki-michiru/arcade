@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jp.co.example.dao.ItemDao;
+import jp.co.example.dao.ItemStocksDao;
+import jp.co.example.dao.SalesDao;
 import jp.co.example.entity.Items;
 import jp.co.example.service.SaleService;
 
@@ -15,6 +17,12 @@ public class SaleServiceImpl implements SaleService {
 	@Autowired
 	private ItemDao itemDao;
 
+	@Autowired
+	private ItemStocksDao itemStocksDao;
+
+	@Autowired
+	private SalesDao salesDao;
+
 	public List<Items> findAll() {
 		return itemDao.findAll();
 	}
@@ -22,5 +30,11 @@ public class SaleServiceImpl implements SaleService {
 	@Override
 	public List<Items> havingItem(Integer userId) {
 		return itemDao.havingItem(userId);
+	}
+
+	@Override
+	public void marketOpen(Integer userId, Integer giveItem,Integer takeItem) {
+		itemStocksDao.itemWast(userId,giveItem);
+		salesDao.marketOpen(userId,giveItem,takeItem);
 	}
 }

@@ -18,4 +18,6 @@ public interface ItemStocksDao {
 
 	public void itemChange(Integer saleId, Integer userId);
 	public void itemInsert(Integer userId, Integer itemId);
+
+	public void itemWast(Integer userId, Integer giveItem);
 }

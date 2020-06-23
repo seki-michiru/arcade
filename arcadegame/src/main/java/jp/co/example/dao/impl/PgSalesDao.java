@@ -80,4 +80,15 @@ public class PgSalesDao implements SalesDao {
 		jdbcTemplate.update(sql, param);
 
 	}
+
+	@Override
+	public void marketOpen(Integer userId, Integer giveItem, Integer takeItem) {
+		String sql = "INSERT INTO sales(user_id,give_item,take_item)"
+				+ " VALUES (:SalesId,:GiveItem,:TakeItem);";
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("SalesId", userId);
+		param.addValue("GiveItem", giveItem);
+		param.addValue("TakeItem", takeItem);
+		jdbcTemplate.update(sql, param);
+	}
 }

@@ -20,7 +20,7 @@
 	<a href="tradeMenu"><img src="images/returnbtn.png" alt=""
 		class="returnbtn"></a>
 
-	<form:form action="sale" modelAttribute="SaleForm">
+	<form:form action="saleResult" modelAttribute="SaleForm">
 		<table>
 			<tr>
 				<th></th>
@@ -36,12 +36,13 @@
 					<td>${userItem.itemName}</td>
 
 					<td><form:select path="giveId" class="form-select" multiple="false">
-							<c:forEach var="item" items="${itemlist}">
-							 	<form:option value="${item.itemId}" label="${item.itemName}"/>
- 								<form:options value="${item.itemId}"  label="${item.itemName}" />
+							 	<form:option value="0">何欲しい？</form:option>
+							 	<c:forEach var="item" items="${itemlist}">
+ 								<form:option value="${item.itemId}"  label="${item.itemName}" />
 							</c:forEach>
 						</form:select>
 					</td>
+
 				</tr>
 			</c:forEach>
 

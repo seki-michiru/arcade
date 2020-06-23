@@ -8,4 +8,8 @@ public interface SaleService {
 	public List<Items> findAll();
 
 	public List<Items> havingItem(Integer userId);
+
+	public void marketOpen(Integer userId, Integer giveItem, Integer takeItem);
+
+
 }

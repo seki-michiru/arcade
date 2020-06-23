@@ -65,37 +65,50 @@ public class PgItemStocksDao implements ItemStocksDao {
 	}
 
 	@Override
+	public void itemWast(Integer userId, Integer giveItem) {
+		//出品者のアイテム減らす
+		MapSqlParameterSource param1 = new MapSqlParameterSource();
+		String sql1 = "UPDATE item_stocks SET item_have = item_have - 1"
+				+ " WHERE user_id = :UserId"
+				+ " AND item_id = :GiveItem";
+
+		param1.addValue("UserId", userId);
+		param1.addValue("GiveItem", giveItem);
+		jdbcTemplate.update(sql1, param1);
+	}
+
+	@Override
 	@Transactional
 	public void itemChange(Integer saleId, Integer userId) {
 
 		//出品者のアイテム増やす
-		MapSqlParameterSource param1 = new MapSqlParameterSource();
-		String sql1 = "UPDATE item_stocks SET item_have = item_have + 1"
+		MapSqlParameterSource param2 = new MapSqlParameterSource();
+		String sql2 = "UPDATE item_stocks SET item_have = item_have + 1"
 				+ " WHERE item_id = (SELECT take_item AS item_id FROM sales WHERE sale_id = :SaleId1)"
 				+ " AND user_id = (SELECT user_id FROM sales WHERE sale_id = :SaleId2)";
 
-		param1.addValue("SaleId1", saleId);
-		param1.addValue("SaleId2", saleId);
-		jdbcTemplate.update(sql1, param1);
+		param2.addValue("SaleId1", saleId);
+		param2.addValue("SaleId2", saleId);
+		jdbcTemplate.update(sql2, param2);
 
 		//交換者のアイテム減らす
-		MapSqlParameterSource param2 = new MapSqlParameterSource();
-		String sql2 = "UPDATE item_stocks SET item_have = item_have - 1"
+		MapSqlParameterSource param3 = new MapSqlParameterSource();
+		String sql3 = "UPDATE item_stocks SET item_have = item_have - 1"
 				+ " WHERE item_id = (SELECT take_item AS item_id FROM sales WHERE sale_id = :SaleId)"
 				+ " AND user_id = :UserId";
 
-		param2.addValue("SaleId", saleId);
-		param2.addValue("UserId", userId);
-		jdbcTemplate.update(sql2, param2);
-
-		//交換者のアイテム増やす
-		MapSqlParameterSource param3 = new MapSqlParameterSource();
-		String sql3 = "UPDATE item_stocks SET item_have = item_have + 1"
-				+ " WHERE item_id = (SELECT give_item AS item_id FROM sales WHERE sale_id = :SaleId)"
-				+ " AND user_id = :UserId";
 		param3.addValue("SaleId", saleId);
 		param3.addValue("UserId", userId);
 		jdbcTemplate.update(sql3, param3);
+
+		//交換者のアイテム増やす
+		MapSqlParameterSource param4 = new MapSqlParameterSource();
+		String sql4 = "UPDATE item_stocks SET item_have = item_have + 1"
+				+ " WHERE item_id = (SELECT give_item AS item_id FROM sales WHERE sale_id = :SaleId)"
+				+ " AND user_id = :UserId";
+		param4.addValue("SaleId", saleId);
+		param4.addValue("UserId", userId);
+		jdbcTemplate.update(sql4, param4);
 	}
 
 	public void itemInsert(Integer userId, Integer itemId) {
@@ -109,5 +122,4 @@ public class PgItemStocksDao implements ItemStocksDao {
 		jdbcTemplate.update(sql, param);
 
 	}
-
 }
