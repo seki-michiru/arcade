@@ -17,4 +17,5 @@ public interface ItemStocksDao {
 	public List<Items> getStockItem(Integer userId,Integer gameId);
 
 	public void itemChange(Integer saleId, Integer userId);
+	public void itemInsert(Integer userId, Integer itemId);
 }

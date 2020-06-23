@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.controller.form.RegistForm;
 import jp.co.example.entity.UserInfo;
+import jp.co.example.service.ItemStocksService;
 import jp.co.example.service.UserInfoService;
 
 @Controller
@@ -22,7 +23,8 @@ public class RegistController {
 	@Autowired
 	private UserInfoService userInfoService;
 
-
+	@Autowired
+	private ItemStocksService itemStocksService;
 
 	@RequestMapping("/regist")
 	public String regist(Model model) {
@@ -43,7 +45,7 @@ public class RegistController {
 
 		List<UserInfo> list1 = userInfoService.findByLoginId(registForm.getLoginId());
 
-
+		Integer itemId = null;
 
 		if(list1 != null) {
 
@@ -55,6 +57,11 @@ public class RegistController {
 
 
 			userInfoService.insert(registForm.getLoginId(), registForm.getUserName(), registForm.getPassword());
+
+			List<UserInfo> userInfo = userInfoService.findIdPass(registForm.getLoginId(), registForm.getPassword());
+
+			itemStocksService.itemInsert(userInfo.get(0).getUserId(), itemId);
+			System.out.println(userInfo.get(0).getUserId());
 
 
 			session.setAttribute("loginId", registForm.getLoginId());

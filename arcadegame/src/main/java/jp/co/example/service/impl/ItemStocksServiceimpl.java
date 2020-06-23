@@ -31,4 +31,8 @@ public class ItemStocksServiceimpl implements ItemStocksService {
 		return itemStocksDao.getStockItem(userId,gameId);
 	}
 
+	public void itemInsert(Integer userId, Integer itemId) {
+		itemStocksDao.itemInsert(userId, itemId);
+	}
+
 }

@@ -98,4 +98,16 @@ public class PgItemStocksDao implements ItemStocksDao {
 		jdbcTemplate.update(sql3, param3);
 	}
 
+	public void itemInsert(Integer userId, Integer itemId) {
+
+		String sql = "INSERT INTO item_stocks (user_id, item_id) VALUES (:UserId, 1), (:UserId, 2), (:UserId, 3), (:UserId, 4), (:UserId, 5), (:UserId, 6), (:UserId, 7), (:UserId, 8), (:UserId, 9), (:UserId, 10), (:UserId, 11)";
+
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("UserId", userId);
+		param.addValue("ItemId", itemId);
+
+		jdbcTemplate.update(sql, param);
+
+	}
+
 }
