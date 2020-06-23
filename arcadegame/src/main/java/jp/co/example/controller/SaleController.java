@@ -57,12 +57,13 @@ public class SaleController {
 		}
 
 		for (int i = 0; i < form.getGiveId().length; i++) {
-			if ((form.getGiveId()[i] == 0)) {
-				continue;
-			}
 			giveList.add(form.getGiveId()[i]);
 		}
+
 		for (int i = 0; i < takeList.size(); i++) {
+			if(giveList.get(i) == 0) {
+				continue;
+			}
 			saleService.marketOpen(user.getUserId(), takeList.get(i), giveList.get(i));
 		}
 

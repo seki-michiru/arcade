@@ -36,7 +36,7 @@
 					</tr>
 					<c:forEach var="userItem" items="${userStockItem}">
 						<tr>
-							<td><form:checkbox value="${userItem.itemId}" path="takeId"
+							<td><form:hidden value="${userItem.itemId}" path="takeId"
 									style="width: 20px; height: 20px;" /></td>
 							<td>${userItem.gameName}</td>
 							<td>${userItem.itemName}</td>

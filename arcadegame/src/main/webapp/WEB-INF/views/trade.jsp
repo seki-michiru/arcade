@@ -42,8 +42,8 @@
 
 							<td>${market.userName}</td>
 							<td>${market.gameName}</td>
-							<td>${market.giveName}</td>
 							<td>${market.takeName}</td>
+							<td>${market.giveName}</td>
 						</tr>
 
 					</c:forEach>
