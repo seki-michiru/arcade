@@ -41,7 +41,7 @@
             <td>${rankingInvader.get(0).getRank()}</td>
             <td>${rankingInvader.get(0).getUserName()}</td>
             <td>${rankingInvader.get(0).getHighScore()}</td>
-            <td><fmt:formatDate value="${date1}" pattern="yyyy/MM/dd HH:mm" /></td>
+            <td><fmt:formatDate value="${date1}" pattern="yyyy/MM/dd" /></td>
             <td>${rankingInvader.get(0).getPlayNum()}</td>
         </tr>
 </c:if>
@@ -50,7 +50,7 @@
             <td>${rankingInvader.get(1).getRank()}</td>
             <td>${rankingInvader.get(1).getUserName()}</td>
             <td>${rankingInvader.get(1).getHighScore()}</td>
-            <td><fmt:formatDate value="${date2}" pattern="yyyy/MM/dd HH:mm" /></td>
+            <td><fmt:formatDate value="${date2}" pattern="yyyy/MM/dd" /></td>
             <td>${rankingInvader.get(1).getPlayNum()}</td>
         </tr>
 </c:if>
@@ -59,7 +59,7 @@
             <td>${rankingInvader.get(2).getRank()}</td>
             <td>${rankingInvader.get(2).getUserName()}</td>
             <td>${rankingInvader.get(2).getHighScore()}</td>
-            <td><fmt:formatDate value="${date3}" pattern="yyyy/MM/dd HH:mm" /></td>
+            <td><fmt:formatDate value="${date3}" pattern="yyyy/MM/dd" /></td>
             <td>${rankingInvader.get(2).getPlayNum()}</td>
         </tr>
 </c:if>

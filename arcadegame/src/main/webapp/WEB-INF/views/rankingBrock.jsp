@@ -35,26 +35,13 @@
             <th>日付</th>
             <th>遊んだ回数</th>
         </tr>
-<%--
- <c:forEach var="rankingBrock" items="${rankingBrock}">
-        <tr>
-            <td><c:out value ="${rankingBrock.rank}"/></td>
-            <td><c:out value ="${rankingBrock.userName}"/></td>
-            <td><c:out value ="${rankingBrock.highScore}"/></td>
-            <c:forEach var="higtScoreDateFirst" items="${higtScoreDateFirst}">
-            <td><c:out value ="${higtScoreDateFirst.scoreDate}"/>
-            </c:forEach>
-            <td><c:out value ="${rankingBrock.playNum}"/></td>
-        </tr>
-</c:forEach>
---%>
 
         <c:if test="${not empty date1  }">
         <tr>
             <td>${rankingBrock.get(0).getRank()}</td>
             <td>${rankingBrock.get(0).getUserName()}</td>
             <td>${rankingBrock.get(0).getHighScore()}</td>
-            <td><fmt:formatDate value="${date1}" pattern="yyyy/MM/dd HH:mm" /></td>
+            <td><fmt:formatDate value="${date1}" pattern="yyyy/MM/dd" /></td>
             <td>${rankingBrock.get(0).getPlayNum()}</td>
         </tr>
         </c:if>
@@ -63,7 +50,7 @@
             <td>${rankingBrock.get(1).getRank()}</td>
             <td>${rankingBrock.get(1).getUserName()}</td>
             <td>${rankingBrock.get(1).getHighScore()}</td>
-             <td><fmt:formatDate value="${date2}" pattern="yyyy/MM/dd HH:mm" /></td>
+             <td><fmt:formatDate value="${date2}" pattern="yyyy/MM/dd" /></td>
             <td>${rankingBrock.get(1).getPlayNum()}</td>
         </tr>
         </c:if>
@@ -72,7 +59,7 @@
             <td>${rankingBrock.get(2).getRank()}</td>
             <td>${rankingBrock.get(2).getUserName()}</td>
             <td>${rankingBrock.get(2).getHighScore()}</td>
-             <td><fmt:formatDate value="${date3}" pattern="yyyy/MM/dd HH:mm" /></td>
+             <td><fmt:formatDate value="${date3}" pattern="yyyy/MM/dd" /></td>
             <td>${rankingBrock.get(2).getPlayNum()}</td>
         </tr>
         </c:if>
