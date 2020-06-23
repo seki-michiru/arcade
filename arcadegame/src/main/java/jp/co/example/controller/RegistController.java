@@ -22,6 +22,8 @@ public class RegistController {
 	@Autowired
 	private UserInfoService userInfoService;
 
+
+
 	@RequestMapping("/regist")
 	public String regist(Model model) {
 
@@ -39,15 +41,22 @@ public class RegistController {
 
 		}
 
-		List<UserInfo> list1 = userInfoService.findByUserId(registForm.getUserId());
+		List<UserInfo> list1 = userInfoService.findByLoginId(registForm.getLoginId());
 
-		if(list1 != null ) {
+
+
+		if(list1 != null) {
+
+			model.addAttribute("msg1", "IDまたはユーザー名が既に存在します。");
 
 			return "regist";
 
 		}else {
 
+
 			userInfoService.insert(registForm.getLoginId(), registForm.getUserName(), registForm.getPassword());
+
+
 			session.setAttribute("loginId", registForm.getLoginId());
 			session.setAttribute("userName", registForm.getUserName());
 			session.setAttribute("password", registForm.getPassword());

@@ -15,6 +15,9 @@
 	<h2 id="sub-title">新規登録</h2>
 	<a href="top"><img src="images/returnbtn.png" alt=""
 		class="returnbtn"></a>
+		<c:if test="${not empty msg1}">
+        <span class="error" style="color: red">${msg1}</span>
+        </c:if>
 
 	<form:form action="regist1" modelAttribute="regist">
 

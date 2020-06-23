@@ -211,7 +211,7 @@ public class PgUserInfoDao implements UserInfoDao {
 	//付けたし
 	public UserInfo getCoin(Integer userId) {
 
-		String sql = "SELECT * FROM user_info WHERE user__id = :userId";
+		String sql = "SELECT * FROM user_info WHERE user_id = :userId";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("userId", userId);

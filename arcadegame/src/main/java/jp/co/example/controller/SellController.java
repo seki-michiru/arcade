@@ -41,13 +41,16 @@ public class SellController {
     	session.removeAttribute("StockAll");
         List<ItemStocks> list = itemStocksService.findStockAll(userId);
 
+    	UserInfo userInfo = userInfoService.getCoin(userId);
+    	Integer userCoin = userInfo.getCoinHave();
+
         if(list==null) {
         	model.addAttribute("msg","所持アイテムはありません");
         	model.addAttribute("flag","非表示");
         }else {
 
         	session.setAttribute("StockAll",list);
-        	session.setAttribute("coin",user.getCoinHave());
+        	session.setAttribute("coin",userCoin);
         }
 
         return "sell";
@@ -113,9 +116,11 @@ public class SellController {
 
     	}
 
+    	UserInfo userInfo = userInfoService.getCoin(userId);
+    	Integer userCoin = userInfo.getCoinHave();
+
     		session.setAttribute("sellInfo",sell);
-    		session.setAttribute("userCoin",user.getCoinHave());
-    		session.setAttribute("coin",user.getCoinHave());
+    		session.setAttribute("coin",userCoin);
 
     		return "sellResult";
 

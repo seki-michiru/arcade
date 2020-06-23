@@ -97,7 +97,7 @@ public class UserInfoController {
 	}
 
 	@RequestMapping("/userInfoResult1")
-	public String userInfo4(@ModelAttribute("userInfo") Model model) {
+	public String userInfoResult1(@ModelAttribute("userInfo") Model model) {
 
 		return "menu";
 
