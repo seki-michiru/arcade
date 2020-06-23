@@ -1,7 +1,42 @@
 body {
-    background-image: url(../images/background.jpg);
-    background-repeat: no-repeat;
-    background-size: 100%;
+
     background-color: #000;
+}
+
+canvas {
+    background: #000;
+}
+
+.invader-img {
+    margin: 10px;
+    width: 70px;
+    height: 70px;
+}
+
+.myself-img {
+    width: 110px;
+    height: 60px;
+    position: fixed;
+    top: 530px;
+    /* left: 500px; */
+}
+
+#box {
+    display: flex;
+    flex-wrap: ;
+    position: fixed;
+    top: 0;
+    left: 400px;
+
+}
+.boxs{
     text-align: center;
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    margin: 10px;
+}
+
+.msg-white {
+    color: #fff;
 }
