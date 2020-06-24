@@ -15,9 +15,10 @@
     <canvas id="myCanvas" width="1355" height="630"></canvas>
     <div id="box">
         <p class="msg-white">アイテム：</p>
-        <p id="itemName1" class="msg-white item-name1">${one.itemName}</p><div class="boxs box1">z</div>
-        <p id="itemName2" class="msg-white item-name2">${tow.itemName}</p><div class="boxs box2">x</div>
-        <p id="itemName3" class="msg-white item-name3">${three.itemName}</p><div class="boxs box3">c</div>
+        <c:if test="${empty one.itemName && empty tow.itemName && empty three.itemName}"><p class="msg-white item-name1">アイテムなし</p></c:if>
+        <p id="itemName1" class="msg-white item-name1">${one.itemName}</p><c:if test="${not empty one.itemName}"><div class="boxs box1">z</div></c:if>
+        <p id="itemName2" class="msg-white item-name2">${tow.itemName}</p><c:if test="${not empty tow.itemName}"><div class="boxs box2">x</div></c:if>
+        <p id="itemName3" class="msg-white item-name3">${three.itemName}</p><c:if test="${not empty three.itemName}"><div class="boxs box3">c</div></c:if>
     </div>
 
     <p id="item1-effect" style="display: none;">${one.itemEffects }</p>
