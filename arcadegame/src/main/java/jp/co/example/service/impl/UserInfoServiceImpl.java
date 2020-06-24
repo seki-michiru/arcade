@@ -115,4 +115,5 @@ public class UserInfoServiceImpl implements UserInfoService{
 	public void updatelogin_date(String loginId) {
 		userInfoDao.updatelogin_date(loginId);
 	}
+
 }

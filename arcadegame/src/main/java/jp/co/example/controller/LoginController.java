@@ -62,8 +62,6 @@ public class LoginController {
 			session.setAttribute("userId", userInfo1.get(0).getUserId());
 			session.setAttribute("userName", userInfo1.get(0).getUserName());
 
-
-
 			session.setAttribute("list", userInfo1.get(0));
 
 			System.out.println(userInfo1.get(0).getUserName());
