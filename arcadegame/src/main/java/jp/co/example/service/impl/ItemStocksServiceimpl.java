@@ -35,4 +35,7 @@ public class ItemStocksServiceimpl implements ItemStocksService {
 		itemStocksDao.itemInsert(userId, itemId);
 	}
 
+	public void itemWast(Integer userId, Integer giveItem) {
+		itemStocksDao.itemWast(userId,giveItem);
+	}
 }

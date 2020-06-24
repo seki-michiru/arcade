@@ -57,21 +57,33 @@ public class GameController {
     @RequestMapping("/invaderPlay")
 	public String invaderPlay(@ModelAttribute("test") GameResultForm form,@ModelAttribute("ItemSelectForm") ItemSelectForm itemform, Model model) {
 
-    	if(itemform.getItemIdOne() > 0){
+		UserInfo user = (UserInfo) session.getAttribute("list");
+		Integer userId = user.getUserId();
+
     		Integer one = itemform.getItemIdOne();
+    		Integer tow = itemform.getItemIdTow();
+    		Integer three = itemform.getItemIdThree();
+
+    	if( (one > 0 && tow > 0) || (one > 0 && three > 0) || (tow > 0 && three > 0)) {
+
+    		if(one == tow || one == three || tow == three) {
+    			model.addAttribute("msg","同じアイテムは選択できません");
+    			return "invaderStart";
+    		}
+    	}
+
+    	if(one > 0){
+    		itemStocksService.itemWast(userId,one);
     		Items itemOne = itemsService.getItemNameEffect(one);
     		model.addAttribute("one",itemOne);
     	}
-
-    	if(itemform.getItemIdTow() > 0) {
-    		Integer tow = itemform.getItemIdTow();
+    	if(tow > 0) {
+    		itemStocksService.itemWast(userId,tow);
     		Items itemTow =  itemsService.getItemNameEffect(tow);
     		model.addAttribute("tow",itemTow);
     	}
-
-    	if(itemform.getItemIdThree() > 0) {
-
-    		Integer three = itemform.getItemIdThree();
+    	if(three > 0) {
+    		itemStocksService.itemWast(userId,three);
     		Items itemThree = itemsService.getItemNameEffect(three);
     		model.addAttribute("three",itemThree );
     	}
@@ -121,24 +133,35 @@ public class GameController {
 	@RequestMapping("/brockPlay")
 	public String brockPlay(@ModelAttribute("test") GameResultForm form,@ModelAttribute("ItemSelectForm") ItemSelectForm itemform,Model model) {
 
+		UserInfo user = (UserInfo) session.getAttribute("list");
+		Integer userId = user.getUserId();
 
-    	if(itemform.getItemIdOne() > 0){
     		Integer one = itemform.getItemIdOne();
-    		Items itemOne = itemsService.getItemNameEffect(one);
-    		session.setAttribute("one",itemOne);
-    	}
-
-    	if(itemform.getItemIdTow() > 0) {
     		Integer tow = itemform.getItemIdTow();
-    		Items itemTow =  itemsService.getItemNameEffect(tow);
-    		session.setAttribute("tow",itemTow);
+    		Integer three = itemform.getItemIdThree();
+
+    	if( (one > 0 && tow > 0) || (one > 0 && three > 0) || (tow > 0 && three > 0)) {
+
+    		if(one == tow || one == three || tow == three) {
+    			model.addAttribute("msg","同じアイテムは選択できません");
+    			return "invaderStart";
+    		}
     	}
 
-    	if(itemform.getItemIdThree() > 0) {
-
-    		Integer three = itemform.getItemIdThree();
+    	if(one > 0){
+    		itemStocksService.itemWast(userId,one);
+    		Items itemOne = itemsService.getItemNameEffect(one);
+    		model.addAttribute("one",itemOne);
+    	}
+    	if(tow > 0) {
+    		itemStocksService.itemWast(userId,tow);
+    		Items itemTow =  itemsService.getItemNameEffect(tow);
+    		model.addAttribute("tow",itemTow);
+    	}
+    	if(three > 0) {
+    		itemStocksService.itemWast(userId,three);
     		Items itemThree = itemsService.getItemNameEffect(three);
-    		session.setAttribute("three",itemThree );
+    		model.addAttribute("three",itemThree );
     	}
 
 		return "brockPlay";
