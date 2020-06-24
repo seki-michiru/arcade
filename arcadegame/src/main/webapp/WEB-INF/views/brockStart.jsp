@@ -61,7 +61,7 @@
 			</div>
 		</div>
 		<div id="form-btn-center">
-			<button class="form-btn" style="width: 200px;" onclick="main()">始める</button>
+			<button class="form-btn" style="width: 200px;">始める</button>
 		</div>
 	</form:form>
 

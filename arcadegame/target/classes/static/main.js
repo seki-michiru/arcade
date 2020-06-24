@@ -158,6 +158,7 @@ document.body.addEventListener('keydown',
 function sample2() {
 	document.getElementById("score").value=score;
     document.sampleform.submit();
+    document.getElementById("test").remove();
 }
 
 function drawBall() {
@@ -195,7 +196,6 @@ function drawBlock() {
   if(blockArray.length === 0){
 
     	sample2()
-    	return;
   }
   blockArray.forEach((block) => {
     ctx.beginPath();
