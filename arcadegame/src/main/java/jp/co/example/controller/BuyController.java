@@ -74,13 +74,12 @@ public class BuyController {
     	}
 
      	int sumPrice = 0;
-    	List<String> itemName =  new ArrayList<>();
-
 
     		for(int i = 0; i < itemId.size(); i++) {
-    			sumPrice += itemsService.findItemName(itemId.get(i)).get(0).getItemPrice() * number.get(i);
-    			itemName.add(itemsService.findItemName(itemId.get(i)).get(0).getItemName());
-
+    			if(number.get(i) != 0){
+    				Integer price = itemsService.findItemName(itemId.get(i)).get(0).getItemPrice();
+    				sumPrice += price * number.get(i);
+    			}
     		}
 
 
@@ -93,13 +92,14 @@ public class BuyController {
 
     	if(sumPrice < userCoin) {
 
+    		userInfoService.subCoin(userId, sumPrice);
+
     			for(int i = 0; i < itemId.size(); i++){
             		if(number.get(i) == 0) {
             			continue;
             		}
-    				userInfoService.subCoin(userId, sumPrice);
     				itemStocksService.plusStock(userId, itemId.get(i), number.get(i));
-    				buy.add(new BuyInfo(itemName.get(i),number.get(i)));
+    				buy.add(new BuyInfo(itemsService.findItemName(itemId.get(i)).get(0).getItemName(),number.get(i)));
     			}
 
         	UserInfo Info = userInfoService.getCoin(userId);

@@ -80,12 +80,9 @@ public class SellController {
     	}
 
      	int sumPrice = 0;
-    	List<String> itemName =  new ArrayList<>();
-
 
     		for(int i = 0; i < itemId.size(); i++) {
     			sumPrice += itemsService.findItemName(itemId.get(i)).get(0).getItemPrice() / 2 * number.get(i);
-    			itemName.add(itemsService.findItemName(itemId.get(i)).get(0).getItemName());
     		}
 
 
@@ -96,13 +93,15 @@ public class SellController {
     	List<BuyInfo> sell = new ArrayList<>();
 
 
+    	userInfoService.plusCoin(userId, sumPrice);
+
     		for(int i = 0; i < itemId.size(); i++){
         		if(number.get(i) == 0) {
         			continue;
         		}
-    			userInfoService.plusCoin(userId, sumPrice);
+
     			itemStocksService.minusStock(userId, itemId.get(i), number.get(i));
-    			sell.add(new BuyInfo(itemName.get(i),number.get(i)));
+    			sell.add(new BuyInfo(itemsService.findItemName(itemId.get(i)).get(0).getItemName(),number.get(i)));
     		}
 
 
