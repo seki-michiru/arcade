@@ -17,7 +17,7 @@
 
     <h1 id="sub-title">交換</h1>
 
-    <p class="confirm-msg">交換しました</p>
+    <p class="confirm-msg">アイテムを交換しました</p>
 
     <div id="form-btn-center"><a href="tradeMenu"><button class="form-btn" style="width: 270px;">トレードメニューに戻る</button></a></div>
 </body>

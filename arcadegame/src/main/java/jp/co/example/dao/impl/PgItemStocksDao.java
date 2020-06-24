@@ -84,11 +84,10 @@ public class PgItemStocksDao implements ItemStocksDao {
 		//出品者のアイテム増やす
 		MapSqlParameterSource param2 = new MapSqlParameterSource();
 		String sql2 = "UPDATE item_stocks SET item_have = item_have + 1"
-				+ " WHERE item_id = (SELECT take_item AS item_id FROM sales WHERE sale_id = :SaleId1)"
-				+ " AND user_id = (SELECT user_id FROM sales WHERE sale_id = :SaleId2)";
+				+ " WHERE item_id = (SELECT take_item AS item_id FROM sales WHERE sale_id = :SaleId)"
+				+ " AND user_id = (SELECT user_id FROM sales WHERE sale_id = :SaleId)";
 
-		param2.addValue("SaleId1", saleId);
-		param2.addValue("SaleId2", saleId);
+		param2.addValue("SaleId", saleId);
 		jdbcTemplate.update(sql2, param2);
 
 		//交換者のアイテム減らす
@@ -119,6 +118,34 @@ public class PgItemStocksDao implements ItemStocksDao {
 		param.addValue("UserId", userId);
 		param.addValue("ItemId", itemId);
 
+		jdbcTemplate.update(sql, param);
+
+	}
+
+	@Override
+	public List<ItemStocks> tradeCheck(Integer saleId, Integer userId) {
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		String sql = "SELECT item_have FROM item_stocks"
+				+ " WHERE item_id = "
+				+ "(SELECT take_item AS item_id FROM sales WHERE sale_id = :SaleId)"
+				+ " AND user_id = :UserId"
+				+ " AND item_have > 0";
+		param.addValue("SaleId", saleId);
+		param.addValue("UserId", userId);
+		List<ItemStocks> result = jdbcTemplate.query(sql, param,
+				new BeanPropertyRowMapper<ItemStocks>(ItemStocks.class));
+		return result.isEmpty() ? null : result;
+	}
+
+	//トレード削除・アイテム返還
+	@Override
+	public void itemReturn(Integer saleId) {
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		String sql = "UPDATE item_stocks SET item_have = item_have + 1"
+				+ " WHERE item_id = (SELECT give_item AS item_id FROM sales WHERE sale_id = :SaleId)"
+				+ " AND user_id = (SELECT user_id FROM sales WHERE sale_id = :SaleId)";
+
+		param.addValue("SaleId", saleId);
 		jdbcTemplate.update(sql, param);
 
 	}

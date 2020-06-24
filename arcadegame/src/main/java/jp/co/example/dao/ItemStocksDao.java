@@ -20,4 +20,9 @@ public interface ItemStocksDao {
 	public void itemInsert(Integer userId, Integer itemId);
 
 	public void itemWast(Integer userId, Integer giveItem);
+
+	public List<ItemStocks> tradeCheck(Integer saleId, Integer userId);
+
+	public void itemReturn(Integer saleId);
+
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import jp.co.example.dao.ItemStocksDao;
 import jp.co.example.dao.SalesDao;
 import jp.co.example.dao.TradesDao;
+import jp.co.example.entity.ItemStocks;
 import jp.co.example.entity.Sales;
 import jp.co.example.service.TradeService;
 
@@ -44,6 +45,12 @@ public class TradeServiceImpl implements TradeService {
 	@Override
 	public void marketLog(Integer saleId, Integer userId) {
 		tradesDao.marketLog(saleId,userId);
+
+	}
+
+	@Override
+	public List<ItemStocks> tradeCheck(Integer saleId, Integer userId) {
+		return itemStocksDao.tradeCheck(saleId,userId);
 
 	}
 

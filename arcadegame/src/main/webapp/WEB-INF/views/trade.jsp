@@ -22,9 +22,12 @@
 
 	<c:choose>
 		<c:when test="${empty marketItem}">
-			<p>トレードに出させているアイテムはありません</p>
+			<p class="confirm-msg">トレードに出されているアイテムはありません</p>
 		</c:when>
 		<c:otherwise>
+
+			<p class="confirm-msg">${fn:escapeXml(msg)}</p>
+
 			<form:form action="tradeResult" modelAttribute="TradeForm">
 				<table>
 					<tr>

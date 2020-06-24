@@ -51,6 +51,7 @@ public class SaleController {
 
 		List<Integer> takeList = new ArrayList<>();
 		List<Integer> giveList = new ArrayList<>();
+		Integer flag = 0;
 
 		for (int i = 0; i < form.getTakeId().length; i++) {
 			takeList.add(form.getTakeId()[i]);
@@ -58,6 +59,12 @@ public class SaleController {
 
 		for (int i = 0; i < form.getGiveId().length; i++) {
 			giveList.add(form.getGiveId()[i]);
+			flag = flag + form.getGiveId()[i];
+		}
+
+		if(flag == 0) {
+			model.addAttribute("msg","アイテムを選択してください");
+			return "sale";
 		}
 
 		for (int i = 0; i < takeList.size(); i++) {

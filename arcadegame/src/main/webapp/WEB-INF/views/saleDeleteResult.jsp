@@ -15,9 +15,9 @@
 <body>
     <a href="menu"><img src="images/homeicon.png" alt=""class="home-icon"></a>
 
-    <h1 id="sub-title">出品を削除</h1>
+    <h1 id="sub-title">出品取り消し</h1>
 
-    <p class="confirm-msg">削除しました</p>
+    <p class="confirm-msg">アイテムの出品を取り消しました</p>
 
     <div id="form-btn-center"><a href="tradeMenu"><button class="form-btn" style="width: 270px;">トレードメニューに戻る</button></a></div>
 </body>

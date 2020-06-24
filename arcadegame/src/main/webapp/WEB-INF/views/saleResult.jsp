@@ -17,7 +17,7 @@
 
     <h1 id="sub-title">出品</h1>
 
-    <p class="confirm-msg">出品しました</p>
+    <p class="confirm-msg">アイテムを出品しました</p>
 
     <div id="form-btn-center"><a href="tradeMenu"><button class="form-btn" style="width: 270px;">トレードメニューに戻る</button></a></div>
 

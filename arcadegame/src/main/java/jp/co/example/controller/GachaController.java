@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -31,6 +32,7 @@ public class GachaController {
 	}
 
 	@RequestMapping("/gachaPlay")
+	@Transactional
 	public String gachaPlay(Model model, HttpSession session) {
 
 		UserInfo user =  (UserInfo) session.getAttribute("list");

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Refresh" content="3;URL=gachaResult">
+<meta http-equiv="Refresh" content="2;URL=gachaResult">
 <title>アーケードゲーム</title>
 <link rel="stylesheet" href="css/all.css">
 </head>

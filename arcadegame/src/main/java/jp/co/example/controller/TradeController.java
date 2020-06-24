@@ -38,7 +38,7 @@ public class TradeController {
 	public String trade(@ModelAttribute("TradeForm") TradeForm form, Model model, HttpSession session) {
 
 		UserInfo user = (UserInfo) session.getAttribute("list");
-
+		//交換に出されているアイテムを取得
 		List<Sales> list = tradeService.marketTrade(user.getUserId());
 		session.setAttribute("marketItem", list);
 
@@ -56,9 +56,28 @@ public class TradeController {
 		for (int i = 0; i < form.getTrade().length; i++) {
 			tradeList.add(form.getTrade()[i]);
 		}
+
+		if (tradeList.size() == 0) {
+			model.addAttribute("msg","アイテムを選択してください");
+			return "trade";
+
+		}
+
 		for (int i = 0; i < tradeList.size(); i++) {
+			//アイテムがあるか確認
+			if (tradeService.tradeCheck(tradeList.get(i), user.getUserId()) == null) {
+				System.out.println("アイテムがないです");
+				return "trade";
+			}
+		}
+
+		for (int i = 0; i < tradeList.size(); i++) {
+
+			//フラグ管理
 			tradeService.tradeSuccess(tradeList.get(i));
+			//アイテム交換(出品者増やす→交換者減らす→交換者増やす)
 			tradeService.itemChange(tradeList.get(i), user.getUserId());
+			//トレードテーブルに記録
 			tradeService.marketLog(tradeList.get(i), user.getUserId());
 		}
 

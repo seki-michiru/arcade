@@ -48,7 +48,7 @@ public class PgItemsDao implements ItemDao {
 				" ON items.game_id = games.game_id" +
 				" JOIN item_stocks" +
 				" ON items.item_id = item_stocks.item_id" +
-				" WHERE item_have <>0" +
+				" WHERE item_have > 0" +
 				" AND user_id = :UserId;";
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("UserId", userId);

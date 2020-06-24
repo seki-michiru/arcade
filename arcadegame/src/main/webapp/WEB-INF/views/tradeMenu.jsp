@@ -18,7 +18,7 @@
 
     <h2><a href="sale" id="menu-btn">出品</a></h2>
     <h2><a href="trade" id="menu-btn">交換</a></h2>
-    <h2><a href="saleDelete" id="menu-btn">出品を削除</a></h2>
+    <h2><a href="saleDelete" id="menu-btn">出品取り消し</a></h2>
 
 </body>
 </html>

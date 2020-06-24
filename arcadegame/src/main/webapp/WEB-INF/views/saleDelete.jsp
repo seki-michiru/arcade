@@ -15,18 +15,18 @@
 <body>
 	<a href="menu"><img src="images/homeicon.png" alt=""
 		class="home-icon"></a>
-	<h1 id="sub-title">出品を削除</h1>
+	<h1 id="sub-title">出品取り消し</h1>
 
 	<a href="tradeMenu"><img src="images/returnbtn.png" alt=""
 		class="returnbtn"></a>
 
 	<c:choose>
 		<c:when test="${empty marketItem}">
-			<p>出品しているアイテムはありません</p>
+			<p class="confirm-msg">出品しているアイテムはありません</p>
 		</c:when>
 		<c:otherwise>
 
-
+			<p class="confirm-msg">${fn:escapeXml(msg)}</p>
 
 			<form:form action="saleDeleteResult" modelAttribute="SaleDeleteForm">
 				<table>
