@@ -7,7 +7,7 @@ var myMisileY = canvas.height-30;
 var enemyMisileX = -10;
 var enemyMisileY = 0;
 // 敵のミサイルの速度
-var enemyMisileDy = 8;
+var enemyMisileDy = 12;
 var enemyMisileExist = false;
 var startFlag = true;
 var hitStatus = true;
@@ -20,11 +20,11 @@ var paddleWidth = 150;
 var paddleX = (canvas.width-paddleWidth)/2;
 var mouseClicked = false;
 // 敵の一列ごとの数
-var brickRowCount = 10;
+var brickRowCount = 13;
 // 敵の列の数
 var brickColumnCount = 3;
 // 敵の横幅
-var brickWidth = 100;
+var brickWidth = 70;
 // 敵の高さ
 var brickHeight = 50;
 // 敵のパディング
@@ -34,7 +34,7 @@ var brickOffsetTop = 40;
 var brickOffsetLeft = 40;
 var score = 0;
 
-var lives = 3;
+var lives = 2;
 
 var item1Flag = true;
 var item2Flag = true;
