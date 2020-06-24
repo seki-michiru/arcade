@@ -16,6 +16,9 @@
     <a href="menu"><img src="images/homeicon.png" alt=""class="home-icon"></a>
     <h1 id="sub-title">トレード</h1>
 
+    <a href="shop"><img src="images/returnbtn.png" alt=""
+		class="returnbtn"></a>
+
     <h2><a href="sale" id="menu-btn">出品</a></h2>
     <h2><a href="trade" id="menu-btn">交換</a></h2>
     <h2><a href="saleDelete" id="menu-btn">出品取り消し</a></h2>
