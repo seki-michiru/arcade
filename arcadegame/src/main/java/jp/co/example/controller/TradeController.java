@@ -66,7 +66,7 @@ public class TradeController {
 		for (int i = 0; i < tradeList.size(); i++) {
 			//アイテムがあるか確認
 			if (tradeService.tradeCheck(tradeList.get(i), user.getUserId()) == null) {
-				System.out.println("アイテムがないです");
+				model.addAttribute("msg","アイテムがありません");
 				return "trade";
 			}
 		}

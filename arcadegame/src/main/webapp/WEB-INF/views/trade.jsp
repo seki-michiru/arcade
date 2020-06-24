@@ -35,7 +35,7 @@
 						<th>出品者名</th>
 						<th>ゲーム名</th>
 						<th>出品アイテム</th>
-						<th>対象アイテム</th>
+						<th>欲しいアイテム</th>
 					</tr>
 					<c:forEach var="market" items="${marketItem}">
 						<tr>
@@ -45,8 +45,8 @@
 
 							<td>${market.userName}</td>
 							<td>${market.gameName}</td>
-							<td>${market.takeName}</td>
 							<td>${market.giveName}</td>
+							<td>${market.takeName}</td>
 						</tr>
 
 					</c:forEach>
@@ -54,7 +54,7 @@
 				</table>
 
 				<div id="form-btn-center">
-					<button class="form-btn" style="width: 200px;">交換する</button>
+					<button class="form-btn" style="width: 200px;">交換に応じる</button>
 				</div>
 			</form:form>
 		</c:otherwise>
