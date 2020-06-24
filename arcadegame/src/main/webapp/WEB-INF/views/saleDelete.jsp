@@ -53,7 +53,7 @@
 				</table>
 
 				<div id="form-btn-center">
-					<button class="form-btn" style="width: 200px;">削除</button>
+					<button class="form-btn" style="width: 200px;">出品取り消し</button>
 				</div>
 			</form:form>
 		</c:otherwise>
