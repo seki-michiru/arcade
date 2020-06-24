@@ -8,8 +8,8 @@ var BALL_COLOR = 'skyblue'; //ボールの色
 var BALL_RADIUS = 10; //ボールの大きさ（半径）
 let ballX = canvas.width / 2; //ゲーム開始時のX軸（←→）の位置
 let ballY = canvas.height - 30; //ゲーム開始時のY軸（↑↓）の位置
-let xMove = 2;  //X方向への移動量
-let yMove = 2;  //Y方向への移動量
+let xMove = 3;  //X方向への移動量
+let yMove = 3;  //Y方向への移動量
 
 
 var score = 0;
@@ -21,7 +21,7 @@ var min = 20;
 var max = 301;
 var BAR_COLOR = 'blue'; //板の色
 var BAR_HEIGHT = 15;  //板の高さ
-var BAR_WIDTH = 75; //板の幅
+var BAR_WIDTH = 60; //板の幅
 let barX = (canvas.width - BAR_WIDTH) / 2;
 let rigthKeyFlag = false;
 let leftKeyFlag = false;
