@@ -37,13 +37,17 @@ function mouseMoveHandler(e) {
 /********************
  ブロックの設定
  ********************/
+var minWidth = 75;
+var maxWidth = 76;
+var minMargin = 10;
+var maxMargin = 11;
 var BLOCK_COLOR = 'orange'
 var BLOCK_ROW_COUNT = 6; //ブロックの縦の数
 var BLOCK_COLUMN_COUNT = 15; //ブロックの横の数
-var BLOCK_WIDTH = 74; //ブロックの幅
+var BLOCK_WIDTH = Math.floor( Math.random() * (maxWidth + 1 - minWidth) ) + minWidth; //ブロックの幅
 var BLOCK_HEGHT = 25; //ブロックの高さ
-var BLOCK_MARGIN = 11; //ブロックとブロックの隙間
-var BLOCK_AREA_MARGIN = 43; //ブロックを並べる領域と画面の隙間
+var BLOCK_MARGIN = Math.floor( Math.random() * (maxMargin + 1 - minMargin) ) + minMargin; //ブロックとブロックの隙間
+var BLOCK_AREA_MARGIN = 40; //ブロックを並べる領域と画面の隙間
 let blockArray = []; //配置したブロック位置の配列
 for(let i = 0; i < BLOCK_ROW_COUNT * BLOCK_COLUMN_COUNT; i++){
   let row = Math.floor(i/BLOCK_COLUMN_COUNT);
@@ -74,9 +78,6 @@ if(item2 !== '<p id="itemName2" class="msg-white item-name2"></p>') {
 if(item3 !== '<p id="itemName3" class="msg-white item-name3"></p>') {
 	itemName3 = item3.textContent;
 }
-console.log(itemName1);
-console.log(itemName2);
-console.log(itemName3);
 
 // 効果値取得（タグごと取得）
 var Effect1 = document.getElementById("item1-effect");
