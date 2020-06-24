@@ -163,7 +163,7 @@ public class PgUserInfoDao implements UserInfoDao {
 	@Override
 	public void update(String loginId, String userName, String password, Integer userId) {
 
-		String sql = "UPDATE user_info SET login_id = :LoginId, user_name = :UserName, password = :Password WHERE user_id = :UserId";
+		String sql = "UPDATE user_info SET login_id = :LoginId, user_name = :UserName, password = :Password, update_date = current_date WHERE user_id = :UserId";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("LoginId", loginId);

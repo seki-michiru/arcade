@@ -90,6 +90,8 @@ public class UserInfoController {
 		System.out.println(userName);
 		System.out.println(password);
 
+
+
 		userInfoService.update(loginId, userName, password, userId);
 
 		return "userInfoResult";
