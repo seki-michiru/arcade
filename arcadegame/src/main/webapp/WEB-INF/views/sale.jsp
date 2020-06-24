@@ -23,7 +23,7 @@
 
 	<c:choose>
 		<c:when test="${empty userStockItem}">
-			<p>アイテムを持っていません</p>
+			<p class="confirm-msg">アイテムを持っていません</p>
 		</c:when>
 		<c:otherwise>
 
