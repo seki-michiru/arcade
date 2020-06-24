@@ -87,7 +87,7 @@ public class PgUserInfoDao implements UserInfoDao {
 		String sql = "select g.game_name, i.item_name, i.item_explan, s.item_have "
 				+ "from user_info u join item_stocks s on u.user_id=s.user_id "
 				+ "join items i on s.item_id=i.item_id join games g on i.game_id=g.game_id where u.user_id = :UserId and item_have > 0 "
-				+ "order by game_name and item_name";
+				+ "order by game_name";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("UserId", userId);

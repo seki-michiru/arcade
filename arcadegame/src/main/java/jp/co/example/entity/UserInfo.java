@@ -21,6 +21,7 @@ public class UserInfo {
 	private Date scoreDate;
 	private Integer playNum;
 
+
 	public Integer getRank() {
 		return rank;
 	}
