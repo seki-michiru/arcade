@@ -32,7 +32,7 @@
             </tr>
       <c:forEach items="${items}" var="item">
         <tr>
-                <td><form:checkbox value="${item.itemId}" path ="itemsId" style="width: 20px; height: 20px;" /></td>
+                <td><form:hidden value="${item.itemId}" path ="itemsId" style="width: 20px; height: 20px;" /></td>
                 <td>${item.gameName}</td>
                 <td>${item.itemName}</td>
                 <td>${item.itemPrice}</td>

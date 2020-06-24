@@ -60,36 +60,28 @@ public class BuyController {
     			itemId.add(form.getItemsId()[i]);
     	}
 
+    	Integer sumNumber = 0;
 
-    	if(itemId.isEmpty() || itemId == null) {
-    		model.addAttribute("msg", "購入するアイテムを選択してください");
-    		return "buy";
+    	for(int i = 0; i < form.getNumber().length; i++) {
+			number.add(form.getNumber()[i]);
+			sumNumber += form.getNumber()[i];
     	}
 
 
-    	for(int i = 0; i < form.getNumber().length; i++) {
-    		if(form.getNumber()[i] == 0) {
-    			continue;
-    		}
-			number.add(form.getNumber()[i]);
+    	if(sumNumber == 0) {
+    		model.addAttribute("msg", "購入するアイテムの個数を選択してください");
+    		return "buy";
     	}
 
      	int sumPrice = 0;
     	List<String> itemName =  new ArrayList<>();
 
 
-
-    	try {
-
     		for(int i = 0; i < itemId.size(); i++) {
     			sumPrice += itemsService.findItemName(itemId.get(i)).get(0).getItemPrice() * number.get(i);
     			itemName.add(itemsService.findItemName(itemId.get(i)).get(0).getItemName());
-    		}
-    	}catch(IndexOutOfBoundsException e){
-    		model.addAttribute("msg", "個数を選択してください");
-			return "buy";
-    	}
 
+    		}
 
 
     	UserInfo user = (UserInfo) session.getAttribute("list");
@@ -101,18 +93,14 @@ public class BuyController {
 
     	if(sumPrice < userCoin) {
 
-    		try {
-
     			for(int i = 0; i < itemId.size(); i++){
+            		if(number.get(i) == 0) {
+            			continue;
+            		}
     				userInfoService.subCoin(userId, sumPrice);
     				itemStocksService.plusStock(userId, itemId.get(i), number.get(i));
     				buy.add(new BuyInfo(itemName.get(i),number.get(i)));
     			}
-
-    		}catch(IndexOutOfBoundsException e){
-    			model.addAttribute("msg", "個数を選択してください");
-    			return "buy";
-    		}
 
         	UserInfo Info = userInfoService.getCoin(userId);
         	userCoin = Info.getCoinHave();
@@ -129,7 +117,6 @@ public class BuyController {
     	}
 
     }
-    //user.getUserId() user.getCoinHave(); user.getCoinHave()
 
     @RequestMapping("/shop")
     public String shop(Model model) {

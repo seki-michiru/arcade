@@ -67,33 +67,26 @@ public class SellController {
     			itemId.add(form.getItemsId()[i]);
     	}
 
-    	if(itemId.isEmpty() || itemId == null) {
-    		model.addAttribute("msg", "売却するアイテムを選択してください");
-    		return "sell";
-    	}
+    	Integer sumNumber = 0;
 
     	for(int i = 0; i < form.getNumber().length; i++) {
-    		if(form.getNumber()[i] == 0) {
-    			continue;
-    		}
 			number.add(form.getNumber()[i]);
+			sumNumber += form.getNumber()[i];
+    	}
+
+    	if(sumNumber == 0) {
+    		model.addAttribute("msg", "売却するアイテムを選択してください");
+    		return "sell";
     	}
 
      	int sumPrice = 0;
     	List<String> itemName =  new ArrayList<>();
 
 
-
-    	try {
-
     		for(int i = 0; i < itemId.size(); i++) {
     			sumPrice += itemsService.findItemName(itemId.get(i)).get(0).getItemPrice() / 2 * number.get(i);
     			itemName.add(itemsService.findItemName(itemId.get(i)).get(0).getItemName());
     		}
-    	}catch(IndexOutOfBoundsException e) {
-    		model.addAttribute("msg", "個数を選択してください");
-			return "sell";
-    	}
 
 
 
@@ -103,18 +96,15 @@ public class SellController {
     	List<BuyInfo> sell = new ArrayList<>();
 
 
-    	try {
-
     		for(int i = 0; i < itemId.size(); i++){
+        		if(number.get(i) == 0) {
+        			continue;
+        		}
     			userInfoService.plusCoin(userId, sumPrice);
     			itemStocksService.minusStock(userId, itemId.get(i), number.get(i));
     			sell.add(new BuyInfo(itemName.get(i),number.get(i)));
     		}
-    	}catch(IndexOutOfBoundsException e) {
-    		model.addAttribute("msg", "個数を選択してください");
-			return "sell";
 
-    	}
 
     	UserInfo userInfo = userInfoService.getCoin(userId);
     	Integer userCoin = userInfo.getCoinHave();

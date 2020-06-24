@@ -34,7 +34,7 @@
         </tr>
       <c:forEach items="${StockAll}" var="stock">
         <tr>
-                <td><form:checkbox value="${stock.itemId}" path ="itemsId" style="width: 20px; height: 20px;" /></td>
+                <td><form:hidden value="${stock.itemId}" path ="itemsId" style="width: 20px; height: 20px;" /></td>
                 <td>${stock.gameName}</td>
                 <td>${stock.itemName}</td>
                 <td>${stock.price}</td>
