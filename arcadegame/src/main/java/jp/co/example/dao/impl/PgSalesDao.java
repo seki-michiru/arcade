@@ -31,7 +31,7 @@ public class PgSalesDao implements SalesDao {
 				+ " ON GIVE.game_id = games.game_id"
 				+ " WHERE sale_flag = 1"
 				+ " AND sales.user_id = :UserId"
-				+ " ORDER BY sale_id";
+				+ " ORDER BY sale_id DESC";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("UserId", userId);
@@ -63,7 +63,7 @@ public class PgSalesDao implements SalesDao {
 				+ " ON GIVE.game_id = games.game_id"
 				+ " WHERE sale_flag = 1"
 				+ " AND sales.user_id <> :UserId"
-				+ " ORDER BY sale_id;";
+				+ " ORDER BY sale_id DESC";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("UserId", userId);
