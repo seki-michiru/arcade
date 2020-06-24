@@ -7,7 +7,7 @@ var myMisileY = canvas.height-30;
 var enemyMisileX = -10;
 var enemyMisileY = 0;
 // 敵のミサイルの速度
-var enemyMisileDy = 10;
+var enemyMisileDy = 8;
 var enemyMisileExist = false;
 var startFlag = true;
 var hitStatus = true;
@@ -85,6 +85,9 @@ document.body.addEventListener('keydown',
     		  score = score * 2;
     	  }else if(itemName1 == '連射') {
     		  myMisileDy = -30;
+    		  setTimeout(() => {
+    			  myMisileDy = -10;
+    		  },5000)
     	  }
         item1Flag = false;
         $('.box1').remove();
@@ -100,6 +103,9 @@ document.body.addEventListener('keydown',
     		  score = score * 2;
     	  }else if(itemName2 == '連射') {
     		  myMisileDy = -30;
+    		  setTimeout(() => {
+    			  myMisileDy = -10;
+    		  },5000)
     	  }
         item2Flag = false;
         $('.box2').remove();
@@ -115,6 +121,9 @@ document.body.addEventListener('keydown',
     		  score = score * 2;
     	  }else if(itemName3 == '連射') {
     		  myMisileDy = -30;
+    		  setTimeout(() => {
+    			  myMisileDy = -10;
+    		  },5000)
     	  }
         item3Flag = false;
         $('.box3').remove();
