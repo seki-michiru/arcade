@@ -23,8 +23,9 @@ public class GachaServiceImpl implements GachaService {
 	private UserInfoDao userInfoDao;
 
 	public int Random() {
+		List<Items> list = itemDao.findAll();
 		Random rand = new Random();
-	    int num = rand.nextInt(11) + 1;
+	    int num = rand.nextInt(list.size()) + 1;
 		return num;
 	}
 
