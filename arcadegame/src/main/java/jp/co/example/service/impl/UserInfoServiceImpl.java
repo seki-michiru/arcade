@@ -112,4 +112,7 @@ public class UserInfoServiceImpl implements UserInfoService{
 		userInfoDao.plusCoin(userId, coin);
 	}
 
+	public void updatelogin_date(String loginId) {
+		userInfoDao.updatelogin_date(loginId);
+	}
 }

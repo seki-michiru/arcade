@@ -21,5 +21,6 @@ public interface UserInfoService {
 	public UserInfo getCoin(Integer userId);
 	public void subCoin(Integer userId,Integer coin);
 	public void plusCoin(Integer userId,Integer coin);
+	public void updatelogin_date(String loginId);
 
 }

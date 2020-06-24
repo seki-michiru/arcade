@@ -44,7 +44,7 @@ public class PgUserInfoDao implements UserInfoDao {
 
 	public void insert(String loginId, String userName, String password) {
 
-		String sql = "INSERT INTO user_info (login_id, user_name, password) VALUES (:LoginId, :UserName, :Password)";
+		String sql = "INSERT INTO user_info (login_id, user_name, password, create_date) VALUES (:LoginId, :UserName, :Password, current_date)";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("LoginId", loginId);
@@ -240,6 +240,18 @@ public class PgUserInfoDao implements UserInfoDao {
 		param.addValue("userId", userId);
 		param.addValue("coin", coin);
 		jdbcTemplate.update(sql,param);
+	}
+
+	@Override
+	public void updatelogin_date(String loginId) {
+
+		String sql = "UPDATE user_info SET login_date = current_date WHERE login_id = :LoginId";
+
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("LoginId", loginId);
+
+		jdbcTemplate.update(sql,param);
+
 	}
 
 }

@@ -56,9 +56,13 @@ public class LoginController {
 
 			loginId = loginform.getLoginId();
 
+			userInfoService.updatelogin_date(loginId);
+
 			session.setAttribute("loginId", loginId);
 			session.setAttribute("userId", userInfo1.get(0).getUserId());
 			session.setAttribute("userName", userInfo1.get(0).getUserName());
+
+
 
 			session.setAttribute("list", userInfo1.get(0));
 
