@@ -46,7 +46,7 @@
 
 							<td><form:select path="giveId" class="form-select"
 									multiple="false">
-									<form:option value="0">アイテム選択</form:option>
+									<form:option value="0">何欲しい？</form:option>
 									<c:forEach var="item" items="${itemlist}">
 										<form:option value="${item.itemId}" label="${item.itemName}" />
 									</c:forEach>
