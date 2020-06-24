@@ -17,6 +17,8 @@ var score = 0;
 /********************
  操作する板の設定
  ********************/
+var min = 20;
+var max = 301;
 var BAR_COLOR = 'blue'; //板の色
 var BAR_HEIGHT = 15;  //板の高さ
 var BAR_WIDTH = 75; //板の幅
@@ -38,9 +40,9 @@ function mouseMoveHandler(e) {
 var BLOCK_COLOR = 'orange'
 var BLOCK_ROW_COUNT = 6; //ブロックの縦の数
 var BLOCK_COLUMN_COUNT = 15; //ブロックの横の数
-var BLOCK_WIDTH = 75; //ブロックの幅
+var BLOCK_WIDTH = 74; //ブロックの幅
 var BLOCK_HEGHT = 25; //ブロックの高さ
-var BLOCK_MARGIN = 10; //ブロックとブロックの隙間
+var BLOCK_MARGIN = 11; //ブロックとブロックの隙間
 var BLOCK_AREA_MARGIN = 43; //ブロックを並べる領域と画面の隙間
 let blockArray = []; //配置したブロック位置の配列
 for(let i = 0; i < BLOCK_ROW_COUNT * BLOCK_COLUMN_COUNT; i++){
@@ -103,12 +105,12 @@ document.body.addEventListener('keydown',
     event => {
       if (event.key === 'z' && item1Flag) {
     	  if(itemName1 == 'バー拡大'){
-    		  BAR_WIDTH = 120;
+    		  BAR_WIDTH = BAR_WIDTH + Math.floor( Math.random() * (max + 1 - min) ) + min ;
     		  setTimeout(barWidth, 10000)
     	  }else if(itemName1 == 'スコアアップ') {
     		  score = score * 2;
     	  }else if(itemName1 == 'シュート') {
-    		  BALL_RADIUS = 7;
+    		  BALL_RADIUS = 4;
     		  setTimeout(ballRadius, 10000)
     	  }
         item1Flag = false;
@@ -120,7 +122,7 @@ document.body.addEventListener('keydown',
     event => {
       if (event.key === 'x' && item2Flag) {
     	  if(itemName2 == 'バー拡大'){
-    		  BAR_WIDTH = 120;
+    		  BAR_WIDTH = BAR_WIDTH + Math.floor( Math.random() * (max + 1 - min) ) + min ;
     		  setTimeout(barWidth, 10000)
     	  }else if(itemName2 == 'スコアアップ') {
     		  score = score * 2;
@@ -137,7 +139,7 @@ document.body.addEventListener('keydown',
     event => {
       if (event.key === 'c' && item3Flag) {
     	  if(itemName3 == 'バー拡大'){
-    		  BAR_WIDTH = 120;
+    		  BAR_WIDTH = BAR_WIDTH + Math.floor( Math.random() * (max + 1 - min) ) + min ;
     		  setTimeout(barWidth, 10000)
     	  }else if(itemName3 == 'スコアアップ') {
     		  score = score * 2;
