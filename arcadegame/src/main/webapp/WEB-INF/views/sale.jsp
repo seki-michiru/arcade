@@ -35,7 +35,7 @@
 						<th></th>
 						<th>ゲーム名</th>
 						<th>出品アイテム</th>
-						<th>ほしいアイテム選択</th>
+						<th>欲しいアイテム選択</th>
 					</tr>
 					<c:forEach var="userItem" items="${userStockItem}">
 						<tr>
