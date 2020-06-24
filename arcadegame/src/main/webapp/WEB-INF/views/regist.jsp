@@ -16,7 +16,7 @@
 	<a href="top"><img src="images/returnbtn.png" alt=""
 		class="returnbtn"></a>
 		<c:if test="${not empty msg1}">
-        <span class="error" style="color: red">${msg1}</span>
+        <p class="confirm-msg" style="color: red">${msg1}</p>
         </c:if>
 
 	<form:form action="regist1" modelAttribute="regist">
