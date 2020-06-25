@@ -75,11 +75,13 @@ public class TradeController {
 		for (int i = 0; i < tradeList.size(); i++) {
 
 			//フラグ管理
-			tradeService.tradeSuccess(tradeList.get(i));
-			//アイテム交換(出品者増やす→交換者減らす→交換者増やす)
-			tradeService.itemChange(tradeList.get(i), user.getUserId());
-			//トレードテーブルに記録
-			tradeService.marketLog(tradeList.get(i), user.getUserId());
+//			tradeService.tradeSuccess(tradeList.get(i));
+//			//アイテム交換(出品者増やす→交換者減らす→交換者増やす)
+//			tradeService.itemChange(tradeList.get(i), user.getUserId());
+//			//トレードテーブルに記録
+//			tradeService.marketLog(tradeList.get(i), user.getUserId());
+			tradeService.trade(tradeList.get(i), user.getUserId());
+
 		}
 
 		Integer userId = user.getUserId();

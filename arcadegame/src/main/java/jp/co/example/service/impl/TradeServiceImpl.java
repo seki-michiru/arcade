@@ -31,8 +31,7 @@ public class TradeServiceImpl implements TradeService {
 		return salesDao.marketTrade(userId);
 	}
 
-	@Override
-	public void tradeSuccess(Integer userId) {
+	private void tradeSuccess(Integer userId) {
 		salesDao.tradeSuccess(userId);
 
 	}
@@ -44,8 +43,7 @@ public class TradeServiceImpl implements TradeService {
 
 	}
 
-	@Override
-	public void marketLog(Integer saleId, Integer userId) {
+	private void marketLog(Integer saleId, Integer userId) {
 		tradesDao.marketLog(saleId,userId);
 
 	}
@@ -54,6 +52,13 @@ public class TradeServiceImpl implements TradeService {
 	public List<ItemStocks> tradeCheck(Integer saleId, Integer userId) {
 		return itemStocksDao.tradeCheck(saleId,userId);
 
+	}
+
+	@Transactional
+	public void trade(Integer saleId,Integer userId) {
+		tradeSuccess(userId);
+		itemChange(saleId,userId);
+		marketLog(saleId,userId);
 	}
 
 }

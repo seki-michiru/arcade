@@ -9,14 +9,10 @@ public interface TradeService {
 
 	List<Sales> marketTrade(Integer userId);
 
-	void tradeSuccess(Integer saleId);
-
 	void itemChange(Integer saleId, Integer userId);
-
-	void marketLog(Integer saleId, Integer userId);
 
 	List<ItemStocks> tradeCheck(Integer saleId, Integer userId);
 
-
+	public void trade(Integer saleId,Integer userId);
 
 }
