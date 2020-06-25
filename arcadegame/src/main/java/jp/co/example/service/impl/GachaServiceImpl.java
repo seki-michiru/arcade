@@ -34,7 +34,7 @@ public class GachaServiceImpl implements GachaService {
 		List<Items> list = itemDao.findAll();
 		Random rand = new Random();
 
-			int num = rand.nextInt(list.size() +  3) + 1;
+			int num = rand.nextInt(list.size() + 3) + 1;
 
 			if (list.size() < num) {
 				num = list.size();
