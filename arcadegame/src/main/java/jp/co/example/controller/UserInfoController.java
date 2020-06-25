@@ -52,7 +52,7 @@ public class UserInfoController {
 
 		if(userInfo2 != null) {
 
-			model.addAttribute("msg","IDまたはユーザー名がが既に存在します。");
+			model.addAttribute("msg","IDまたはユーザー名が既に存在します。");
 
 			return "userInfoChange";
 
