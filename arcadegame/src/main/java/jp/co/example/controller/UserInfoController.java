@@ -62,7 +62,12 @@ public class UserInfoController {
 
 		}
 
-		List<UserInfo> userInfo2 = userInfoService.findIdUserNamePass(userInfoform.getLoginId(),
+		if(session.getAttribute("loginId").equals(userInfoform.getLoginId()) && session.getAttribute("userName").equals(userInfoform.getUserName()) && session.getAttribute("password").equals(userInfoform.getPassword())){
+			model.addAttribute("msg","値を一つ以上変更してください");
+			return "userInfoChange";
+		}
+
+		List<UserInfo> userInfo2 = userInfoService.findIdUserNamePass((Integer)session.getAttribute("userId"), userInfoform.getLoginId(),
 				userInfoform.getUserName());
 
 		if (userInfo2 != null) {
@@ -103,9 +108,9 @@ public class UserInfoController {
 
 		userInfoService.update(loginId, userName, password, userId);
 
-		List<UserInfo> list = userInfoService.findIdUserNamePass(loginId, userName);
+		UserInfo list = userInfoService.findIdIdName(userId, loginId, userName);
 
-		session.setAttribute("list", list.get(0));
+		session.setAttribute("list", list);
 
 		return "userInfoResult";
 

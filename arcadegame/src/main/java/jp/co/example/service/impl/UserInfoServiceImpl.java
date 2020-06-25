@@ -140,4 +140,8 @@ public class UserInfoServiceImpl implements UserInfoService{
 		itemStocksDao.itemInsert(loginId,password,itemId);
 	}
 
+	public UserInfo findIdIdName(Integer userId, String loginId, String userName) {
+		return userInfoDao.findIdIdName(userId, loginId, userName);
+	}
+
 }

@@ -24,6 +24,7 @@ public interface UserInfoDao {
 	public void subCoin(Integer userId,Integer coin);
 	public void plusCoin(Integer userId,Integer coin);
 	public void updatelogin_date(String loginId);
+	public UserInfo findIdIdName(Integer userId, String loginId, String userName);
 
 
 }

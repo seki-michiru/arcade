@@ -193,7 +193,7 @@ public class PgUserInfoDao implements UserInfoDao {
 	@Override
 	public List<UserInfo> findIdUserNamePass(Integer userId, String loginId, String userName) {
 
-		String sql = "SELECT * FROM user_info WHERE userId <> :UserId AND (login_id = :LoginId OR user_name = :UserName)";
+		String sql = "SELECT * FROM user_info WHERE user_id <> :UserId AND (login_id = :LoginId OR user_name = :UserName)";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("UserId", userId);
@@ -254,5 +254,21 @@ public class PgUserInfoDao implements UserInfoDao {
 
 	}
 
+	@Override
+	public UserInfo findIdIdName(Integer userId, String loginId, String userName) {
+
+		String sql = "SELECT * FROM user_info WHERE user_id = :UserId AND login_id = :LoginId AND user_name = :UserName";
+
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("UserId", userId);
+		param.addValue("LoginId", loginId);
+		param.addValue("UserName", userName);
+
+		List<UserInfo> resultList3 = jdbcTemplate.query(sql, param,
+				new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
+
+		return resultList3.isEmpty() ? null : resultList3.get(0);
+
+	}
 
 }
