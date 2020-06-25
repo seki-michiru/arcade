@@ -144,7 +144,7 @@ public class GameController {
 
     		if(one == tow || one == three || tow == three) {
     			model.addAttribute("msg","同じアイテムは選択できません");
-    			return "invaderStart";
+    			return "brockStart";
     		}
     	}
 
