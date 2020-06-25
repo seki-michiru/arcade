@@ -97,9 +97,9 @@ public class UserInfoServiceImpl implements UserInfoService{
 
 	}
 	@Override
-	public List<UserInfo> findIdUserNamePass(String loginId, String userName, String password) {
+	public List<UserInfo> findIdUserNamePass(String loginId, String userName) {
 
-		return userInfoDao.findIdUserNamePass(loginId, userName, password);
+		return userInfoDao.findIdUserNamePass(loginId, userName);
 
 	}
 
