@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +29,6 @@ public class SaleDeleteController {
 
 
 	@RequestMapping("/saleDelete")
-	@Transactional
 	public String saleDelete(@ModelAttribute("SaleDeleteForm") SaleDeleteForm form, Model model,HttpSession session){
 
 		UserInfo user =  (UserInfo) session.getAttribute("list");
@@ -43,7 +41,6 @@ public class SaleDeleteController {
 	}
 
 	@RequestMapping("/saleDeleteResult")
-	@Transactional
 	public String saleDeleteResult(@ModelAttribute("SaleDeleteForm") SaleDeleteForm form, Model model,HttpSession session) {
 
 		List<Integer> saleList = new ArrayList<>();
