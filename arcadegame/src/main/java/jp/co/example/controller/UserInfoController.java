@@ -114,7 +114,7 @@ public class UserInfoController {
 	@RequestMapping("/userInfoResult1")
 	public String userInfoResult1(@ModelAttribute("userInfo") Model model) {
 
-		if(session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
 			return "top";
 		}
 
@@ -125,7 +125,7 @@ public class UserInfoController {
 	@RequestMapping("/menu")
 	public String menu(Model model) {
 
-		if(session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
 			return "top";
 		}
 
@@ -133,17 +133,10 @@ public class UserInfoController {
 
 	}
 
-	@RequestMapping("/menu1")
-	public String menu1(Model model) {
-		session.invalidate();
-
-		return "logout";
-
-	}
-
 	@RequestMapping("/logout")
 	public String logout(Model model) {
-		return "top";
+		session.invalidate();
+		return "logout";
 
 	}
 

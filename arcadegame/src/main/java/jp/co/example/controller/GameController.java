@@ -40,6 +40,10 @@ public class GameController {
 	@RequestMapping("/game")
 	public String game(Model model) {
 
+		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+			return "top";
+		}
+
 		return "game";
 	}
 

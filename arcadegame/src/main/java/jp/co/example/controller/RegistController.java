@@ -28,6 +28,10 @@ public class RegistController {
 	@RequestMapping("/regist")
 	public String regist(Model model) {
 
+		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+			return "top";
+		}
+
 		return "regist";
 
 	}

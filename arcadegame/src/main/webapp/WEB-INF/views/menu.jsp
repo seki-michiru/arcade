@@ -14,26 +14,24 @@
 <body>
 	<h1 id="user-name">${sessionScope.userName}さん、こんにちは</h1>
 
-	<form:form action="menu1" modelAttribute="menu">
-		<h1 id="sub-title">メニュー</h1>
-		<a href="logout"><button class="form-btn home-icon">ログアウト</button></a>
+	<h1 id="sub-title">メニュー</h1>
+	<a href="logout"><button type = "button" class="form-btn home-icon">ログアウト</button></a>
 
-		<h2>
-			<a href="game" id="menu-btn">ゲーム選択</a>
-		</h2>
-		<h2>
-			<a href="ranking" id="menu-btn">ランキング</a>
-		</h2>
-		<h2>
-			<a href="shop" id="menu-btn">ショップ</a>
-		</h2>
-		<h2>
-			<a href="item" id="menu-btn">所持アイテム一覧</a>
-		</h2>
-		<h2>
-			<a href="userInfo" id="menu-btn">ユーザー情報</a>
-		</h2>
-		<!-- <h2><a href="logout.jsp" id="menu-btn">ログアウト</a></h2> -->
-	</form:form>
+	<h2>
+		<a href="game" id="menu-btn">ゲーム選択</a>
+	</h2>
+	<h2>
+		<a href="ranking" id="menu-btn">ランキング</a>
+	</h2>
+	<h2>
+		<a href="shop" id="menu-btn">ショップ</a>
+	</h2>
+	<h2>
+		<a href="item" id="menu-btn">所持アイテム一覧</a>
+	</h2>
+	<h2>
+		<a href="userInfo" id="menu-btn">ユーザー情報</a>
+	</h2>
+	<!-- <h2><a href="logout.jsp" id="menu-btn">ログアウト</a></h2> -->
 </body>
 </html>
