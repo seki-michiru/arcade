@@ -103,9 +103,7 @@ public class GameController {
 		Integer score = form.getScore();
 		Integer coin = score /3;
 
-		gamesService.updateCoin(userId, coin);
-
-		gamesService.score(userId, score, coin);
+		gamesService.invaderResult(userId, score, coin);
 
 		model.addAttribute("score", score);
 		model.addAttribute("coin", coin);
@@ -178,9 +176,7 @@ public class GameController {
 		Integer score = form.getScore();
 		Integer coin = score /3;
 
-		gamesService.updateCoin(userId, coin);
-
-		gamesService.brockScore(userId, score, coin);
+		gamesService.brockResult(userId, score, coin);
 
 		model.addAttribute("score", score);
 		model.addAttribute("coin", coin);
