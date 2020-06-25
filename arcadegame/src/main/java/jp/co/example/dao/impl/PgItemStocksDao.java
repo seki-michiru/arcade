@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import jp.co.example.dao.ItemStocksDao;
 import jp.co.example.entity.ItemStocks;
 import jp.co.example.entity.Items;
+import jp.co.example.entity.UserInfo;
 
 @Repository
 public class PgItemStocksDao implements ItemStocksDao {
@@ -110,12 +111,21 @@ public class PgItemStocksDao implements ItemStocksDao {
 	}
 
 	@Override
-	public void itemInsert(Integer userId, Integer itemId) {
+	public void itemInsert(String loginId,String password,Integer itemId) {
 
+		String sql1 = "SELECT * FROM user_info WHERE login_id = :loginId AND password = :password";
 		String sql = "INSERT INTO item_stocks (user_id, item_id) VALUES (:UserId, 1), (:UserId, 2), (:UserId, 3), (:UserId, 4), (:UserId, 5), (:UserId, 6), (:UserId, 7)";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
-		param.addValue("UserId", userId);
+		param.addValue("loginId", loginId);
+		param.addValue("password", password);
+
+		List<UserInfo> resultList = jdbcTemplate.query(sql1, param,
+				new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
+
+		Integer id = resultList.get(0).getUserId();
+
+		param.addValue("UserId", id);
 		param.addValue("ItemId", itemId);
 
 		jdbcTemplate.update(sql, param);

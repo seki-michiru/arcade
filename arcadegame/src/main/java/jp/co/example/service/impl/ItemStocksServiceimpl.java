@@ -31,11 +31,12 @@ public class ItemStocksServiceimpl implements ItemStocksService {
 		return itemStocksDao.getStockItem(userId,gameId);
 	}
 
-	public void itemInsert(Integer userId, Integer itemId) {
-		itemStocksDao.itemInsert(userId, itemId);
+	public void itemInsert(String loginId,String password,Integer itemId){
+		itemStocksDao.itemInsert(loginId,password,itemId);
 	}
 
 	public void itemWast(Integer userId, Integer giveItem) {
 		itemStocksDao.itemWast(userId,giveItem);
 	}
+
 }

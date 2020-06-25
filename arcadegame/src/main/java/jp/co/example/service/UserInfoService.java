@@ -24,6 +24,7 @@ public interface UserInfoService {
 	public void updatelogin_date(String loginId);
 	public void buyResult(Integer userId,Integer price,Integer itemId,Integer number);
 	public void sellResult(Integer userId,Integer price,Integer itemId,Integer number);
+	public void userInsert(String loginId,String userName,String password,Integer itemId);
 
 
 }

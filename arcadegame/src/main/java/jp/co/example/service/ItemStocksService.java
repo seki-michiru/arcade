@@ -12,7 +12,7 @@ public interface ItemStocksService {
 	public List<ItemStocks> findStockAll(Integer userId);
 	public void minusStock(Integer userId,Integer itemId,Integer number);
 	public List<Items> getStockItem(Integer userId,Integer gameId);
-	public void itemInsert(Integer userId, Integer itemId);
+	public void itemInsert(String loginId,String password,Integer itemId);
 
 	//付けたし
 	public void itemWast(Integer userId, Integer giveItem);

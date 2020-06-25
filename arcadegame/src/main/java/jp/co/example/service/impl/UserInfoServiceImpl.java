@@ -133,4 +133,11 @@ public class UserInfoServiceImpl implements UserInfoService{
 		itemStocksDao.minusStock(userId,itemId, number);
 	}
 
+	@Transactional
+	public void userInsert(String loginId,String userName,String password,Integer itemId) {
+
+		userInfoDao.insert(loginId,userName,password);
+		itemStocksDao.itemInsert(loginId,password,itemId);
+	}
+
 }
