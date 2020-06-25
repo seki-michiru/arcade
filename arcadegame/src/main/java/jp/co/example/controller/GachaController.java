@@ -26,7 +26,11 @@ public class GachaController {
 
 	@RequestMapping("/gacha")
 	public String gacha(Model model,HttpSession session) {
-		UserInfo user =  (UserInfo) session.getAttribute("list");
+		UserInfo user = (UserInfo) session.getAttribute("list");
+		if(user == null) {
+			return "top";
+		}
+		//UserInfo user =  (UserInfo) session.getAttribute("list");
 		Integer userId = user.getUserId();
 		List<UserInfo> coinHave = gachaService.userHaveCoin(userId);
 
