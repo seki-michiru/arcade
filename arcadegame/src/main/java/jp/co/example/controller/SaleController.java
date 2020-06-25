@@ -22,13 +22,20 @@ import jp.co.example.service.SaleService;
 public class SaleController {
 
 	@Autowired
+	HttpSession session;
+
+	@Autowired
 	private SaleService saleService;
 
 	@Autowired
 	private ItemStocksService itemStocksService;
 
 	@RequestMapping("/sale")
-	public String sale(@ModelAttribute("SaleForm") SaleForm saleForm, Model model, HttpSession session) {
+	public String sale(@ModelAttribute("SaleForm") SaleForm saleForm, Model model) {
+
+		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+			return "top";
+		}
 
 		List<Items> list = saleService.findAll();
 
@@ -41,9 +48,12 @@ public class SaleController {
 		return "sale";
 	}
 
-
 	@RequestMapping("/saleResult")
-	public String saleResult(@ModelAttribute("SaleForm") SaleForm form, Model model, HttpSession session) {
+	public String saleResult(@ModelAttribute("SaleForm") SaleForm form, Model model) {
+
+		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+			return "top";
+		}
 
 		UserInfo user = (UserInfo) session.getAttribute("list");
 
@@ -60,13 +70,13 @@ public class SaleController {
 			flag = flag + form.getGiveId()[i];
 		}
 
-		if(flag == 0) {
-			model.addAttribute("msg","アイテムを選択してください");
+		if (flag == 0) {
+			model.addAttribute("msg", "アイテムを選択してください");
 			return "sale";
 		}
 
 		for (int i = 0; i < takeList.size(); i++) {
-			if(giveList.get(i) == 0) {
+			if (giveList.get(i) == 0) {
 				continue;
 			}
 			saleService.marketOpen(user.getUserId(), takeList.get(i), giveList.get(i));

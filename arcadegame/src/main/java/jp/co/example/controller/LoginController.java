@@ -20,6 +20,9 @@ import jp.co.example.service.UserInfoService;
 public class LoginController {
 
 	@Autowired
+	HttpSession session;
+
+	@Autowired
 	private UserInfoService userInfoService;
 
 	@RequestMapping("/top")
@@ -28,6 +31,7 @@ public class LoginController {
 		return "top";
 
 	}
+
 	@RequestMapping("/login")
 	public String login(Model model) {
 
@@ -36,9 +40,10 @@ public class LoginController {
 	}
 
 	@RequestMapping("/login1")
-	public String login1(@Validated @ModelAttribute("login") LoginForm loginform, BindingResult result, Model model, HttpSession session) {
+	public String login1(@Validated @ModelAttribute("login") LoginForm loginform, BindingResult result, Model model,
+			HttpSession session) {
 
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			return "login";
 		}
 
@@ -46,13 +51,13 @@ public class LoginController {
 
 		String loginId = "";
 
-		if(userInfo1 == null) {
+		if (userInfo1 == null) {
 
 			model.addAttribute("msg", "入力したIDとPASSは存在しません");
 
 			return "login";
 
-		}else {
+		} else {
 
 			loginId = userInfo1.get(0).getLoginId();
 
@@ -69,8 +74,6 @@ public class LoginController {
 
 		}
 
-
 	}
-
 
 }

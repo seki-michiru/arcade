@@ -16,18 +16,30 @@ import jp.co.example.service.UserInfoService;
 
 @Controller
 public class RankingController {
+
+	@Autowired
+	HttpSession session;
+
 	@Autowired
 	private UserInfoService userInfoService;
 
 	@RequestMapping("/ranking")
 	public String ranking(Model model) {
 
+		if(session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+			return "top";
+		}
+
 		return "ranking";
 
 	}
 
 	@RequestMapping("/rankingInvader")
-	public String rankingInvader(Model model, HttpSession session) {
+	public String rankingInvader(Model model) {
+
+		if(session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+			return "top";
+		}
 
 		List<UserInfo> list = userInfoService.findByLoginId((String) session.getAttribute("loginId"));
 		Integer myUserId = null;
@@ -92,7 +104,11 @@ public class RankingController {
 	}
 
 	@RequestMapping("/rankingBrock")
-	public String rankingBrock(Model model, HttpSession session) {
+	public String rankingBrock(Model model) {
+
+		if(session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+			return "top";
+		}
 
 		List<UserInfo> list = userInfoService.findByLoginId((String) session.getAttribute("loginId"));
 		Integer myUserId = null;

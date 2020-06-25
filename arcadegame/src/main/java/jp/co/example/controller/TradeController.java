@@ -22,6 +22,9 @@ import jp.co.example.service.TradeService;
 public class TradeController {
 
 	@Autowired
+	HttpSession session;
+
+	@Autowired
 	private TradeService tradeService;
 
 	@Autowired
@@ -30,11 +33,19 @@ public class TradeController {
 	@RequestMapping("/tradeMenu")
 	public String tradeMenu(Model model) {
 
+		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+			return "top";
+		}
+
 		return "tradeMenu";
 	}
 
 	@RequestMapping("/trade")
-	public String trade(@ModelAttribute("TradeForm") TradeForm form, Model model, HttpSession session) {
+	public String trade(@ModelAttribute("TradeForm") TradeForm form, Model model) {
+
+		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+			return "top";
+		}
 
 		UserInfo user = (UserInfo) session.getAttribute("list");
 		//交換に出されているアイテムを取得
@@ -45,7 +56,11 @@ public class TradeController {
 	}
 
 	@RequestMapping("/tradeResult")
-	public String tradeResult(@ModelAttribute("TradeForm") TradeForm form, Model model, HttpSession session) {
+	public String tradeResult(@ModelAttribute("TradeForm") TradeForm form, Model model) {
+
+		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+			return "top";
+		}
 
 		UserInfo user = (UserInfo) session.getAttribute("list");
 
@@ -56,7 +71,7 @@ public class TradeController {
 		}
 
 		if (tradeList.size() == 0) {
-			model.addAttribute("msg","アイテムを選択してください");
+			model.addAttribute("msg", "アイテムを選択してください");
 			return "trade";
 
 		}
@@ -64,7 +79,7 @@ public class TradeController {
 		for (int i = 0; i < tradeList.size(); i++) {
 			//アイテムがあるか確認
 			if (tradeService.tradeCheck(tradeList.get(i), user.getUserId()) == null) {
-				model.addAttribute("msg","アイテムがありません");
+				model.addAttribute("msg", "アイテムがありません");
 				return "trade";
 			}
 		}
@@ -72,11 +87,11 @@ public class TradeController {
 		for (int i = 0; i < tradeList.size(); i++) {
 
 			//フラグ管理
-//			tradeService.tradeSuccess(tradeList.get(i));
-//			//アイテム交換(出品者増やす→交換者減らす→交換者増やす)
-//			tradeService.itemChange(tradeList.get(i), user.getUserId());
-//			//トレードテーブルに記録
-//			tradeService.marketLog(tradeList.get(i), user.getUserId());
+			//			tradeService.tradeSuccess(tradeList.get(i));
+			//			//アイテム交換(出品者増やす→交換者減らす→交換者増やす)
+			//			tradeService.itemChange(tradeList.get(i), user.getUserId());
+			//			//トレードテーブルに記録
+			//			tradeService.marketLog(tradeList.get(i), user.getUserId());
 			tradeService.trade(tradeList.get(i), user.getUserId());
 
 		}

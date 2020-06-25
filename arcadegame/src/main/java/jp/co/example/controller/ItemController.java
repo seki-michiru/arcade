@@ -1,6 +1,5 @@
 package jp.co.example.controller;
 
-
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,34 +14,37 @@ import jp.co.example.service.UserInfoService;
 
 @Controller
 public class ItemController {
+
+	@Autowired
+	HttpSession session;
+
 	@Autowired
 	private UserInfoService userInfoService;
 
-
-
 	@RequestMapping("/item")
-	public String item(Model model, HttpSession session) {
+	public String item(Model model) {
 
-		List<UserInfo> list =userInfoService.findByLoginId((String)session.getAttribute("loginId"));
+		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+			return "top";
+		}
+
+		List<UserInfo> list = userInfoService.findByLoginId((String) session.getAttribute("loginId"));
 		Integer userId = null;
 
-		for(UserInfo u: list) {
+		for (UserInfo u : list) {
 			userId = u.getUserId();
 		}
 		List<UserInfo> allItem = null;
 		allItem = userInfoService.allItem(userId);
 
-		if(allItem == null) {
+		if (allItem == null) {
 			model.addAttribute("msg", "所持アイテムはありません");
 		}
 
 		//System.out.println(allItem);
 
-
 		model.addAttribute("allItem", allItem);
 
 		return "item";
+	}
 }
-}
-
-

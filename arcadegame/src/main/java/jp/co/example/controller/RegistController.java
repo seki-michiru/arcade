@@ -14,17 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.controller.form.RegistForm;
 import jp.co.example.entity.UserInfo;
-import jp.co.example.service.ItemStocksService;
 import jp.co.example.service.UserInfoService;
 
 @Controller
 public class RegistController {
 
 	@Autowired
-	private UserInfoService userInfoService;
+	HttpSession session;
 
 	@Autowired
-	private ItemStocksService itemStocksService;
+	private UserInfoService userInfoService;
 
 	@RequestMapping("/regist")
 	public String regist(Model model) {
@@ -33,11 +32,15 @@ public class RegistController {
 
 	}
 
-
 	@RequestMapping("/regist1")
-	public String regist1(@Validated @ModelAttribute("regist") RegistForm registForm, BindingResult result, Model model, HttpSession session) {
+	public String regist1(@Validated @ModelAttribute("regist") RegistForm registForm, BindingResult result,
+			Model model) {
 
-		if(result.hasErrors()) {
+		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+			return "top";
+		}
+
+		if (result.hasErrors()) {
 
 			return "regist";
 
@@ -45,15 +48,13 @@ public class RegistController {
 
 		List<UserInfo> list1 = userInfoService.findByLoginId(registForm.getLoginId());
 
-
-
-		if(list1 != null) {
+		if (list1 != null) {
 
 			model.addAttribute("msg1", "IDまたはユーザー名が既に存在します。");
 
 			return "regist";
 
-		}else {
+		} else {
 
 			session.setAttribute("loginId", registForm.getLoginId());
 			session.setAttribute("userName", registForm.getUserName());
@@ -66,15 +67,19 @@ public class RegistController {
 	}
 
 	@RequestMapping("/regist2")
-	public String regist2(@ModelAttribute("regist2") RegistForm registForm, Model model, HttpSession session) {
+	public String regist2(@ModelAttribute("regist2") RegistForm registForm, Model model) {
 
-		String loginId = (String)session.getAttribute("loginId");
-		String userName = (String)session.getAttribute("userName");
-		String password = (String)session.getAttribute("password");
+		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+			return "top";
+		}
+
+		String loginId = (String) session.getAttribute("loginId");
+		String userName = (String) session.getAttribute("userName");
+		String password = (String) session.getAttribute("password");
 
 		Integer itemId = null;
 
-		userInfoService.userInsert(loginId,userName,password,itemId);
+		userInfoService.userInsert(loginId, userName, password, itemId);
 		//System.out.println(userInfo.get(0).getUserId());
 
 		return "registResult";
@@ -82,7 +87,11 @@ public class RegistController {
 	}
 
 	@RequestMapping("/regist3")
-	public String regist3(@ModelAttribute("regist3") RegistForm registForm, Model model, HttpSession session) {
+	public String regist3(@ModelAttribute("regist3") RegistForm registForm, Model model) {
+
+		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+			return "top";
+		}
 
 		return "login";
 

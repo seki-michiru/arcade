@@ -22,47 +22,56 @@ import jp.co.example.service.SaleDeleteService;
 public class SaleDeleteController {
 
 	@Autowired
+	HttpSession session;
+
+	@Autowired
 	private SaleDeleteService SaleDeleteService;
 
 	@Autowired
 	private ItemStocksService itemStocksService;
 
-
 	@RequestMapping("/saleDelete")
-	public String saleDelete(@ModelAttribute("SaleDeleteForm") SaleDeleteForm form, Model model,HttpSession session){
+	public String saleDelete(@ModelAttribute("SaleDeleteForm") SaleDeleteForm form, Model model) {
 
-		UserInfo user =  (UserInfo) session.getAttribute("list");
+		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+			return "top";
+		}
 
+		UserInfo user = (UserInfo) session.getAttribute("list");
 
 		List<Sales> list = SaleDeleteService.findAll(user.getUserId());
-		session.setAttribute("marketItem",list);
+		session.setAttribute("marketItem", list);
 
 		return "saleDelete";
 	}
 
 	@RequestMapping("/saleDeleteResult")
-	public String saleDeleteResult(@ModelAttribute("SaleDeleteForm") SaleDeleteForm form, Model model,HttpSession session) {
+	public String saleDeleteResult(@ModelAttribute("SaleDeleteForm") SaleDeleteForm form, Model model) {
+
+		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+			return "top";
+		}
 
 		List<Integer> saleList = new ArrayList<>();
 
-		for(int i = 0; i < form.getDelete().length; i++) {
+		for (int i = 0; i < form.getDelete().length; i++) {
 			saleList.add(form.getDelete()[i]);
 		}
 
 		if (saleList.size() == 0) {
-			model.addAttribute("msg","アイテムを選択してください");
+			model.addAttribute("msg", "アイテムを選択してください");
 			return "saleDelete";
 
 		}
 
-		for(int i = 0; i < saleList.size(); i++){
+		for (int i = 0; i < saleList.size(); i++) {
 			SaleDeleteService.marketCancel(saleList.get(i));
 		}
 
-		 UserInfo user = (UserInfo) session.getAttribute("list");
-    	 Integer userId = user.getUserId();
-        List<ItemStocks> list = itemStocksService.findStockAll(userId);
-    	session.setAttribute("StockAll",list);
+		UserInfo user = (UserInfo) session.getAttribute("list");
+		Integer userId = user.getUserId();
+		List<ItemStocks> list = itemStocksService.findStockAll(userId);
+		session.setAttribute("StockAll", list);
 
 		return "saleDeleteResult";
 	}

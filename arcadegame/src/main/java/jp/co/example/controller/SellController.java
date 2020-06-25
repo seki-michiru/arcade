@@ -22,97 +22,100 @@ import jp.co.example.service.UserInfoService;
 @Controller
 public class SellController {
 
-    @Autowired
-    HttpSession session;
+	@Autowired
+	HttpSession session;
 
-    @Autowired
-    private ItemsService itemsService;
+	@Autowired
+	private ItemsService itemsService;
 
-    @Autowired
-    private UserInfoService userInfoService;
+	@Autowired
+	private UserInfoService userInfoService;
 
-    @Autowired
-    private ItemStocksService itemStocksService;
+	@Autowired
+	private ItemStocksService itemStocksService;
 
-    @RequestMapping("/sell")
-    public String sell(@ModelAttribute("sellForm") SellForm form,Model model) {
-    	 UserInfo user = (UserInfo) session.getAttribute("list");
-    	 Integer userId = user.getUserId();
-    	session.removeAttribute("StockAll");
-        List<ItemStocks> list = itemStocksService.findStockAll(userId);
+	@RequestMapping("/sell")
+	public String sell(@ModelAttribute("sellForm") SellForm form, Model model) {
 
-    	UserInfo userInfo = userInfoService.getCoin(userId);
-    	Integer userCoin = userInfo.getCoinHave();
+		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+			return "top";
+		}
 
-        if(list==null) {
-        	model.addAttribute("msg","所持アイテムはありません");
-        	model.addAttribute("flag","非表示");
-        }else {
+		UserInfo user = (UserInfo) session.getAttribute("list");
+		Integer userId = user.getUserId();
+		session.removeAttribute("StockAll");
+		List<ItemStocks> list = itemStocksService.findStockAll(userId);
 
-        	session.setAttribute("StockAll",list);
-        	session.setAttribute("coin",userCoin);
-        }
+		UserInfo userInfo = userInfoService.getCoin(userId);
+		Integer userCoin = userInfo.getCoinHave();
 
-        return "sell";
-    }
+		if (list == null) {
+			model.addAttribute("msg", "所持アイテムはありません");
+			model.addAttribute("flag", "非表示");
+		} else {
 
+			session.setAttribute("StockAll", list);
+			session.setAttribute("coin", userCoin);
+		}
 
-    @RequestMapping("/sellResult")
-    public String sellResult(@ModelAttribute("sellForm") SellForm form,Model model) {
+		return "sell";
+	}
 
-    	List<Integer> itemId = new ArrayList<>();
-    	List<Integer> number = new ArrayList<>();
+	@RequestMapping("/sellResult")
+	public String sellResult(@ModelAttribute("sellForm") SellForm form, Model model) {
 
-    	for(int i = 0; i < form.getItemsId().length; i++) {
-    			itemId.add(form.getItemsId()[i]);
-    	}
+		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+			return "top";
+		}
 
-    	Integer sumNumber = 0;
+		List<Integer> itemId = new ArrayList<>();
+		List<Integer> number = new ArrayList<>();
 
-    	for(int i = 0; i < form.getNumber().length; i++) {
+		for (int i = 0; i < form.getItemsId().length; i++) {
+			itemId.add(form.getItemsId()[i]);
+		}
+
+		Integer sumNumber = 0;
+
+		for (int i = 0; i < form.getNumber().length; i++) {
 			number.add(form.getNumber()[i]);
 			sumNumber += form.getNumber()[i];
-    	}
+		}
 
-    	if(sumNumber == 0) {
-    		model.addAttribute("msg", "売却するアイテムを選択してください");
-    		return "sell";
-    	}
+		if (sumNumber == 0) {
+			model.addAttribute("msg", "売却するアイテムを選択してください");
+			return "sell";
+		}
 
-//     	int sumPrice = 0;
-//
-//    		for(int i = 0; i < itemId.size(); i++) {
-//    			sumPrice += itemsService.findItemName(itemId.get(i)).get(0).getItemPrice() / 2 * number.get(i);
-//    		}
+		//     	int sumPrice = 0;
+		//
+		//    		for(int i = 0; i < itemId.size(); i++) {
+		//    			sumPrice += itemsService.findItemName(itemId.get(i)).get(0).getItemPrice() / 2 * number.get(i);
+		//    		}
 
+		UserInfo user = (UserInfo) session.getAttribute("list");
+		Integer userId = user.getUserId();
 
+		List<BuyInfo> sell = new ArrayList<>();
 
-    	UserInfo user = (UserInfo) session.getAttribute("list");
-    	Integer userId = user.getUserId();
+		//userInfoService.plusCoin(userId, sumPrice);
 
-    	List<BuyInfo> sell = new ArrayList<>();
+		for (int i = 0; i < itemId.size(); i++) {
+			if (number.get(i) == 0) {
+				continue;
+			}
+			int price = itemsService.findItemName(itemId.get(i)).get(0).getItemPrice() / 2 * number.get(i);
+			userInfoService.sellResult(userId, price, itemId.get(i), number.get(i));
+			sell.add(new BuyInfo(itemsService.findItemName(itemId.get(i)).get(0).getItemName(), number.get(i)));
+		}
 
+		UserInfo userInfo = userInfoService.getCoin(userId);
+		Integer userCoin = userInfo.getCoinHave();
 
-    	//userInfoService.plusCoin(userId, sumPrice);
+		session.setAttribute("sellInfo", sell);
+		session.setAttribute("coin", userCoin);
 
-    		for(int i = 0; i < itemId.size(); i++){
-        		if(number.get(i) == 0) {
-        			continue;
-        		}
-        		int price = itemsService.findItemName(itemId.get(i)).get(0).getItemPrice() / 2 * number.get(i);
-        		userInfoService.sellResult(userId, price,itemId.get(i), number.get(i));
-    			sell.add(new BuyInfo(itemsService.findItemName(itemId.get(i)).get(0).getItemName(),number.get(i)));
-    		}
+		return "sellResult";
 
-
-    	UserInfo userInfo = userInfoService.getCoin(userId);
-    	Integer userCoin = userInfo.getCoinHave();
-
-    		session.setAttribute("sellInfo",sell);
-    		session.setAttribute("coin",userCoin);
-
-    		return "sellResult";
-
-
-    }
+	}
 }
