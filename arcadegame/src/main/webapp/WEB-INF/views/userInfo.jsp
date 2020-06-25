@@ -25,17 +25,17 @@
 			<div id="form-div">
 				<div>
 					<p class="form-item inline">ID</p>
-					<p class="text-design-id inline">${list.loginId}</p>
+					<p class="text-design-id inline">${sessionScope.loginId}</p>
 				</div>
 				<br>
 				<div>
 					<p class="form-item inline">名前</p>
-					<p class="text-design-name inline">${list.userName}</p>
+					<p class="text-design-name inline">${sessionScope.userName}</p>
 				</div>
 				<br>
 				<div>
 					<p class="form-item inline">PASS</p>
-					<p class="text-design-pass inline">${list.password}</p>
+					<p class="text-design-pass inline">${sessionScope.password}</p>
 				</div>
 			</div>
 		</div>

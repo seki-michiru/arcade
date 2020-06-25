@@ -54,17 +54,14 @@ public class LoginController {
 
 		}else {
 
-			loginId = loginform.getLoginId();
-
 			userInfoService.updatelogin_date(loginId);
 
-			session.setAttribute("loginId", loginId);
+			session.setAttribute("loginId", loginform.getLoginId());
 			session.setAttribute("userId", userInfo1.get(0).getUserId());
 			session.setAttribute("userName", userInfo1.get(0).getUserName());
+			session.setAttribute("password", loginform.getPassword());
 
 			session.setAttribute("list", userInfo1.get(0));
-
-			System.out.println(userInfo1.get(0).getUserName());
 
 			return "menu";
 

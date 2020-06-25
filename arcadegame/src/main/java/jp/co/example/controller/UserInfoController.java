@@ -33,12 +33,7 @@ public class UserInfoController {
 	@RequestMapping("/userInfoChange")
 	public String userInfoChange(@ModelAttribute("userInfo") UserInfoForm userInfoform, BindingResult result, Model model, HttpSession session) {
 
-		List<UserInfo> list = userInfoService.findByLoginId((String)session.getAttribute("loginId"));
 
-
-		session.setAttribute("loginId", list.get(0).getLoginId());
-		session.setAttribute("userName", list.get(0).getUserName());
-		session.setAttribute("password", list.get(0).getPassword());
 
 		return "userInfoChange";
 
@@ -69,6 +64,8 @@ public class UserInfoController {
 			session.setAttribute("loginId", userInfoform.getLoginId());
 			session.setAttribute("userName", userInfoform.getUserName());
 			session.setAttribute("password", userInfoform.getPassword());
+
+
 
 			model.addAttribute("list",list);
 			return "userInfoConfirm";
