@@ -108,10 +108,13 @@ document.body.addEventListener('keydown',
     	  if(itemName1 == 'バー拡大'){
     		  BAR_WIDTH = BAR_WIDTH + Math.floor( Math.random() * (max + 1 - min) ) + min ;
     		  setTimeout(barWidth, 10000)
-    	  }else if(itemName1 == 'スコアアップ') {
+    	  }else if(itemName1 == 'スコアアップB') {
     		  score = score * 2;
-    	  }else if(itemName1 == 'シュート') {
+    	  }else if(itemName1 == 'チーサクナール') {
     		  BALL_RADIUS = 4;
+    		  setTimeout(ballRadius, 10000)
+    	  }else if(itemName1 == 'オーキクナール') {
+    		  BALL_RADIUS = 14;
     		  setTimeout(ballRadius, 10000)
     	  }
         item1Flag = false;
@@ -125,10 +128,13 @@ document.body.addEventListener('keydown',
     	  if(itemName2 == 'バー拡大'){
     		  BAR_WIDTH = BAR_WIDTH + Math.floor( Math.random() * (max + 1 - min) ) + min ;
     		  setTimeout(barWidth, 10000)
-    	  }else if(itemName2 == 'スコアアップ') {
+    	  }else if(itemName2 == 'スコアアップB') {
     		  score = score * 2;
-    	  }else if(itemName2 == 'シュート') {
-    		  BALL_RADIUS = 7;
+    	  }else if(itemName2 == 'チーサクナール') {
+    		  BALL_RADIUS = 4;
+    		  setTimeout(ballRadius, 10000)
+    	  }else if(itemName2 == 'オーキクナール') {
+    		  BALL_RADIUS = 14;
     		  setTimeout(ballRadius, 10000)
     	  }
         item2Flag = false;
@@ -142,10 +148,13 @@ document.body.addEventListener('keydown',
     	  if(itemName3 == 'バー拡大'){
     		  BAR_WIDTH = BAR_WIDTH + Math.floor( Math.random() * (max + 1 - min) ) + min ;
     		  setTimeout(barWidth, 10000)
-    	  }else if(itemName3 == 'スコアアップ') {
+    	  }else if(itemName3 == 'スコアアップB') {
     		  score = score * 2;
-    	  }else if(itemName3 == 'シュート') {
-    		  BALL_RADIUS = 7;
+    	  }else if(itemName3 == 'チーサクナール') {
+    		  BALL_RADIUS = 4;
+    		  setTimeout(ballRadius, 10000)
+    	  }else if(itemName3 == 'オーキクナール') {
+    		  BALL_RADIUS = 14;
     		  setTimeout(ballRadius, 10000)
     	  }
         item3Flag = false;

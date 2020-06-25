@@ -79,11 +79,11 @@ var itemnum3 = Number(itemEffect3);
 document.body.addEventListener('keydown',
     event => {
       if (event.key === 'z' && item1Flag) {
-    	  if(itemName1 == 'ライフ回復'){
+    	  if(itemName1 == 'ライフアップ'){
     		  lives = lives + 2;
-    	  }else if(itemName1 == 'スコアアップ') {
+    	  }else if(itemName1 == 'スコアアップI') {
     		  score = score * 2;
-    	  }else if(itemName1 == '連射') {
+    	  }else if(itemName1 == 'ハヤクナール') {
     		  myMisileDy = -30;
     		  setTimeout(() => {
     			  myMisileDy = -10;
@@ -97,11 +97,11 @@ document.body.addEventListener('keydown',
 document.body.addEventListener('keydown',
     event => {
       if (event.key === 'x' && item2Flag) {
-    	  if(itemName2 == 'ライフ回復'){
+    	  if(itemName2 == 'ライフアップ'){
     		  lives = lives + 2;
-    	  }else if(itemName2 == 'スコアアップ') {
+    	  }else if(itemName2 == 'スコアアップI') {
     		  score = score * 2;
-    	  }else if(itemName2 == '連射') {
+    	  }else if(itemName2 == 'ハヤクナール') {
     		  myMisileDy = -30;
     		  setTimeout(() => {
     			  myMisileDy = -10;
@@ -115,11 +115,11 @@ document.body.addEventListener('keydown',
 document.body.addEventListener('keydown',
     event => {
       if (event.key === 'c' && item3Flag) {
-    	  if(itemName3 == 'ライフ回復'){
+    	  if(itemName3 == 'ライフアップ'){
     		  lives = lives + 2;
-    	  }else if(itemName3 == 'スコアアップ') {
+    	  }else if(itemName3 == 'スコアアップI') {
     		  score = score * 2;
-    	  }else if(itemName3 == '連射') {
+    	  }else if(itemName3 == 'ハヤクナール') {
     		  myMisileDy = -30;
     		  setTimeout(() => {
     			  myMisileDy = -10;
@@ -240,7 +240,6 @@ function collisionDetection() {
                     console.log("敵にhit");
           brocknum++;
           if(brocknum == brickRowCount*brickColumnCount) {
-            alert("You win, congratulations!");
 
             $('.score').html(score);
             sample1();
@@ -334,8 +333,6 @@ function draw() {
                 lives--;
                 hitStatus = false;
                 if(!lives) {
-                     alert("GAME OVER");
-
                 	sample1();
 
                 }
