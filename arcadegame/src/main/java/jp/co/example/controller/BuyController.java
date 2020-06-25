@@ -15,7 +15,6 @@ import jp.co.example.controller.form.buyForm;
 import jp.co.example.entity.BuyInfo;
 import jp.co.example.entity.Items;
 import jp.co.example.entity.UserInfo;
-import jp.co.example.service.ItemStocksService;
 import jp.co.example.service.ItemsService;
 import jp.co.example.service.UserInfoService;
 
@@ -30,9 +29,6 @@ public class BuyController {
 
     @Autowired
     private UserInfoService userInfoService;
-
-    @Autowired
-    private ItemStocksService itemStocksService;
 
 	@RequestMapping("/buy")
 	public String buy(@ModelAttribute("buyForm") buyForm form, Model model) {
@@ -73,8 +69,8 @@ public class BuyController {
     		return "buy";
     	}
 
+    	//買おうとしているアイテムの値段の合計を求める
      	int sumPrice = 0;
-
     		for(int i = 0; i < itemId.size(); i++) {
     			if(number.get(i) != 0){
     				Integer price = itemsService.findItemName(itemId.get(i)).get(0).getItemPrice();
@@ -83,6 +79,7 @@ public class BuyController {
     		}
 
 
+    		//セッションからユーザー情報取得
     	UserInfo user = (UserInfo) session.getAttribute("list");
     	Integer userId = user.getUserId();
 		UserInfo userInfo = userInfoService.getCoin(userId);
@@ -92,13 +89,17 @@ public class BuyController {
 
     	if(sumPrice < userCoin) {
 
-    		userInfoService.subCoin(userId, sumPrice);
+//    		userInfoService.subCoin(userId, sumPrice);
 
     			for(int i = 0; i < itemId.size(); i++){
             		if(number.get(i) == 0) {
             			continue;
             		}
-    				itemStocksService.plusStock(userId, itemId.get(i), number.get(i));
+            		Integer price = itemsService.findItemName(itemId.get(i)).get(0).getItemPrice() * number.get(i);
+//            		userInfoService.subCoin(userId, price);
+//    				itemStocksService.plusStock(userId, itemId.get(i), number.get(i));
+
+            		userInfoService.buyResult(userId,price,itemId.get(i), number.get(i));
     				buy.add(new BuyInfo(itemsService.findItemName(itemId.get(i)).get(0).getItemName(),number.get(i)));
     			}
 

@@ -22,6 +22,7 @@ public interface UserInfoService {
 	public void subCoin(Integer userId,Integer coin);
 	public void plusCoin(Integer userId,Integer coin);
 	public void updatelogin_date(String loginId);
+	public void buyResult(Integer userId,Integer price,Integer itemId,Integer number);
 
 
 }

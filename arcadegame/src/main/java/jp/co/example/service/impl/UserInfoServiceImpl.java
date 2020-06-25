@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import jp.co.example.dao.ItemStocksDao;
 import jp.co.example.dao.UserInfoDao;
 import jp.co.example.entity.UserInfo;
 import jp.co.example.service.UserInfoService;
@@ -14,6 +16,9 @@ public class UserInfoServiceImpl implements UserInfoService{
 
 	@Autowired
 	private UserInfoDao userInfoDao;
+
+	@Autowired
+	private ItemStocksDao itemStocksDao;
 
 	@Override
 	public List<UserInfo> findAll() {
@@ -114,6 +119,12 @@ public class UserInfoServiceImpl implements UserInfoService{
 
 	public void updatelogin_date(String loginId) {
 		userInfoDao.updatelogin_date(loginId);
+	}
+
+	@Transactional
+	public void buyResult(Integer userId,Integer price,Integer itemId,Integer number) {
+		userInfoDao.subCoin(userId, price);
+		itemStocksDao.plusStock(userId,itemId, number);
 	}
 
 }
