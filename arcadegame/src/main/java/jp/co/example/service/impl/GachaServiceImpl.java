@@ -23,23 +23,36 @@ public class GachaServiceImpl implements GachaService {
 	@Autowired
 	private UserInfoDao userInfoDao;
 
+	//	public int Random() {
+	//		List<Items> list = itemDao.findAll();
+	//		Random rand = new Random();
+	//	    int num = rand.nextInt(list.size()) + 1;
+	//		return num;
+	//	}
+
 	public int Random() {
 		List<Items> list = itemDao.findAll();
 		Random rand = new Random();
-	    int num = rand.nextInt(list.size()) + 1;
+
+			int num = rand.nextInt(list.size() +  3) + 1;
+
+			if (list.size() < num) {
+				num = list.size();
+			}
+
 		return num;
 	}
 
 	@Override
 	public List<Items> gachaItem(Integer randomNumber) {
-		List<Items> list  = itemDao.gachaItem(randomNumber);
+		List<Items> list = itemDao.gachaItem(randomNumber);
 
 		return list;
 	}
 
 	@Override
 	public void itemCollect(Integer userId, Integer itemId) {
-		itemStocksDao.itemCollect(userId,itemId);
+		itemStocksDao.itemCollect(userId, itemId);
 	}
 
 	@Override
@@ -49,14 +62,14 @@ public class GachaServiceImpl implements GachaService {
 
 	@Override
 	public List<UserInfo> userHaveCoin(Integer userId) {
-		List<UserInfo> list  = userInfoDao.userHaveCoin(userId);
+		List<UserInfo> list = userInfoDao.userHaveCoin(userId);
 
 		return list;
 	}
 
 	@Transactional
-	public void gacha(Integer userId,Integer randomNumber) {
-		itemCollect(userId,randomNumber);
+	public void gacha(Integer userId, Integer randomNumber) {
+		itemCollect(userId, randomNumber);
 		coinWast(userId);
 	}
 }
