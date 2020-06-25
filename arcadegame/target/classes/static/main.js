@@ -114,7 +114,7 @@ document.body.addEventListener('keydown',
     		  BALL_RADIUS = 4;
     		  setTimeout(ballRadius, 10000)
     	  }else if(itemName1 == 'オーキクナール') {
-    		  BALL_RADIUS = 14;
+    		  BALL_RADIUS = 20;
     		  setTimeout(ballRadius, 10000)
     	  }
         item1Flag = false;
@@ -134,7 +134,7 @@ document.body.addEventListener('keydown',
     		  BALL_RADIUS = 4;
     		  setTimeout(ballRadius, 10000)
     	  }else if(itemName2 == 'オーキクナール') {
-    		  BALL_RADIUS = 14;
+    		  BALL_RADIUS = 20;
     		  setTimeout(ballRadius, 10000)
     	  }
         item2Flag = false;
@@ -154,7 +154,7 @@ document.body.addEventListener('keydown',
     		  BALL_RADIUS = 4;
     		  setTimeout(ballRadius, 10000)
     	  }else if(itemName3 == 'オーキクナール') {
-    		  BALL_RADIUS = 14;
+    		  BALL_RADIUS = 20;
     		  setTimeout(ballRadius, 10000)
     	  }
         item3Flag = false;
