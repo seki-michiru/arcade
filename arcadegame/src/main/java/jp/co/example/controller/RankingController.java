@@ -55,7 +55,7 @@ public class RankingController {
 
 		}
 
-		System.out.println(higtScoreDateFirst.size());
+		//System.out.println(higtScoreDateFirst.size());
 
 		Date date1 = null;
 		Date date2 = null;
@@ -67,7 +67,7 @@ public class RankingController {
 			date2 = higtScoreDateFirst.get(1);
 			date3 = higtScoreDateFirst.get(2);
 		} catch (IndexOutOfBoundsException e) {
-			System.out.println("アウトオブばうんず");
+			//System.out.println("アウトオブばうんず");
 		}
 
 		model.addAttribute("date1", date1);
@@ -77,9 +77,9 @@ public class RankingController {
 		List<UserInfo> higtScoreDateThird = userInfoService.higtScoreDate(rankingInvader.get(2).getUserName(), gameId);*/
 		List<UserInfo> myRank = userInfoService.findMyRanking(gameId, myUserId);
 
-		System.out.println(rankingInvader);
-		System.out.println(myRank);
-		System.out.println(higtScoreDateFirst);
+		//System.out.println(rankingInvader);
+		//System.out.println(myRank);
+		//System.out.println(higtScoreDateFirst);
 
 		model.addAttribute("rankingInvader", rankingInvader);
 		model.addAttribute("higtScoreDateFirst", higtScoreDateFirst);
@@ -103,7 +103,7 @@ public class RankingController {
 			myUserId = u.getUserId();
 
 		}
-		System.out.println(myUserId);
+		//System.out.println(myUserId);
 
 		List<UserInfo> rankingBrock = userInfoService.findRanking(gameId);
 		List<Date> higtScoreDateFirst = new ArrayList<>();
@@ -120,7 +120,7 @@ public class RankingController {
 			}
 		}
 
-		System.out.println(higtScoreDateFirst.size());
+		//System.out.println(higtScoreDateFirst.size());
 
 		Date date1 = null;
 		Date date2 = null;
@@ -132,7 +132,7 @@ public class RankingController {
 			date2 = higtScoreDateFirst.get(1);
 			date3 = higtScoreDateFirst.get(2);
 		} catch (IndexOutOfBoundsException e) {
-			System.out.println("アウトオブばうんず");
+			//System.out.println("アウトオブばうんず");
 		}
 
 		model.addAttribute("date1", date1);
@@ -142,9 +142,9 @@ public class RankingController {
 		List<UserInfo> higtScoreDateThird = userInfoService.higtScoreDate(rankingBrock.get(2).getUserName(), gameId);*/
 		List<UserInfo> myRank = userInfoService.findMyRanking(gameId, myUserId);
 
-		System.out.println(rankingBrock);
-		System.out.println(myRank);
-		System.out.println(higtScoreDateFirst);
+		//System.out.println(rankingBrock);
+		//System.out.println(myRank);
+		//System.out.println(higtScoreDateFirst);
 
 		model.addAttribute("rankingBrock", rankingBrock);
 		model.addAttribute("higtScoreDateFirst", higtScoreDateFirst);

@@ -36,7 +36,7 @@ public class ItemController {
 			model.addAttribute("msg", "所持アイテムはありません");
 		}
 
-		System.out.println(allItem);
+		//System.out.println(allItem);
 
 
 		model.addAttribute("allItem", allItem);

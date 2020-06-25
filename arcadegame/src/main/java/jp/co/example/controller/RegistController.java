@@ -74,7 +74,7 @@ public class RegistController {
 		Integer itemId = null;
 
 		itemStocksService.itemInsert(userInfo.get(0).getUserId(), itemId);
-		System.out.println(userInfo.get(0).getUserId());
+		//System.out.println(userInfo.get(0).getUserId());
 
 		return "registResult";
 
