@@ -139,7 +139,7 @@ public class PgUserInfoDao implements UserInfoDao {
 
 	@Override
 	public void coinWast(Integer userId) {
-		String sql = "UPDATE user_info SET coin_have = coin_have - 30 WHERE user_id = :UserId";
+		String sql = "UPDATE user_info SET coin_have = coin_have - 100 WHERE user_id = :UserId";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("UserId", userId);

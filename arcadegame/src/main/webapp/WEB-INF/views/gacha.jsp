@@ -22,7 +22,7 @@
 
 	<p class = "confirm-msg">${fn:escapeXml(msg)}</p>
 
-	<h2 id="menu-btn">1回30枚</h2>
+	<h2 id="menu-btn">1回100枚</h2>
 
 	<div id="form-btn-center">
 		<a href="gachaPlay"><button class="form-btn">まわす</button></a>
