@@ -31,34 +31,34 @@ public class TradeServiceImpl implements TradeService {
 		return salesDao.marketTrade(userId);
 	}
 
-	private void tradeSuccess(Integer userId) {
-		salesDao.tradeSuccess(userId);
+	@Transactional
+	public void trade(Integer saleId, Integer userId) {
+		tradeSuccess(saleId);
+		itemChange(saleId, userId);
+		marketLog(saleId, userId);
+	}
+
+	private void tradeSuccess(Integer saleId) {
+		salesDao.tradeSuccess(saleId);
 
 	}
 
 	@Override
 	@Transactional
 	public void itemChange(Integer saleId, Integer userId) {
-		itemStocksDao.itemChange(saleId,userId);
+		itemStocksDao.itemChange(saleId, userId);
 
 	}
 
 	private void marketLog(Integer saleId, Integer userId) {
-		tradesDao.marketLog(saleId,userId);
+		tradesDao.marketLog(saleId, userId);
 
 	}
 
 	@Override
 	public List<ItemStocks> tradeCheck(Integer saleId, Integer userId) {
-		return itemStocksDao.tradeCheck(saleId,userId);
+		return itemStocksDao.tradeCheck(saleId, userId);
 
-	}
-
-	@Transactional
-	public void trade(Integer saleId,Integer userId) {
-		tradeSuccess(userId);
-		itemChange(saleId,userId);
-		marketLog(saleId,userId);
 	}
 
 }

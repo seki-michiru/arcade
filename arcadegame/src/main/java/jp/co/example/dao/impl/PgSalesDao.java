@@ -73,10 +73,10 @@ public class PgSalesDao implements SalesDao {
 	}
 
 	@Override
-	public void tradeSuccess(Integer salesId) {
+	public void tradeSuccess(Integer saleId) {
 		String sql = "UPDATE sales SET sale_flag = 2 WHERE sale_id = :SalesId";
 		MapSqlParameterSource param = new MapSqlParameterSource();
-		param.addValue("SalesId", salesId);
+		param.addValue("SalesId", saleId);
 		jdbcTemplate.update(sql, param);
 
 	}
