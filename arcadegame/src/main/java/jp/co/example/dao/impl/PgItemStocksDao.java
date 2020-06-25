@@ -98,6 +98,7 @@ public class PgItemStocksDao implements ItemStocksDao {
 		param3.addValue("UserId", userId);
 		jdbcTemplate.update(sql3, param3);
 
+
 		//交換者のアイテム増やす
 		MapSqlParameterSource param4 = new MapSqlParameterSource();
 		String sql4 = "UPDATE item_stocks SET item_have = item_have + 1"
