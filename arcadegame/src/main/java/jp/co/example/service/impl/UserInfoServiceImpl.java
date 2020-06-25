@@ -127,4 +127,10 @@ public class UserInfoServiceImpl implements UserInfoService{
 		itemStocksDao.plusStock(userId,itemId, number);
 	}
 
+	@Transactional
+	public void sellResult(Integer userId,Integer price,Integer itemId,Integer number) {
+		userInfoDao.plusCoin(userId, price);
+		itemStocksDao.minusStock(userId,itemId, number);
+	}
+
 }

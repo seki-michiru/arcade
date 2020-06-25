@@ -79,11 +79,11 @@ public class SellController {
     		return "sell";
     	}
 
-     	int sumPrice = 0;
-
-    		for(int i = 0; i < itemId.size(); i++) {
-    			sumPrice += itemsService.findItemName(itemId.get(i)).get(0).getItemPrice() / 2 * number.get(i);
-    		}
+//     	int sumPrice = 0;
+//
+//    		for(int i = 0; i < itemId.size(); i++) {
+//    			sumPrice += itemsService.findItemName(itemId.get(i)).get(0).getItemPrice() / 2 * number.get(i);
+//    		}
 
 
 
@@ -93,14 +93,14 @@ public class SellController {
     	List<BuyInfo> sell = new ArrayList<>();
 
 
-    	userInfoService.plusCoin(userId, sumPrice);
+    	//userInfoService.plusCoin(userId, sumPrice);
 
     		for(int i = 0; i < itemId.size(); i++){
         		if(number.get(i) == 0) {
         			continue;
         		}
-
-    			itemStocksService.minusStock(userId, itemId.get(i), number.get(i));
+        		int price = itemsService.findItemName(itemId.get(i)).get(0).getItemPrice() / 2 * number.get(i);
+        		userInfoService.sellResult(userId, price,itemId.get(i), number.get(i));
     			sell.add(new BuyInfo(itemsService.findItemName(itemId.get(i)).get(0).getItemName(),number.get(i)));
     		}
 
