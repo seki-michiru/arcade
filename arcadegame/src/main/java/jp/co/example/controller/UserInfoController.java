@@ -62,12 +62,15 @@ public class UserInfoController {
 
 		}
 
-		if(session.getAttribute("loginId").equals(userInfoform.getLoginId()) && session.getAttribute("userName").equals(userInfoform.getUserName()) && session.getAttribute("password").equals(userInfoform.getPassword())){
-			model.addAttribute("msg","値を一つ以上変更してください");
+		if (session.getAttribute("loginId").equals(userInfoform.getLoginId())
+				&& session.getAttribute("userName").equals(userInfoform.getUserName())
+				&& session.getAttribute("password").equals(userInfoform.getPassword())) {
+			model.addAttribute("msg", "値を一つ以上変更してください");
 			return "userInfoChange";
 		}
 
-		List<UserInfo> userInfo2 = userInfoService.findIdUserNamePass((Integer)session.getAttribute("userId"), userInfoform.getLoginId(),
+		List<UserInfo> userInfo2 = userInfoService.findIdUserNamePass((Integer) session.getAttribute("userId"),
+				userInfoform.getLoginId(),
 				userInfoform.getUserName());
 
 		if (userInfo2 != null) {
@@ -140,6 +143,11 @@ public class UserInfoController {
 
 	@RequestMapping("/logout")
 	public String logout(Model model) {
+
+		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
+			return "top";
+		}
+
 		session.invalidate();
 		return "logout";
 
