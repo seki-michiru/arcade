@@ -191,11 +191,12 @@ public class PgUserInfoDao implements UserInfoDao {
 	}
 
 	@Override
-	public List<UserInfo> findIdUserNamePass(String loginId, String userName) {
+	public List<UserInfo> findIdUserNamePass(Integer userId, String loginId, String userName) {
 
-		String sql = "SELECT * FROM user_info WHERE login_id = :LoginId OR user_name = :UserName";
+		String sql = "SELECT * FROM user_info WHERE userId <> :UserId AND (login_id = :LoginId OR user_name = :UserName)";
 
 		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("UserId", userId);
 		param.addValue("LoginId", loginId);
 		param.addValue("UserName", userName);
 
