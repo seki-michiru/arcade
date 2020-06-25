@@ -18,7 +18,7 @@ public class PgItemsDao implements ItemDao {
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
 	public List<Items> findAll() {
-		String sql = "SELECT * FROM items";
+		String sql = "SELECT * FROM items ORDER BY item_id";
 		List<Items> result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Items>(Items.class));
 		return result.isEmpty() ? null : result;
 	}
@@ -49,7 +49,8 @@ public class PgItemsDao implements ItemDao {
 				" JOIN item_stocks" +
 				" ON items.item_id = item_stocks.item_id" +
 				" WHERE item_have > 0" +
-				" AND user_id = :UserId;";
+				" AND user_id = :UserId" +
+				" ORDER BY items.item_id";
 		MapSqlParameterSource param = new MapSqlParameterSource();
 		param.addValue("UserId", userId);
 		List<Items> result = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Items>(Items.class));
@@ -57,7 +58,7 @@ public class PgItemsDao implements ItemDao {
 	}
 
 	public List<Items> itemAll() {
-		String sql = "SELECT items.game_id,game_name,item_id,item_name,item_price FROM games JOIN items ON games.game_id = items.game_id;";
+		String sql = "SELECT items.game_id,game_name,item_id,item_name,item_price FROM games JOIN items ON games.game_id = items.game_id ORDER BY games.game_id,items.item_price";
 		List<Items> result = jdbcTemplate.query(sql,new BeanPropertyRowMapper<Items>(Items.class));
 		return result.isEmpty() ? null : result;
 	}

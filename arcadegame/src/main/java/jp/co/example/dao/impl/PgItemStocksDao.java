@@ -39,7 +39,8 @@ public class PgItemStocksDao implements ItemStocksDao {
 
 	public List<ItemStocks> findStockAll(Integer userId) {
 		MapSqlParameterSource param = new MapSqlParameterSource();
-		String sql = "SELECT item_stocks.item_id,game_name,item_name,item_price/2 price,item_have FROM games JOIN items ON items.game_id = games.game_id JOIN item_stocks ON item_stocks.item_id = items.item_id WHERE user_id = :userId AND item_have > 0";
+		String sql = "SELECT item_stocks.item_id,game_name,item_name,item_price/2 price,item_have FROM games JOIN items ON items.game_id = games.game_id JOIN item_stocks ON item_stocks.item_id = items.item_id WHERE user_id = :userId AND item_have > 0"
+				+" ORDER BY games.game_id,items.item_price";
 		param.addValue("userId", userId);
 		List<ItemStocks> result = jdbcTemplate.query(sql, param,
 				new BeanPropertyRowMapper<ItemStocks>(ItemStocks.class));
@@ -57,7 +58,7 @@ public class PgItemStocksDao implements ItemStocksDao {
 
 	public List<Items> getStockItem(Integer userId, Integer gameId) {
 		MapSqlParameterSource param = new MapSqlParameterSource();
-		String sql = "SELECT item_stocks.item_id,items.item_name FROM item_stocks JOIN items ON item_stocks.item_id = items.item_id WHERE user_id = :userId AND game_id = :gameId AND item_have > 0;";
+		String sql = "SELECT item_stocks.item_id,items.item_name FROM item_stocks JOIN items ON item_stocks.item_id = items.item_id WHERE user_id = :userId AND game_id = :gameId AND item_have > 0 ORDER BY items.item_id;";
 		param.addValue("userId", userId);
 		param.addValue("gameId", gameId);
 		List<Items> result = jdbcTemplate.query(sql, param, new BeanPropertyRowMapper<Items>(Items.class));
