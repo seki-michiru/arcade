@@ -30,6 +30,7 @@ public class SaleDeleteController {
 
 
 	@RequestMapping("/saleDelete")
+	@Transactional
 	public String saleDelete(@ModelAttribute("SaleDeleteForm") SaleDeleteForm form, Model model,HttpSession session){
 
 		UserInfo user =  (UserInfo) session.getAttribute("list");

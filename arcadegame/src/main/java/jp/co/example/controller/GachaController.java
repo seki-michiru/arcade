@@ -26,7 +26,16 @@ public class GachaController {
 	private UserInfoService userInfoService;
 
 	@RequestMapping("/gacha")
-	public String gacha(Model model) {
+	@Transactional
+	public String gacha(Model model,HttpSession session) {
+		UserInfo user =  (UserInfo) session.getAttribute("list");
+		Integer userId = user.getUserId();
+		List<UserInfo> coinHave = gachaService.userHaveCoin(userId);
+
+		//int coinHave = coin.get(0).getCoinHave();
+
+
+		session.setAttribute("coin",coinHave.get(0).getCoinHave());
 
 		return "gacha";
 	}

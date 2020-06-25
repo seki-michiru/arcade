@@ -29,6 +29,7 @@ public class SaleController {
 	private ItemStocksService itemStocksService;
 
 	@RequestMapping("/sale")
+	@Transactional
 	public String sale(@ModelAttribute("SaleForm") SaleForm saleForm, Model model, HttpSession session) {
 
 		List<Items> list = saleService.findAll();

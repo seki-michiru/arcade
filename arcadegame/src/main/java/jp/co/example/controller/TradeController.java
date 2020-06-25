@@ -35,6 +35,7 @@ public class TradeController {
 	}
 
 	@RequestMapping("/trade")
+	@Transactional
 	public String trade(@ModelAttribute("TradeForm") TradeForm form, Model model, HttpSession session) {
 
 		UserInfo user = (UserInfo) session.getAttribute("list");
