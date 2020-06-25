@@ -25,19 +25,19 @@
 		<div id="form-div">
 			<div>
 				<label for="" class="form-item">ID</label><input type="text"
-					class="text-design-id text-box" value="${sessionScope.loginId}"
+					class="text-design-id text-box" value="${sessionScope.LoginId}"
 					readonly>
 			</div>
 			<br>
 			<div>
 				<label for="" class="form-item">名前</label><input type="text"
-					class="text-design-name text-box" value="${sessionScope.userName}"
+					class="text-design-name text-box" value="${sessionScope.UserName}"
 					readonly>
 			</div>
 			<br>
 			<div>
 				<label for="" class="form-item">PASS</label><input type="text"
-					class="text-design-pass text-box" value="${sessionScope.password}"
+					class="text-design-pass text-box" value="${sessionScope.Password}"
 					readonly>
 			</div>
 		</div>

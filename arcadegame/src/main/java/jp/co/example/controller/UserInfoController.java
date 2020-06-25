@@ -34,7 +34,6 @@ public class UserInfoController {
 	public String userInfoChange(@ModelAttribute("userInfo") UserInfoForm userInfoform, BindingResult result, Model model, HttpSession session) {
 
 
-
 		return "userInfoChange";
 
 	}
@@ -59,15 +58,12 @@ public class UserInfoController {
 
 		}else {
 
-			List<UserInfo> list = userInfoService.findByLoginId((String)session.getAttribute("loginId"));
 
-			session.setAttribute("loginId", userInfoform.getLoginId());
-			session.setAttribute("userName", userInfoform.getUserName());
-			session.setAttribute("password", userInfoform.getPassword());
+			session.setAttribute("LoginId", userInfoform.getLoginId());
+			session.setAttribute("UserName", userInfoform.getUserName());
+			session.setAttribute("Password", userInfoform.getPassword());
 
-
-
-			model.addAttribute("list",list);
+			//model.addAttribute("list",list);
 			return "userInfoConfirm";
 
 		}
@@ -76,20 +72,25 @@ public class UserInfoController {
 
 
 	@RequestMapping("/userInfoResult")
-	public String userInfoConfirm(@ModelAttribute("userInfo") UserInfoForm userInfoform, Model model, HttpSession session) {
+	public String userInfoConfirm(Model model,  HttpSession session) {
 
-		String loginId = (String)session.getAttribute("loginId");
-		String userName = (String)session.getAttribute("userName");
-		String password = (String)session.getAttribute("password");
-		Integer userId = (Integer)session.getAttribute("userId");
+		String loginId = (String)session.getAttribute("LoginId");
+		String userName =  (String)session.getAttribute("UserName");
+		String password = (String)session.getAttribute("Password");
+		Integer userId =  (Integer)session.getAttribute("userId");
 
-		System.out.println(loginId);
-		System.out.println(userName);
-		System.out.println(password);
 
+		session.setAttribute("loginId", loginId);
+		session.setAttribute("userName", userName);
+		session.setAttribute("password", password);
+		session.setAttribute("userId", userId);
 
 
 		userInfoService.update(loginId, userName, password, userId);
+
+		List<UserInfo>list = userInfoService.findIdUserNamePass(loginId, userName, password);
+
+		session.setAttribute("list", list.get(0));
 
 		return "userInfoResult";
 
