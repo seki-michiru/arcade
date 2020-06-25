@@ -44,7 +44,7 @@ public class LoginController {
 
 		List<UserInfo> userInfo1 = userInfoService.findIdPass(loginform.getLoginId(), loginform.getPassword());
 
-		String loginId = null;
+		String loginId = "";
 
 		if(userInfo1 == null) {
 
@@ -53,6 +53,8 @@ public class LoginController {
 			return "login";
 
 		}else {
+
+			loginId = userInfo1.get(0).getLoginId();
 
 			userInfoService.updatelogin_date(loginId);
 
