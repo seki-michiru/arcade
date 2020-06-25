@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import jp.co.example.dao.ItemDao;
 import jp.co.example.dao.ItemStocksDao;
@@ -51,5 +52,11 @@ public class GachaServiceImpl implements GachaService {
 		List<UserInfo> list  = userInfoDao.userHaveCoin(userId);
 
 		return list;
+	}
+
+	@Transactional
+	public void gacha(Integer userId,Integer randomNumber) {
+		itemCollect(userId,randomNumber);
+		coinWast(userId);
 	}
 }

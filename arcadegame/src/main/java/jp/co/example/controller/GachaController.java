@@ -60,14 +60,13 @@ public class GachaController {
 		Integer randomNumber = gachaService.Random();
 		List<Items> list = gachaService.gachaItem(randomNumber);
 		session.setAttribute("getItem", list);
-		//アイテム増やす
-		gachaService.itemCollect(userId, randomNumber);
+
 
 		//減る前のコイン数を保存
 		//session.setAttribute("oldCoin", user.get(0).getCoinHave());
 
-		//コイン数を減らす
-		gachaService.coinWast(userId);
+		//アイテム増やす・コイン数を減らす
+		gachaService.gacha(userId, randomNumber);
 
 		//コインが減った後のユーザー情報を取得
 		List<UserInfo> coinHave = gachaService.userHaveCoin(userId);

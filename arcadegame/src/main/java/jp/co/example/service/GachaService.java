@@ -17,4 +17,7 @@ public interface GachaService {
 		public void coinWast(Integer userId);
 
 		public List<UserInfo> userHaveCoin(Integer userId);
+
+		//トランザクション用
+		public void gacha(Integer userId,Integer randomNumber);
 }
