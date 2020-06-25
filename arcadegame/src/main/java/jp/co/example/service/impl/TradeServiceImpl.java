@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import jp.co.example.dao.ItemStocksDao;
 import jp.co.example.dao.SalesDao;
@@ -37,6 +38,7 @@ public class TradeServiceImpl implements TradeService {
 	}
 
 	@Override
+	@Transactional
 	public void itemChange(Integer saleId, Integer userId) {
 		itemStocksDao.itemChange(saleId,userId);
 

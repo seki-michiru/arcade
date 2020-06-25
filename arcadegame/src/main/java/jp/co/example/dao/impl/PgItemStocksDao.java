@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import jp.co.example.dao.ItemStocksDao;
 import jp.co.example.entity.ItemStocks;
@@ -78,7 +77,6 @@ public class PgItemStocksDao implements ItemStocksDao {
 	}
 
 	@Override
-	@Transactional
 	public void itemChange(Integer saleId, Integer userId) {
 
 		//出品者のアイテム増やす
