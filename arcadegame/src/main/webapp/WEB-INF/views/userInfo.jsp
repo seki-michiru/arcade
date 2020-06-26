@@ -17,9 +17,6 @@
 
 	<h2 id="sub-title">ユーザー情報</h2>
 
-	<a href="menu"><img src="images/returnbtn.png" alt=""
-		class="returnbtn"></a>
-
 
 		<div id="form-btn-center">
 			<div id="form-div">
