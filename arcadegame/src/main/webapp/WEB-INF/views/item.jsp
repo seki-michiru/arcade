@@ -21,7 +21,7 @@
 
 	<h1 id="sub-title">所持アイテム</h1>
 	<c:if test="${not empty msg}">
-		<p>${msg}</p>
+		<p class="confirm-msg">${msg}</p>
 	</c:if>
 	<c:if test="${empty msg}">
 		<table>
