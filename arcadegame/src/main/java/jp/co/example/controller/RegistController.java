@@ -28,10 +28,6 @@ public class RegistController {
 	@RequestMapping("/regist")
 	public String regist(Model model) {
 
-		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
-			return "top";
-		}
-
 		return "regist";
 
 	}
@@ -40,9 +36,6 @@ public class RegistController {
 	public String regist1(@Validated @ModelAttribute("regist") RegistForm registForm, BindingResult result,
 			Model model) {
 
-		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
-			return "top";
-		}
 
 		if (result.hasErrors()) {
 
@@ -73,10 +66,6 @@ public class RegistController {
 	@RequestMapping("/regist2")
 	public String regist2(@ModelAttribute("regist2") RegistForm registForm, Model model) {
 
-		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
-			return "top";
-		}
-
 		String loginId = (String) session.getAttribute("loginId");
 		String userName = (String) session.getAttribute("userName");
 		String password = (String) session.getAttribute("password");
@@ -92,10 +81,6 @@ public class RegistController {
 
 	@RequestMapping("/regist3")
 	public String regist3(@ModelAttribute("regist3") RegistForm registForm, Model model) {
-
-		if (session.getAttribute("userName") == null || session.getAttribute("userName").toString().isEmpty()) {
-			return "top";
-		}
 
 		return "login";
 
