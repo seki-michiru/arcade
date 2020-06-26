@@ -7,14 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>アーケードゲーム</title>
+<title>Arcade Game</title>
 <link rel="stylesheet" href="css/all.css">
 <link rel="icon" href="images/invader1.png">
 </head>
 <body>
 
 	<form:form action="top" modelAttribute="top">
-		<h1 id="game-title">アーケードゲーム</h1>
+		<h1 id="game-title">Arcade Game</h1>
 		<a href="login" id="menu-btn">ログイン</a>
 		<a href="regist" id="menu-btn">新規登録</a>
 	</form:form>
