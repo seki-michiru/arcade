@@ -13,8 +13,6 @@
 </head>
 <body>
 	<h2 id="sub-title">新規登録</h2>
-	<a href="registConfirm"><img src="images/returnbtn.png" alt=""
-		class="returnbtn"></a>
 	<p class="confirm-msg">登録しました</p>
 
 	<form:form action="regist3" modelAttribute="regist">
