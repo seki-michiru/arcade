@@ -30,7 +30,7 @@
 		<c:if test="${not empty myRank.get(0).getRank()}">
 			<div id="rank-msg-div">
 				<p class="rank-msg">あなたのランキング</p>
-				<p class="rank-msg">${myRank.get(0).getRank()}位</p>
+				<c:if test="${myRank.get(0).getRank() == 1 }"><p class="rank-msg" style="color: yellow; font-size: 30px;">👑</p></c:if><p class="rank-msg">${myRank.get(0).getRank()}位</p>
 				<p class="rank-msg">スコア：${myRank.get(0).getHighScore()}</p>
 			</div>
 		</c:if>
