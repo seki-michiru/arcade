@@ -31,7 +31,7 @@ var brickHeight = 50;
 var brickPadding = 30;
 
 var brickOffsetTop = 40;
-var brickOffsetLeft = 40;
+var brickOffsetLeft = 33;
 var score = 0;
 
 var lives = 2;
