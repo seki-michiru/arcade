@@ -90,8 +90,8 @@ document.body.addEventListener('keydown',
     		  },5000)
     	  }
         item1Flag = false;
-        $('.box1').remove();
-        $('.item-name1').remove();
+        $('.box1').css('visibility','hidden');
+        $('.item-name1').css('visibility','hidden');
       }
     });
 document.body.addEventListener('keydown',
@@ -108,8 +108,8 @@ document.body.addEventListener('keydown',
     		  },5000)
     	  }
         item2Flag = false;
-        $('.box2').remove();
-        $('.item-name2').remove();
+        $('.box2').css('visibility','hidden');
+        $('.item-name2').css('visibility','hidden');
       }
     });
 document.body.addEventListener('keydown',
@@ -126,8 +126,8 @@ document.body.addEventListener('keydown',
     		  },5000)
     	  }
         item3Flag = false;
-        $('.box3').remove();
-        $('.item-name3').remove();
+        $('.box3').css('visibility','hidden');
+        $('.item-name3').css('visibility','hidden');
       }
     });
 
@@ -320,7 +320,7 @@ function draw() {
   drawLives();
   collisionDetection();
 
-    enemyMisileY += enemyMisileDy + 0.1*moveCount;
+    enemyMisileY += enemyMisileDy + 0.05*moveCount;
     if(enemyMisileY>canvas.height){
         enemyMisileExist = false;
         hitStatus = true;
